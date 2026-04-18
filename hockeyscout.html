@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hockey Scout Pro — Татьяна Журавлёва</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #ffffff; --cream-dark: #EDE6D6;
+      --terracotta: #C4714A; --terracotta-light: #D98B68;
+      --terracotta-pale: #F0DDD3; --charcoal: #2A2520;
+      --warm-gray: #8C8077; --warm-mid: #6B5F55; --white: #ffffff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; cursor: none; }
+
+    .cursor { width: 10px; height: 10px; background: var(--terracotta); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: multiply; }
+
+    /* Nav */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 60px; transition: background 0.4s, padding 0.4s; }
+    nav.scrolled { background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); padding: 18px 60px; border-bottom: 1px solid rgba(196,113,74,0.12); }
+    .nav-logo { font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 400; letter-spacing: 0.03em; color: var(--charcoal); text-decoration: none; }
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--warm-mid); text-decoration: none; position: relative; transition: color 0.3s; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--terracotta); transition: width 0.3s; }
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Hero */
+    .case-hero {
+      min-height: 88vh; display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 160px 60px 80px; position: relative; overflow: hidden;
+      background: var(--charcoal);
+    }
+    .case-hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #C8D4D0 0%, #7A9E96 60%, #2A2520 100%);
+      opacity: 0.22;
+    }
+    .case-hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .case-hero-content { position: relative; z-index: 1; max-width: 900px; }
+    .case-back-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border: 1px solid rgba(255,255,255,0.2);
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.6); text-decoration: none;
+      margin-bottom: 48px; transition: all 0.3s;
+    }
+    .case-back-pill:hover { border-color: var(--terracotta); color: var(--terracotta-light); }
+    .case-back-pill svg { transition: transform 0.3s; }
+    .case-back-pill:hover svg { transform: translateX(-3px); }
+    .case-eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta-light); font-weight: 500; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s ease 0.1s forwards; }
+    .case-title-hero { font-family: 'Inter', sans-serif; font-size: clamp(52px, 7vw, 96px); font-weight: 300; line-height: 1.0; color: var(--cream); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease 0.25s forwards; }
+    .case-title-hero em { color: var(--terracotta-light); }
+    .case-subtitle { font-size: 18px; font-weight: 300; color: rgba(255,255,255,0.6); max-width: 560px; line-height: 1.7; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
+    .case-meta-row {
+      display: flex; gap: 0; margin-top: 64px; padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      opacity: 0; animation: fadeUp 0.8s ease 0.55s forwards;
+      flex-wrap: wrap; gap: 0;
+    }
+    .case-meta-item { padding: 0 48px 0 0; }
+    .case-meta-item:not(:last-child) { border-right: 1px solid rgba(255,255,255,0.1); margin-right: 48px; }
+    .case-meta-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
+    .case-meta-value { font-size: 14px; color: rgba(255,255,255,0.75); }
+
+    /* Body */
+    .case-body { max-width: 900px; margin: 0 auto; padding: 100px 60px; }
+
+    /* Real images */
+    .case-img {
+      width: 100%; display: block; border-radius: 4px;
+      margin: 48px 0; box-shadow: 0 12px 60px rgba(42,37,32,0.12);
+    }
+    .case-img.no-margin { margin: 0; }
+    .case-img-caption { font-size: 12px; color: var(--warm-gray); text-align: center; margin-top: -36px; margin-bottom: 48px; letter-spacing: 0.04em; }
+
+    .case-img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin: 48px 0; }
+    .case-img-grid-2 img { width: 100%; display: block; box-shadow: 0 8px 40px rgba(42,37,32,0.1); }
+
+    /* Sections */
+    .case-section { margin-bottom: 72px; }
+    .case-section-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 16px; }
+    .case-section-title { font-family: 'Inter', sans-serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 300; line-height: 1.2; color: var(--charcoal); margin-bottom: 24px; }
+    .case-section-title em { color: var(--terracotta); }
+    .case-text { font-size: 15px; line-height: 1.85; color: var(--warm-mid); margin-bottom: 20px; }
+    .case-text strong { color: var(--charcoal); font-weight: 500; }
+
+    .case-highlight {
+      background: var(--white); border-left: 3px solid var(--terracotta);
+      padding: 28px 32px; margin: 32px 0;
+    }
+    .case-highlight p { font-size: 15px; line-height: 1.8; color: var(--warm-mid); }
+    .case-highlight strong { color: var(--charcoal); }
+
+    .case-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+    .case-list li { font-size: 15px; line-height: 1.7; color: var(--warm-mid); padding-left: 22px; position: relative; }
+    .case-list li::before { content: ''; position: absolute; left: 0; top: 12px; width: 8px; height: 1px; background: var(--terracotta); }
+
+    .case-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin: 32px 0; }
+    .case-col-block { background: var(--white); padding: 32px; }
+    .case-col-block h4 { font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 400; color: var(--charcoal); margin-bottom: 16px; }
+
+    .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin: 32px 0; }
+    .story-card { background: var(--white); padding: 32px 28px; border-top: 2px solid var(--cream-dark); transition: border-color 0.3s; }
+    .story-card:hover { border-color: var(--terracotta); }
+    .story-role { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 12px; }
+    .story-text { font-size: 14px; line-height: 1.7; color: var(--warm-mid); }
+
+    /* Feature row: text + image side by side */
+    .feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; background: var(--white); padding: 48px; margin: 3px 0; }
+    .feature-row.reverse { }
+    .feature-row.reverse .feature-img { order: -1; }
+    .feature-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 10px; }
+    .feature-title { font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 400; color: var(--charcoal); margin-bottom: 16px; }
+    .feature-text { font-size: 14px; line-height: 1.8; color: var(--warm-mid); }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+    .feature-list li { font-size: 14px; line-height: 1.6; color: var(--warm-mid); padding-left: 18px; position: relative; }
+    .feature-list li::before { content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 1px; background: var(--terracotta); }
+    .feature-img img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 8px 40px rgba(42,37,32,0.1); }
+
+    /* Divider */
+    .case-divider { height: 1px; background: var(--cream-dark); margin: 72px 0; }
+
+    /* Result block */
+    .case-result { background: var(--charcoal); padding: 72px 60px; margin: 72px -60px 0; text-align: center; }
+    .case-result h3 { font-family: 'Inter', sans-serif; font-size: clamp(30px, 4vw, 50px); font-weight: 300; color: var(--cream); margin-bottom: 24px; }
+    .case-result h3 em { color: var(--terracotta-light); }
+    .case-result p { font-size: 16px; line-height: 1.85; color: rgba(255,255,255,0.6); max-width: 660px; margin: 0 auto; }
+
+    /* Back link */
+    .back-link-wrap { padding: 60px 0 0; }
+    .back-link { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-mid); text-decoration: none; transition: color 0.3s; }
+    .back-link:hover { color: var(--terracotta); }
+    .back-link svg { transition: transform 0.3s; }
+    .back-link:hover svg { transform: translateX(-4px); }
+
+    footer { background: var(--charcoal); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; margin-top: 0; }
+    .footer-logo { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 300; color: var(--cream); opacity: 0.7; text-decoration: none; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; } nav.scrolled { padding: 14px 24px; }
+      .nav-links { gap: 16px; }
+      .case-hero { padding: 120px 24px 60px; min-height: auto; }
+      .case-body { padding: 60px 24px; }
+      .case-meta-row { flex-direction: column; gap: 20px; }
+      .case-meta-item { border-right: none !important; padding-right: 0 !important; margin-right: 0 !important; }
+      .case-two-col, .story-grid, .feature-row { grid-template-columns: 1fr; }
+      .feature-row.reverse .feature-img { order: 0; }
+      .case-img-grid-2 { grid-template-columns: 1fr; }
+      .case-result { padding: 60px 24px; margin: 72px -24px 0; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Татьяна Журавлёва</a>
+    <ul class="nav-links">
+      <li><a href="index.html#work">Работы</a></li>
+      <li><a href="index.html#experience">Опыт</a></li>
+      <li><a href="index.html#about">Обо мне</a></li>
+      <li><a href="index.html#skills">Навыки</a></li>
+      <li><a href="index.html#contact">Контакты</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <div class="case-hero">
+    <div class="case-hero-bg"></div>
+    <div class="case-hero-grid"></div>
+    <div class="case-hero-content">
+      <a href="index.html#work" class="case-back-pill">
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Все работы
+      </a>
+      <p class="case-eyebrow">Продуктовый дизайн · Десктоп · Android · 2023</p>
+      <h1 class="case-title-hero">Hockey Scout Pro Desktop App</h1>
+      <p class="case-subtitle">Платформа для профессиональных хоккейных скаутов — UX-исследование, JTBD-подход, проектирование под фреймворк QT</p>
+      <div class="case-meta-row">
+        <div class="case-meta-item">
+          <p class="case-meta-label">Роль</p>
+          <p class="case-meta-value">Product Designer</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">Компания</p>
+          <p class="case-meta-value">National Scouting Association</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">Платформы</p>
+          <p class="case-meta-value">Десктоп (QT), Android</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BODY ═══ -->
+  <div class="case-body">
+
+    <img src="hockeyscout/Hockey Scout Pro Desktop App/1.png" alt="Hockey Scout Pro Desktop App" class="case-img reveal">
+
+    <div class="case-section reveal">
+      <p class="case-section-label">О проекте</p>
+      <h2 class="case-section-title">Hockey<em>Scout</em></h2>
+      <p class="case-text">HockeyScout это веб-приложение для хоккейного скаута — человека, который подбирает игроков для хоккейных клубов.</p>
+      <p class="case-text">Приложение передает информацию из локальной базы данных, в которой хранится справочник игроков, команд, календарь игр, а сам интерфейс обеспечивает возможность выставлять игрокам оценки за матчи, создавать и редактировать рейтинги игроков, обрабатывать статистику и формировать доклады по игрокам и матчам.</p>
+      <p class="case-text">Моей задачей было создать удобный интерфейс для скаутов, которым можно пользоваться в дороге и на матче, и который бы умещал все многочисленные функции.</p>
+    </div>
+
+    <div class="case-section reveal">
+      <p class="case-section-label">Исследование</p>
+      <h2 class="case-section-title">Портрет <em>пользователя</em></h2>
+      <div class="case-highlight">
+        <p><strong>Возраст:</strong></p>
+        <p>от 40 до 70 лет</p>
+        <p><strong>Цель:</strong></p>
+        <p>Скауту необходимо быстро создать понятные и емкие заметки, которые помогут определиться с игроком в клуб.</p>
+        <p><strong>Деятельность:</strong></p>
+        <p>Большинство скаутов это профессиональные спортсмены, завершившие карьеру, или опытные тренеры, хотя есть и те, кто не занимался спортом профессионально.</p>
+        <p><strong>Проблема:</strong></p>
+        <p>Критериев, по которым оцениваются игроки, очень много, сложно удержать все в голове или на бумаге. За игрой нужно постоянно наблюдать и можно не успеть что-то записать.</p>
+      </div>
+    </div>
+
+    <div class="case-section reveal">
+      <h2 class="case-section-title">Анализ <em>конкурентов</em></h2>
+      <img src="hockeyscout/Hockey Scout Pro Desktop App/8ac19d0f-1e9d-4c2e-bd68-f35655a2c413.png" alt="Анализ конкурентов" class="case-img reveal">
+    </div>
+
+    <div class="case-section reveal">
+      <h2 class="case-section-title">User <em>story</em></h2>
+      <ol class="case-list">
+        <li>Когда скаут выбирает игроков, которых он мог бы посоветовать взять в хоккейный клуб, поэтому ему нужно видеть список всех интересующих игроков, чтобы выбрать лучшего среди них.</li>
+        <li>Когда скаут наблюдает за игрой, ему необходимо быстро делать заметки по интересующим его игрокам, и при этом не отвлекаться от матча. Поэтому скауту нужен инструмент, позволяющий делать и хранить его заметки и оценки, к которым он сможет потом вернуться.</li>
+      </ol>
+    </div>
+
+    <div class="case-section reveal">
+      <p class="case-section-label">Функционал</p>
+      <h2 class="case-section-title">Дефолтные <em>ожидания</em></h2>
+      <ul class="case-list">
+        <li>Искать игроков в базе данных</li>
+        <li>Фильтровать игроков по характеристикам</li>
+        <li>Записать заметку об игроке</li>
+        <li>Поставить оценку игроку</li>
+        <li>Присвоить игроку статус</li>
+        <li>Добавлять в свое рабочее расписание матчи</li>
+        <li>Просматривать статистику по игроку</li>
+      </ul>
+      <h2 class="case-section-title">Дополнительные <em>фичи</em></h2>
+      <ul class="case-list">
+        <li>Отправлять отчет по игроку</li>
+        <li>Создавать рейтинги игроков</li>
+        <li>Формировать отчеты о расходах</li>
+      </ul>
+    </div>
+
+    <div class="case-section reveal">
+      <p class="case-section-label">Архитектура</p>
+      <h2 class="case-section-title">Информационная <em>архитектура</em></h2>
+      <p class="case-text">Чтобы определиться со списком фич и архитектурой приложения, я создала карту, где указала основные экраны с их функционалом и простроила связи между ними.</p>
+      <img src="hockeyscout/Hockey Scout Pro Desktop App/5_1.png" alt="Информационная архитектура" class="case-img reveal">
+    </div>
+
+    <div class="case-section reveal">
+      <h2 class="case-section-title">Юзер <em>флоу</em></h2>
+      <p class="case-text">Цель пользователя - создать рейтинг игроков. В этом кейсе я опишу основной флоу пользователя для достижения этой цели.</p>
+      <ol class="case-list">
+        <li><strong>Ищет игроков</strong></li>
+        <p class="case-text">Скаут ищет игроков в глобальной базе с помощью фильтров и определяется, какие игроки ему наиболее интересны, сохраняет их в закладки.</p>
+        <li><strong>Планирует расписание</strong></li>
+        <p class="case-text">Скаут добавляет игры в расписание. Система покажет игры с интересующими игроками. Календарь игр автоматически подгружается на сервер, а специальные фильтры помогут составить расписание, чтобы как можно эффективнее расходовать рабочее время.</p>
+        <li><strong>Оценивает игроков</strong></li>
+        <p class="case-text">Скаут работает с приложением прямо на матче — состав игроков подгрузится автоматически. Он может оценивать игроков по множеству параметров, добавлять текстовые заметки, указывать приоритет для игрока.</p>
+        <li><strong>Составляет рейтинг</strong></li>
+        <p class="case-text">Скаут может создать свои рейтинги на основе собственных оценок перемещать игроков внутри рейтинга.</p>
+      </ol>
+    </div>
+
+    <div class="case-section reveal">
+      <h2 class="case-section-title">Поиск игрока в <em>базе</em></h2>
+      <p class="case-text">База игроков содержит списки игроков. Их можно отсортировать по игровому амплуа, по типу приоритета, по возрасту и трем категориям. Также скаут может отфильтровать игроков по просмотренным и не просмотренным.</p>
+      <p class="case-text"><strong>Категории:</strong></p>
+      <ul class="case-list">
+        <li><strong>Draft</strong> - команда заявила права на этого игрока</li>
+        <li><strong>Underaged</strong> - несовершеннолетний игрок</li>
+        <li><strong>Priority</strong> - игрок отмечен, как важный для скаута</li>
+      </ul>
+      <img src="hockeyscout/Hockey Scout Pro Desktop App/7_1.png" alt="Поиск игрока в базе" class="case-img reveal">
+    </div>
+
+    <div class="case-section reveal">
+      <h2 class="case-section-title">Добавление матча в <em>расписание</em></h2>
+      <p class="case-text"><strong>User stories:</strong></p>
+      <ul class="case-list">
+        <li>Я главный скаут (руководитель), хочу чтобы все нужные мне матчи были посещены скаутами, поэтому распределяю между скаутами матчи.</li>
+        <li>Я как скаут хочу знать когда и на какой матч я должен попасть, поэтому мне нужно расписание игр и возможность планировать свое время.</li>
+        <li>Мне как скауту нужно знать какие игроки будут принимать участие в матче, какие из них я еще не видел или особо меня интересуют, поэтому мне нужно видеть список игроков у каждого матча.</li>
+        <li>Я скаут и хочу найти игрока в команду, поэтому мне нужно знать, какие игры проходят с участием нужного игрока, чтобы написать о нем заметки.</li>
+      </ul>
+      <p class="case-text"><strong>Проблема:</strong></p>
+      <p class="case-text">Хоккейных матчей очень много, и в каждом нужно показать всех игроков</p>
+      <p class="case-text"><strong>Решение:</strong></p>
+      <p class="case-text">Скаут может видеть все игры, которые назначены на него. Они разделяются на те, что идут сегодня, уже прошли и еще не начались. Игры могут быть назначены руководителем или самим скаутом, и их так же можно фильтровать по этому признаку.</p>
+      <p class="case-text">Чтобы добавить игру себе в календарь, нужно выбрать интересующую из списка всех игр. Можно использовать фильтр по дате, выбрать лигу или конкретного игрока. Также руководитель может сам назначить игру на скаута.</p>
+      <img src="hockeyscout/Hockey Scout Pro Desktop App/8_1.png" alt="Добавление матча в расписание" class="case-img reveal">
+    </div>
+
+    <div class="case-section reveal">
+      <h2 class="case-section-title">Создание доклада об <em>игроке</em></h2>
+      <p class="case-text"><strong>Userstories:</strong></p>
+      <ul class="case-list">
+        <li>Я скаут хоккейной команды N и должен создать доклад о нужных игроках, поэтому я открываю страницу посещенного матча N, редактирую заметки об игроках.</li>
+        <li>Как скаут я хочу собрать отчет из заметок, поэтому хочу чтобы мои заметки не потерялись и к ним можно было всегда вернуться.</li>
+        <li>Как скаут, я хочу вести заметки, не отвлекаясь от наблюдения за полем, поэтому мне нужна схема, на которой удобно ориентироваться.</li>
+      </ul>
+      <p class="case-text"><strong>Проблема:</strong></p>
+      <p class="case-text">Игроков на поле обычно 13 человек, и скауты привыкли записывать их так, как они находятся на игровых зонах.</p>
+      <p class="case-text">Необходимо делать быстрые заметки об игроках, не отвлекаясь от матча.</p>
+      <p class="case-text">Игроки могут менять роли во время матча, например, левый нападающий стал центральным нападающим, поэтому расположение игроков на схеме может меняться.</p>
+      <p class="case-text"><strong>Решение:</strong></p>
+      <p class="case-text">Я расположила игроков на экране так же как и скауты располагают их на своих зарисовках. У каждой команды своя страница.</p>
+      <p class="case-text">В карточке у каждого игрока записана самая важная информация - его имя, номер и роль, а также небольшое поле для заметки. Заметки автоматически сохраняются - так ничего не пропадет.</p>
+      <p class="case-text">Игроки могут менять расположение, поэтому предусмотрена возможность перетаскивания карточек по полю.</p>
+      <img src="hockeyscout/Hockey Scout Pro Desktop App/9_1.png" alt="Создание доклада об игроке" class="case-img reveal">
+      <img src="hockeyscout/Hockey Scout Pro Desktop App/10_1.png" alt="Доклад об игроке" class="case-img reveal">
+      <p class="case-text"><strong>Доклад об игроке</strong></p>
+      <p class="case-text">В окне доклада скаут может редактировать заметку, а также передвигать ползунки с оценками чтобы уточнить информацию об игроке.</p>
+      <img src="hockeyscout/Hockey Scout Pro Desktop App/10_2.png" alt="Доклад об игроке" class="case-img reveal">
+    </div>
+
+    <div class="case-section reveal">
+      <h2 class="case-section-title">Флоу создания рейтинга <em>игроков</em></h2>
+      <p class="case-text"><strong>Userstories:</strong></p>
+      <ul class="case-list">
+        <li>Я как скаут хочу видеть всех понравившихся игроков перед глазами, чтоб выбрать лучшего и предложить нужную кандидатуру главному скауту</li>
+        <li>Я главный скаут (руководитель), хочу видеть результат работы скаутов и по этим результатам принять финальное решение.</li>
+        <li>Когда я вижу нужного игрока в списке, я хочу быстро добавить его в рейтинг.</li>
+      </ul>
+      <p class="case-text"><strong>Проблема:</strong></p>
+      <p class="case-text">Потенциальных игроков очень много и списки могут занимать несколько страниц.</p>
+      <p class="case-text"><strong>Решение:</strong></p>
+      <p class="case-text">Скаут может создавать и редактировать собственные рейтинги игроков. Он может добавлять новых игроков, менять их порядок в рейтинге.</p>
+      <p class="case-text">У игроков может быть присвоен приоритет: A, B, C, D, W, либо не быть приоритета.</p>
+      <p class="case-text">Игрока можно переносить на другое место в рейтинге только в рамках своего приоритета.</p>
+      <p class="case-text">Главный скаут может видеть один и тот же список хоккеистов в виде разных рейтингов от нескольких скаутов: так он сможет увидеть несколько мнений.</p>
+      <img src="hockeyscout/Hockey Scout Pro Desktop App/11_1.png" alt="Флоу создания рейтинга игроков" class="case-img reveal">
+      <img src="hockeyscout/Hockey Scout Pro Desktop App/13.png" alt="Рейтинг игроков" class="case-img reveal">
+      <img src="hockeyscout/Hockey Scout Pro Desktop App/5ace5a77-eb1f-4845-9f1b-1efaa1ed25b1.png" alt="Рейтинг игроков" class="case-img reveal">
+      <p class="case-text"><strong>В результате работы получился инструмент, позволяющий собирать, хранить и систематизировать оценки игроков. На основе нескольких докладов у скаутов формируется представление об игроке — составлять рейтинги проще и быстрее.</strong></p>
+      <p class="case-text">На данный момент приложением пользуется несколько скаутов в трех хоккейных клубах: несмотря на то, что они привыкли использовать записи на бумаге и чаще всего не являются активными пользователями персональных компьютеров, инструмент показался им удобнее.</p>
+      <img src="hockeyscout/Hockey Scout Pro Desktop App/15.png" alt="Результат" class="case-img reveal">
+    </div>
+
+    <div class="back-link-wrap">
+      <a href="index.html#work" class="back-link">
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Все работы
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    <a href="index.html" class="footer-logo">Татьяна Журавлёва</a>
+    <span class="footer-copy">© 2026 · UX/UI и продуктовый дизайнер</span>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    let mx = 0, my = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
+    });
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+    });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Datacraft — Татьяна Журавлёва</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #ffffff; --cream-dark: #EDE6D6;
+      --terracotta: #C4714A; --terracotta-light: #D98B68;
+      --terracotta-pale: #F0DDD3; --charcoal: #2A2520;
+      --warm-gray: #8C8077; --warm-mid: #6B5F55; --white: #ffffff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; cursor: none; }
+
+    .cursor { width: 10px; height: 10px; background: var(--terracotta); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: multiply; }
+
+    /* Nav */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 60px; transition: background 0.4s, padding 0.4s; }
+    nav.scrolled { background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); padding: 18px 60px; border-bottom: 1px solid rgba(196,113,74,0.12); }
+    .nav-logo { font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 400; letter-spacing: 0.03em; color: var(--charcoal); text-decoration: none; }
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--warm-mid); text-decoration: none; position: relative; transition: color 0.3s; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--terracotta); transition: width 0.3s; }
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Hero */
+    .case-hero {
+      min-height: 88vh; display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 160px 60px 80px; position: relative; overflow: hidden;
+      background: var(--charcoal);
+    }
+    .case-hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #C8D4D0 0%, #7A9E96 60%, #2A2520 100%);
+      opacity: 0.22;
+    }
+    .case-hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .case-hero-content { position: relative; z-index: 1; max-width: 900px; }
+    .case-back-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border: 1px solid rgba(255,255,255,0.2);
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.6); text-decoration: none;
+      margin-bottom: 48px; transition: all 0.3s;
+    }
+    .case-back-pill:hover { border-color: var(--terracotta); color: var(--terracotta-light); }
+    .case-back-pill svg { transition: transform 0.3s; }
+    .case-back-pill:hover svg { transform: translateX(-3px); }
+    .case-eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta-light); font-weight: 500; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s ease 0.1s forwards; }
+    .case-title-hero { font-family: 'Inter', sans-serif; font-size: clamp(52px, 7vw, 96px); font-weight: 300; line-height: 1.0; color: var(--cream); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease 0.25s forwards; }
+    .case-title-hero em { color: var(--terracotta-light); }
+    .case-subtitle { font-size: 18px; font-weight: 300; color: rgba(255,255,255,0.6); max-width: 560px; line-height: 1.7; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
+    .case-meta-row {
+      display: flex; gap: 0; margin-top: 64px; padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      opacity: 0; animation: fadeUp 0.8s ease 0.55s forwards;
+      flex-wrap: wrap; gap: 0;
+    }
+    .case-meta-item { padding: 0 48px 0 0; }
+    .case-meta-item:not(:last-child) { border-right: 1px solid rgba(255,255,255,0.1); margin-right: 48px; }
+    .case-meta-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
+    .case-meta-value { font-size: 14px; color: rgba(255,255,255,0.75); }
+
+    /* Body */
+    .case-body { max-width: 900px; margin: 0 auto; padding: 100px 60px; }
+
+    /* Real images */
+    .case-img {
+      width: 100%; display: block; border-radius: 4px;
+      margin: 48px 0; box-shadow: 0 12px 60px rgba(42,37,32,0.12);
+    }
+    .case-img.no-margin { margin: 0; }
+    .case-img-caption { font-size: 12px; color: var(--warm-gray); text-align: center; margin-top: -36px; margin-bottom: 48px; letter-spacing: 0.04em; }
+
+    .case-img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin: 48px 0; }
+    .case-img-grid-2 img { width: 100%; display: block; box-shadow: 0 8px 40px rgba(42,37,32,0.1); }
+
+    /* Sections */
+    .case-section { margin-bottom: 72px; }
+    .case-section-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 16px; }
+    .case-section-title { font-family: 'Inter', sans-serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 300; line-height: 1.2; color: var(--charcoal); margin-bottom: 24px; }
+    .case-section-title em { color: var(--terracotta); }
+    .case-text { font-size: 15px; line-height: 1.85; color: var(--warm-mid); margin-bottom: 20px; }
+    .case-text strong { color: var(--charcoal); font-weight: 500; }
+
+    .case-highlight {
+      background: var(--white); border-left: 3px solid var(--terracotta);
+      padding: 28px 32px; margin: 32px 0;
+    }
+    .case-highlight p { font-size: 15px; line-height: 1.8; color: var(--warm-mid); }
+    .case-highlight strong { color: var(--charcoal); }
+
+    .case-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+    .case-list li { font-size: 15px; line-height: 1.7; color: var(--warm-mid); padding-left: 22px; position: relative; }
+    .case-list li::before { content: ''; position: absolute; left: 0; top: 12px; width: 8px; height: 1px; background: var(--terracotta); }
+
+    .case-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin: 32px 0; }
+    .case-col-block { background: var(--white); padding: 32px; }
+    .case-col-block h4 { font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 400; color: var(--charcoal); margin-bottom: 16px; }
+
+    .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin: 32px 0; }
+    .story-card { background: var(--white); padding: 32px 28px; border-top: 2px solid var(--cream-dark); transition: border-color 0.3s; }
+    .story-card:hover { border-color: var(--terracotta); }
+    .story-role { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 12px; }
+    .story-text { font-size: 14px; line-height: 1.7; color: var(--warm-mid); }
+
+    /* Feature row: text + image side by side */
+    .feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; background: var(--white); padding: 48px; margin: 3px 0; }
+    .feature-row.reverse { }
+    .feature-row.reverse .feature-img { order: -1; }
+    .feature-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 10px; }
+    .feature-title { font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 400; color: var(--charcoal); margin-bottom: 16px; }
+    .feature-text { font-size: 14px; line-height: 1.8; color: var(--warm-mid); }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+    .feature-list li { font-size: 14px; line-height: 1.6; color: var(--warm-mid); padding-left: 18px; position: relative; }
+    .feature-list li::before { content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 1px; background: var(--terracotta); }
+    .feature-img img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 8px 40px rgba(42,37,32,0.1); }
+
+    /* Divider */
+    .case-divider { height: 1px; background: var(--cream-dark); margin: 72px 0; }
+
+    /* Result block */
+    .case-result { background: var(--charcoal); padding: 72px 60px; margin: 72px -60px 0; text-align: center; }
+    .case-result h3 { font-family: 'Inter', sans-serif; font-size: clamp(30px, 4vw, 50px); font-weight: 300; color: var(--cream); margin-bottom: 24px; }
+    .case-result h3 em { color: var(--terracotta-light); }
+    .case-result p { font-size: 16px; line-height: 1.85; color: rgba(255,255,255,0.6); max-width: 660px; margin: 0 auto; }
+
+    /* Back link */
+    .back-link-wrap { padding: 60px 0 0; }
+    .back-link { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-mid); text-decoration: none; transition: color 0.3s; }
+    .back-link:hover { color: var(--terracotta); }
+    .back-link svg { transition: transform 0.3s; }
+    .back-link:hover svg { transform: translateX(-4px); }
+
+    footer { background: var(--charcoal); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; margin-top: 0; }
+    .footer-logo { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 300; color: var(--cream); opacity: 0.7; text-decoration: none; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; } nav.scrolled { padding: 14px 24px; }
+      .nav-links { gap: 16px; }
+      .case-hero { padding: 120px 24px 60px; min-height: auto; }
+      .case-body { padding: 60px 24px; }
+      .case-meta-row { flex-direction: column; gap: 20px; }
+      .case-meta-item { border-right: none !important; padding-right: 0 !important; margin-right: 0 !important; }
+      .case-two-col, .story-grid, .feature-row { grid-template-columns: 1fr; }
+      .feature-row.reverse .feature-img { order: 0; }
+      .case-img-grid-2 { grid-template-columns: 1fr; }
+      .case-result { padding: 60px 24px; margin: 72px -24px 0; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Татьяна Журавлёва</a>
+    <ul class="nav-links">
+      <li><a href="index.html#work">Работы</a></li>
+      <li><a href="index.html#experience">Опыт</a></li>
+      <li><a href="index.html#about">Обо мне</a></li>
+      <li><a href="index.html#skills">Навыки</a></li>
+      <li><a href="index.html#contact">Контакты</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <div class="case-hero">
+    <div class="case-hero-bg"></div>
+    <div class="case-hero-grid"></div>
+    <div class="case-hero-content">
+      <a href="index.html#work" class="case-back-pill">
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Все работы
+      </a>
+      <p class="case-eyebrow">Веб-приложение · UX/UI Design · 2025</p>
+      <h1 class="case-title-hero">Data<em>craft</em></h1>
+      <p class="case-subtitle">Приложение для обработки табличных данных — без сложных формул, без лишнего ПО</p>
+      <div class="case-meta-row">
+        <div class="case-meta-item">
+          <p class="case-meta-label">Роль</p>
+          <p class="case-meta-value">UX/UI Дизайнер</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">Тип</p>
+          <p class="case-meta-value">Веб-сервис</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">Инструменты</p>
+          <p class="case-meta-value">Figma, FigJam</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">Результат</p>
+          <p class="case-meta-value">Прототип для инвесторов</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BODY ═══ -->
+  <div class="case-body">
+
+    <img src="Datacraft/1.png" alt="Datacraft" class="case-img reveal">
+
+    <div class="case-section reveal">
+      <p class="case-section-label">О проекте</p>
+      <h2 class="case-section-title">Datacraft</h2>
+      <p class="case-text">Приложение для обработки табличных данных</p>
+      <p class="case-text">Заказчик обратился с просьбой создать веб-сервис, который упростит работу с табличными данными для пользователей без глубоких навыков в Excel.</p>
+      <p class="case-text">Основные ожидания:</p>
+      <ul class="case-list">
+        <li>интуитивный интерфейс,</li>
+        <li>возможность быстрой валидации данных,</li>
+        <li>простые инструменты для создания графиков и дашбордов.</li>
+      </ul>
+    </div>
+
+    <div class="case-section reveal">
+      <h2 class="case-section-title">Целевая <em>аудитория</em></h2>
+      <p class="case-text"><strong>Профессия:</strong> бухгалтеры, финансисты, аналитики - сотрудники малых и средних компаний, которые работают с Excel-отчётами и выгрузками из 1С или CRM.</p>
+      <p class="case-text">Цели, желания: быстро проверить таблицу на ошибки и подготовить отчёт с визуальными примерами.</p>
+    </div>
+
+    <div class="case-section reveal">
+      <h2 class="case-section-title">Боли <em>пользователей</em></h2>
+      <p class="case-text">Чтобы понять потребности пользователей, я изучила существующие сервисы (Excel, Google Sheets) и собрала информацию о типичных проблемах.</p>
+      <ul class="case-list">
+        <li>ошибки в таблицах сложно найти вручную;</li>
+        <li>валидация часто требует знаний формул или скриптов;</li>
+        <li>построение графиков занимает много времени;</li>
+        <li>для простых задач BI-инструменты избыточны;</li>
+        <li>отчёты приходится собирать в нескольких инструментах.</li>
+      </ul>
+    </div>
+
+    <div class="case-section reveal">
+      <p class="case-section-label">Исследование</p>
+      <h2 class="case-section-title">Юзер-<em>стори</em></h2>
+      <ul class="case-list">
+        <li>Как бухгалтер, я хочу загрузить Excel-файл и сразу увидеть ошибки, чтобы не тратить часы на проверку вручную.</li>
+        <li>Как менеджер, я хочу быстро построить график для презентации, чтобы показать результаты команде.</li>
+        <li>Как аналитик, я хочу собрать дашборд из графиков, чтобы отслеживать ключевые показатели на одном экране.</li>
+      </ul>
+    </div>
+
+    <div class="case-section reveal">
+      <p class="case-section-label">Функционал</p>
+      <h2 class="case-section-title">Навигация</h2>
+      <p class="case-text">Создала боковое меню с тремя основными разделами - таблицы, графики, дашборды. В каждой из этих вкладок можно будет зайти на конкретный объект, он тоже показан вкладкой подменю, что позволяет получать быстрый доступ к каждому проекту.</p>
+      <img src="Datacraft/3.png" alt="Навигация" class="case-img reveal">
+    </div>
+
+    <div class="case-section reveal">
+      <h2 class="case-section-title">Импорт <em>данных</em></h2>
+      <ul class="case-list">
+        <li>Автоматическое определение структуры (заголовки, даты, числа).</li>
+        <li>Подсветка ошибок и предложения исправлений.</li>
+        <li>Поддержка Excel, CSV, Google Sheets.</li>
+        <li>AI - ассистент, которого можно попросить проанализировать таблицу, устранить ошибки за тебя - просто написать запрос в боковой панели</li>
+      </ul>
+      <img src="Datacraft/4.png" alt="Импорт данных" class="case-img reveal">
+      <img src="Datacraft/5.png" alt="Импорт данных" class="case-img reveal">
+      <img src="Datacraft/6.png" alt="Импорт данных" class="case-img reveal">
+      <img src="Datacraft/7.png" alt="Импорт данных" class="case-img reveal">
+    </div>
+
+    <div class="case-section reveal">
+      <h2 class="case-section-title">Создание <em>графиков</em></h2>
+      <p class="case-text">График можно создать на основе загруженной ранее таблицы или загрузить новую.</p>
+      <ul class="case-list">
+        <li>Выбор колонок для визуализации - по оси X и Y. Есть дополнительные функции, такие как агрегирование, возможность разделить данные по дополнительным признакам.</li>
+        <li>Есть несколько типов графиков - столбчатая диаграмма, круговая диаграмма, таблица</li>
+        <li>Возможность кастомизации - можно выбрать цвета</li>
+        <li>Можно показать данные, соответствующие фильтрам</li>
+      </ul>
+      <img src="Datacraft/8.png" alt="Создание графиков" class="case-img reveal">
+      <img src="Datacraft/9.png" alt="Создание графиков" class="case-img reveal">
+      <img src="Datacraft/10.png" alt="Создание графиков" class="case-img reveal">
+    </div>
+
+    <div class="case-section reveal">
+      <h2 class="case-section-title">Конструктор <em>дашбордов</em></h2>
+      <ul class="case-list">
+        <li>Drag-and-drop для сборки из графиков.</li>
+        <li>Гибкая настройка расположения и размеров.</li>
+      </ul>
+      <img src="Datacraft/11.png" alt="Конструктор дашбордов" class="case-img reveal">
+    </div>
+
+    <div class="case-section reveal">
+      <p class="case-section-label">Результаты</p>
+      <h2 class="case-section-title">Результаты</h2>
+      <p class="case-text">Для заказчика получился прототип проекта, который закрывает потребность пользователя в простом инструменте редактирования табличных данных и создания презентаций в одном интерфейсе. Он интуитивно понятен, сокращает рутину и упрощает работу с таблицами. Проект готов к дальнейшему развитию и презентации инвесторам.</p>
+    </div>
+
+    <div class="back-link-wrap">
+      <a href="index.html#work" class="back-link">
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Все работы
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    <a href="index.html" class="footer-logo">Татьяна Журавлёва</a>
+    <span class="footer-copy">© 2026 · UX/UI и продуктовый дизайнер</span>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    let mx = 0, my = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
+    });
+    window.addEventListener('load', () => {
+      history.replaceState(null, null, window.location.pathname);
+      window.scrollTo(0, 0);
+    });
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+    });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

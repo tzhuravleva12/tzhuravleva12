@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Handbid — сервис для управления благотворительными аукционами</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #ffffff; --cream-dark: #EDE6D6;
+      --terracotta: #C4714A; --terracotta-light: #D98B68;
+      --terracotta-pale: #F0DDD3; --charcoal: #2A2520;
+      --warm-gray: #8C8077; --warm-mid: #6B5F55; --white: #ffffff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; cursor: none; }
+    .cursor { width: 10px; height: 10px; background: var(--terracotta); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: multiply; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 60px; transition: background 0.4s, padding 0.4s; }
+    nav.scrolled { background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); padding: 18px 60px; border-bottom: 1px solid rgba(196,113,74,0.12); }
+    .nav-logo { font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 400; letter-spacing: 0.03em; color: var(--charcoal); text-decoration: none; }
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--warm-mid); text-decoration: none; position: relative; transition: color 0.3s; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--terracotta); transition: width 0.3s; }
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-links a:hover::after { width: 100%; }
+    .case-hero { min-height: 88vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 160px 60px 80px; position: relative; overflow: hidden; background: var(--charcoal); }
+    .case-hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #C8D4D0 0%, #7A9E96 60%, #2A2520 100%); opacity: 0.22; }
+    .case-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 60px 60px; }
+    .case-hero-content { position: relative; z-index: 1; max-width: 900px; }
+    .case-back-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.2); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 48px; transition: all 0.3s; }
+    .case-back-pill:hover { border-color: var(--terracotta); color: var(--terracotta-light); }
+    .case-back-pill svg { transition: transform 0.3s; }
+    .case-back-pill:hover svg { transform: translateX(-3px); }
+    .case-eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta-light); font-weight: 500; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s ease 0.1s forwards; }
+    .case-title-hero { font-family: 'Inter', sans-serif; font-size: clamp(52px, 7vw, 96px); font-weight: 300; line-height: 1.0; color: var(--cream); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease 0.25s forwards; }
+    .case-subtitle { font-size: 18px; font-weight: 300; color: rgba(255,255,255,0.6); max-width: 560px; line-height: 1.7; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
+    .case-body { max-width: 900px; margin: 0 auto; padding: 100px 60px; }
+    .case-img { width: 100%; display: block; border-radius: 4px; margin: 48px 0; box-shadow: 0 12px 60px rgba(42,37,32,0.12); }
+    .case-section { margin-bottom: 72px; }
+    .case-section-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 16px; }
+    .case-section-title { font-family: 'Inter', sans-serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 300; line-height: 1.2; color: var(--cream); margin-bottom: 24px; }
+    .case-section-title em { color: var(--terracotta); }
+    .case-text { font-size: 15px; line-height: 1.85; color: rgba(255,255,255,0.8); margin-bottom: 20px; }
+    .case-text strong { color: var(--cream); font-weight: 500; }
+    .case-result { background: var(--charcoal); padding: 72px 60px; margin: 72px -60px 0; text-align: center; }
+    .case-result h3 { font-family: 'Inter', sans-serif; font-size: clamp(30px, 4vw, 50px); font-weight: 300; color: var(--cream); margin-bottom: 24px; }
+    .case-result p { font-size: 16px; line-height: 1.85; color: rgba(255,255,255,0.6); max-width: 660px; margin: 0 auto; }
+    .back-link-wrap { padding: 60px 0 0; }
+    .back-link { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.3s; }
+    .back-link:hover { color: var(--terracotta); }
+    .back-link svg { transition: transform 0.3s; }
+    .back-link:hover svg { transform: translateX(-4px); }
+    footer { background: var(--charcoal); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; margin-top: 0; }
+    .footer-logo { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 300; color: var(--cream); opacity: 0.7; text-decoration: none; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 900px) { nav { padding: 20px 24px; } nav.scrolled { padding: 14px 24px; } .case-hero { padding: 120px 24px 60px; min-height: auto; } .case-body { padding: 60px 24px; } .case-section-title { font-size: 32px; } .case-result { padding: 60px 24px; margin: 72px -24px 0; } footer { flex-direction: column; gap: 12px; text-align: center; } }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Татьяна Журавлёва</a>
+    <ul class="nav-links">
+      <li><a href="index.html#work">Работы</a></li>
+      <li><a href="index.html#experience">Опыт</a></li>
+      <li><a href="index.html#about">Обо мне</a></li>
+      <li><a href="index.html#skills">Навыки</a></li>
+      <li><a href="index.html#contact">Контакты</a></li>
+    </ul>
+  </nav>
+  <div class="case-hero">
+    <div class="case-hero-bg"></div>
+    <div class="case-hero-grid"></div>
+    <div class="case-hero-content">
+      <a href="index.html#work" class="case-back-pill">
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Все работы
+      </a>
+      <p class="case-eyebrow">Редизайн админ-панели</p>
+      <h1 class="case-title-hero">Handbid</h1>
+      <p class="case-subtitle">Сервис для управления благотворительными аукционами</p>
+    </div>
+  </div>
+  <div class="case-body">
+    <img src="handbid/Handbid - сервис для управления благотворительными/1.png" alt="Handbid preview" class="case-img reveal">
+    <div class="case-section reveal">
+      <p class="case-section-label">О проекте</p>
+      <h2 class="case-section-title">Handbid</h2>
+      <p class="case-text">Заказчик обратился с просьбой провести аудит интерфейса и сделать редизайн админ-панели, чтобы сделать сервис более удобным для пользователей и более гибким для дальнейших изменений и улучшений.</p>
+      <p class="case-text">У них была готовая дизайн-система для всего продукта, поэтому я провела исследование проблем и создала свои предложения по улучшению на базе их дизайн-системы.</p>
+    </div>
+    <div class="case-section reveal">
+      <p class="case-section-label">Исследование</p>
+      <h2 class="case-section-title">Исследование</h2>
+      <p class="case-text">В текущем дизайне было использовано вложенное боковое меню, что создавало проблемы при ориентировании в сервисе. Навигация была неудобной, так как вкладки вели не только на вложенные страницы, но и иногда выполняли роль фильтров, то есть их можно было расположить в горизонтальной навигации.</p>
+      <img src="handbid/Handbid - сервис для управления благотворительными/old.png" alt="Старый дизайн Handbid" class="case-img reveal">
+      <img src="handbid/Handbid - сервис для управления благотворительными/image.png" alt="Исследование интерфейса Handbid" class="case-img reveal">
+    </div>
+    <div class="case-section reveal">
+      <p class="case-section-label">Решение</p>
+      <h2 class="case-section-title">Решение</h2>
+      <p class="case-text">Я предложила свое решение - сделать основные вкладки сервиса в сайдбаре - обзор(домашняя страница), вкладка для администратора, список всех контактов, список всех лотов, управление пожертвованиями.</p>
+      <p class="case-text">Наверху можно увидеть организацию и аккаунт пользователя.</p>
+      <p class="case-text">Ниже - табы с навигацией по всем мероприятиям организации- все аукционы, все мероприятия c пожертвованиями, все организованные сборы.</p>
+      <p class="case-text">Заказчик настоял на расположении в сайдбаре статистики, которая меняется в зависимости от того, на какой странице находишься, так как к нему привыкли пользователи.</p>
+      <img src="handbid/Handbid - сервис для управления благотворительными/Frame_1.png" alt="Сайдбар Handbid" class="case-img reveal">
+      <img src="handbid/Handbid - сервис для управления благотворительными/Frame_3.png" alt="Схема решения Handbid" class="case-img reveal">
+      <img src="handbid/Handbid - сервис для управления благотворительными/Frame_2.png" alt="Структура Handbid" class="case-img reveal">
+      <img src="handbid/Handbid - сервис для управления благотворительными/Frame_5.png" alt="Редактирование мероприятия Handbid" class="case-img reveal">
+      <img src="handbid/Handbid - сервис для управления благотворительными/Frame_6.png" alt="Управление аукционом Handbid" class="case-img reveal">
+      <img src="handbid/Handbid - сервис для управления благотворительными/Frame_7.png" alt="Лоты и ставки Handbid" class="case-img reveal">
+      <img src="handbid/Handbid - сервис для управления благотворительными/Frame_16.png" alt="Таблицы и фильтры Handbid" class="case-img reveal">
+      <img src="handbid/Handbid - сервис для управления благотворительными/Frame_8.png" alt="Управление профилем участника Handbid" class="case-img reveal">
+      <img src="handbid/Handbid - сервис для управления благотворительными/Frame_14.png" alt="Статистика A4 Handbid" class="case-img reveal">
+      <img src="handbid/Handbid - сервис для управления благотворительными/Frame_12.png" alt="Финансовая вкладка Handbid" class="case-img reveal">
+      <img src="handbid/Handbid - сервис для управления благотворительными/Frame_13.png" alt="Отчет Handbid" class="case-img reveal">
+      <img src="handbid/Handbid - сервис для управления благотворительными/image_2.png" alt="Управление профилем участника Handbid" class="case-img reveal">
+      <img src="handbid/Handbid - сервис для управления благотворительными/Frame_9.png" alt="Ставки офлайн Handbid" class="case-img reveal">
+      <img src="handbid/Handbid - сервис для управления благотворительными/Frame_10.png" alt="Управление лотом Handbid" class="case-img reveal">
+    </div>
+    <div class="case-section reveal">
+      <p class="case-section-label">Результат</p>
+      <h2 class="case-section-title">Результат</h2>
+      <p class="case-text">Заказчик остался доволен редизайном и попросил сделать редизайн интерфейса для работы ведущего аукционом, а также редизайн дочерних продуктов компании.</p>
+    </div>
+    <div class="back-link-wrap reveal">
+      <a href="index.html#work" class="back-link">
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Все работы
+      </a>
+    </div>
+  </div>
+  <footer>
+    <a href="index.html" class="footer-logo">Татьяна Журавлева</a>
+    <span class="footer-copy">© 2026 · UX/UI и продуктовый дизайнер</span>
+  </footer>
+  <script>
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => { cursor.style.transform = `translate(${e.clientX - 5}px, ${e.clientY - 5}px)`; });
+    window.addEventListener('load', () => { history.replaceState(null, null, window.location.pathname); window.scrollTo(0, 0); });
+    window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60); });
+    const observer = new IntersectionObserver(entries => { entries.forEach((entry, i) => { if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80); }); }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
