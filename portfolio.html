@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Татьяна Журавлёва — UX/UI Дизайнер</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F5F0E8; --cream-dark: #EDE6D6;
+      --terracotta: #C4714A; --terracotta-light: #D98B68;
+      --terracotta-pale: #F0DDD3; --charcoal: #2A2520;
+      --warm-gray: #8C8077; --warm-mid: #6B5F55; --white: #FDFAF5;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; cursor: none; }
+    .cursor { width: 10px; height: 10px; background: var(--terracotta); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: multiply; }
+    .cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--terracotta); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), width 0.3s, height 0.3s, opacity 0.3s; opacity: 0.6; }
+    .cursor-ring.expand { width: 60px; height: 60px; opacity: 0.3; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 60px; transition: background 0.4s, padding 0.4s; }
+    nav.scrolled { background: rgba(245,240,232,0.93); backdrop-filter: blur(12px); padding: 18px 60px; border-bottom: 1px solid rgba(196,113,74,0.12); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; letter-spacing: 0.03em; color: var(--charcoal); text-decoration: none; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--warm-mid); text-decoration: none; position: relative; transition: color 0.3s; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--terracotta); transition: width 0.3s; }
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-links a:hover::after { width: 100%; }
+
+    #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 120px 60px 80px; position: relative; overflow: hidden; }
+    .hero-bg-shape { position: absolute; right: -80px; top: 50%; transform: translateY(-50%); width: 580px; height: 580px; background: var(--terracotta-pale); border-radius: 60% 40% 50% 70% / 50% 60% 40% 60%; opacity: 0.55; z-index: 0; animation: morphBlob 12s ease-in-out infinite; }
+    @keyframes morphBlob { 0%,100% { border-radius: 60% 40% 50% 70% / 50% 60% 40% 60%; } 33% { border-radius: 40% 60% 70% 30% / 60% 40% 60% 40%; } 66% { border-radius: 70% 30% 40% 60% / 40% 70% 30% 60%; } }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
+    .hero-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(50px, 6vw, 82px); font-weight: 300; line-height: 1.05; color: var(--charcoal); margin-bottom: 16px; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
+    .hero-name em { font-style: italic; color: var(--terracotta); }
+    .hero-title { font-size: 15px; font-weight: 300; color: var(--warm-mid); margin-bottom: 36px; opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards; }
+    .hero-desc { font-size: 15px; line-height: 1.8; color: var(--warm-mid); max-width: 440px; margin-bottom: 52px; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; }
+    .hero-cta { display: flex; gap: 20px; align-items: center; opacity: 0; animation: fadeUp 0.8s ease 1s forwards; }
+    .btn-primary { display: inline-block; padding: 14px 36px; background: var(--charcoal); color: var(--cream); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: background 0.3s, transform 0.2s; }
+    .btn-primary:hover { background: var(--terracotta); transform: translateY(-2px); }
+    .btn-ghost { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--warm-mid); text-decoration: none; font-weight: 400; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
+    .btn-ghost:hover { color: var(--terracotta); }
+    .btn-ghost svg { transition: transform 0.3s; }
+    .btn-ghost:hover svg { transform: translateX(4px); }
+    .hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; }
+    .hero-img-frame { width: 380px; height: 480px; background: var(--cream-dark); position: relative; overflow: hidden; opacity: 0; animation: fadeIn 1s ease 0.6s forwards; }
+    .hero-img-frame::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--terracotta-pale) 0%, var(--cream-dark) 60%); }
+    .hero-img-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+    .avatar-icon { width: 100px; height: 100px; background: var(--terracotta-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .hero-img-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); }
+    .frame-accent { position: absolute; bottom: -16px; right: -16px; width: 120px; height: 120px; border: 2px solid var(--terracotta); opacity: 0.35; }
+    .hero-stats { position: absolute; bottom: 30px; left: -20px; background: var(--white); padding: 18px 24px; display: flex; gap: 28px; box-shadow: 0 8px 40px rgba(42,37,32,0.08); opacity: 0; animation: fadeUp 0.8s ease 1.2s forwards; }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--terracotta); display: block; }
+    .stat-label { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--warm-gray); }
+    .scroll-indicator { position: absolute; bottom: 40px; left: 60px; display: flex; align-items: center; gap: 12px; opacity: 0; animation: fadeIn 1s ease 1.4s forwards; }
+    .scroll-line { width: 40px; height: 1px; background: var(--terracotta); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%,100% { width: 40px; opacity: 1; } 50% { width: 60px; opacity: 0.5; } }
+    .scroll-text { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); }
+
+    section { padding: 100px 60px; }
+    .section-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 16px; }
+    .section-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 4vw, 52px); font-weight: 300; line-height: 1.18; color: var(--charcoal); margin-bottom: 20px; }
+    .section-heading em { font-style: italic; color: var(--terracotta); }
+    .section-sub { font-size: 15px; line-height: 1.75; color: var(--warm-mid); max-width: 500px; }
+
+    /* РАБОТЫ */
+    #work { background: var(--white); }
+    .work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
+    .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+    .case-card { position: relative; overflow: hidden; background: var(--cream); cursor: none; }
+    .case-card:first-child { grid-column: span 2; }
+    .case-img-placeholder { width: 100%; aspect-ratio: 16/7; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; transition: transform 0.7s cubic-bezier(0.23,1,0.32,1); }
+    .case-card:not(:first-child) .case-img-placeholder { aspect-ratio: 4/3; }
+    .case-card:hover .case-img-placeholder { transform: scale(1.04); }
+    .case-img-bg-1 { background: linear-gradient(135deg, #DCCBBF 0%, #B8856A 100%); }
+    .case-img-bg-2 { background: linear-gradient(135deg, #C8D4D0 0%, #7A9E96 100%); }
+    .case-img-bg-3 { background: linear-gradient(135deg, #D0CABC 0%, #9A8C7A 100%); }
+    .case-placeholder-icon { opacity: 0.3; }
+    .case-placeholder-text { font-size: 11px; letter-spacing: 0.08em; color: rgba(255,255,255,0.7); }
+    .case-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px; background: linear-gradient(to top, rgba(42,37,32,0.85) 0%, transparent 100%); transform: translateY(20px); opacity: 0; transition: all 0.5s ease; }
+    .case-card:hover .case-overlay { opacity: 1; transform: translateY(0); }
+    .case-overlay-text { color: rgba(255,255,255,0.85); font-size: 13px; }
+    .case-info { padding: 28px 32px; display: flex; justify-content: space-between; align-items: flex-start; }
+    .case-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+    .tag { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; background: var(--terracotta-pale); color: var(--terracotta); font-weight: 500; }
+    .case-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: var(--charcoal); }
+    .case-desc { font-size: 13px; color: var(--warm-gray); margin-top: 6px; line-height: 1.6; }
+    .case-arrow { width: 44px; height: 44px; border: 1px solid var(--cream-dark); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; text-decoration: none; }
+    .case-arrow:hover { background: var(--terracotta); border-color: var(--terracotta); }
+    .case-arrow svg path { stroke: var(--warm-gray); transition: stroke 0.3s; }
+    .case-arrow:hover svg path { stroke: white; }
+
+    /* ОПЫТ */
+    #experience { background: var(--cream); }
+    .exp-layout { display: grid; grid-template-columns: 220px 1fr; gap: 80px; margin-top: 60px; }
+    .exp-nav { position: sticky; top: 120px; height: fit-content; }
+    .exp-nav-item { padding: 14px 0 14px 20px; border-left: 2px solid var(--cream-dark); cursor: none; transition: all 0.3s; color: var(--warm-gray); font-size: 13px; margin-bottom: 4px; line-height: 1.5; }
+    .exp-nav-item.active { border-color: var(--terracotta); color: var(--charcoal); font-weight: 500; }
+    .exp-entries { display: flex; flex-direction: column; gap: 48px; }
+    .exp-entry { padding: 40px; background: var(--white); border-top: 2px solid transparent; transition: border-color 0.3s; }
+    .exp-entry:hover { border-color: var(--terracotta); }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+    .exp-role { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: var(--charcoal); }
+    .exp-period { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terracotta); background: var(--terracotta-pale); padding: 6px 14px; white-space: nowrap; }
+    .exp-company { font-size: 14px; color: var(--warm-mid); margin-bottom: 4px; font-weight: 500; }
+    .exp-product { font-size: 13px; color: var(--warm-gray); margin-bottom: 24px; font-style: italic; }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .exp-bullets li { font-size: 14px; line-height: 1.7; color: var(--warm-mid); padding-left: 20px; position: relative; }
+    .exp-bullets li::before { content: ''; position: absolute; left: 0; top: 11px; width: 6px; height: 1px; background: var(--terracotta); }
+    .exp-highlight { margin-top: 20px; padding: 16px 20px; background: var(--terracotta-pale); border-left: 3px solid var(--terracotta); font-size: 13px; color: var(--warm-mid); line-height: 1.6; }
+    .exp-highlight strong { color: var(--terracotta); }
+
+    /* ОБО МНЕ */
+    #about { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; background: var(--white); }
+    .about-visual { position: relative; }
+    .about-img-frame { width: 100%; aspect-ratio: 3/4; background: var(--cream-dark); position: relative; overflow: hidden; }
+    .about-img-inner { position: absolute; inset: 0; background: linear-gradient(160deg, var(--terracotta-pale) 0%, var(--cream-dark) 100%); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+    .about-accent-line { position: absolute; top: 20px; left: -20px; width: 3px; height: 80px; background: var(--terracotta); }
+    .about-caption { position: absolute; bottom: -20px; right: -20px; background: var(--charcoal); color: var(--cream); padding: 20px 24px; font-size: 12px; letter-spacing: 0.04em; max-width: 210px; line-height: 1.6; }
+    .about-caption strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 300; margin-bottom: 4px; }
+    .about-text { padding-top: 20px; }
+    .about-body { font-size: 15px; line-height: 1.85; color: var(--warm-mid); margin-top: 28px; margin-bottom: 20px; }
+    .edu-section-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 16px; margin-top: 40px; }
+    .edu-item { padding: 18px 0; border-bottom: 1px solid var(--cream-dark); display: flex; gap: 16px; align-items: flex-start; }
+    .edu-icon { width: 36px; height: 36px; background: var(--terracotta-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .edu-degree { font-size: 14px; font-weight: 500; color: var(--charcoal); margin-bottom: 2px; }
+    .edu-school { font-size: 13px; color: var(--warm-mid); }
+    .edu-year { font-size: 11px; letter-spacing: 0.08em; color: var(--terracotta); text-transform: uppercase; margin-top: 2px; }
+
+    /* НАВЫКИ */
+    #skills { background: var(--charcoal); }
+    #skills .section-label { color: var(--terracotta-light); }
+    #skills .section-heading { color: var(--cream); }
+    #skills .section-sub { color: rgba(245,240,232,0.5); }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 60px; background: rgba(245,240,232,0.06); }
+    .skill-group { padding: 44px 36px; background: var(--charcoal); transition: background 0.3s; }
+    .skill-group:hover { background: rgba(245,240,232,0.04); }
+    .skill-group-icon { width: 44px; height: 44px; background: rgba(196,113,74,0.15); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; border-radius: 2px; }
+    .skill-group-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--cream); margin-bottom: 20px; }
+    .skill-list { list-style: none; }
+    .skill-list li { font-size: 13px; color: rgba(245,240,232,0.55); padding: 8px 0; border-bottom: 1px solid rgba(245,240,232,0.06); display: flex; align-items: center; gap: 10px; transition: color 0.3s; }
+    .skill-list li:hover { color: var(--terracotta-light); }
+    .skill-list li::before { content: ''; width: 4px; height: 4px; background: var(--terracotta); border-radius: 50%; flex-shrink: 0; opacity: 0.6; }
+    .soft-skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(245,240,232,0.06); margin-top: 2px; }
+    .soft-skill-item { padding: 28px 36px; background: var(--charcoal); transition: background 0.3s; display: flex; gap: 16px; align-items: flex-start; }
+    .soft-skill-item:hover { background: rgba(245,240,232,0.04); }
+    .soft-skill-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--terracotta); opacity: 0.35; flex-shrink: 0; line-height: 1; }
+    .soft-skill-text { font-size: 13px; color: rgba(245,240,232,0.55); line-height: 1.7; padding-top: 4px; }
+    .tools-row { margin-top: 60px; display: flex; gap: 16px; flex-wrap: wrap; }
+    .tool-badge { padding: 10px 20px; border: 1px solid rgba(245,240,232,0.12); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(245,240,232,0.5); transition: all 0.3s; }
+    .tool-badge:hover { border-color: var(--terracotta); color: var(--terracotta-light); }
+
+    /* КОНТАКТЫ */
+    #contact { background: var(--cream); text-align: center; padding: 120px 60px; }
+    .contact-inner { max-width: 680px; margin: 0 auto; }
+    #contact .section-heading { font-size: clamp(38px, 5vw, 62px); margin-bottom: 24px; }
+    #contact .section-sub { margin: 0 auto 52px; text-align: center; }
+    .contact-email { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2.5vw, 28px); font-weight: 300; color: var(--charcoal); text-decoration: none; display: inline-block; border-bottom: 1px solid var(--terracotta); padding-bottom: 4px; transition: color 0.3s; margin-bottom: 40px; }
+    .contact-email:hover { color: var(--terracotta); }
+    .social-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 60px; flex-wrap: wrap; }
+    .social-link { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-mid); text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 6px; }
+    .social-link:hover { color: var(--terracotta); }
+    .contact-form { background: var(--white); padding: 48px; margin-top: 60px; text-align: left; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); }
+    .form-group input, .form-group textarea { background: var(--cream); border: 1px solid var(--cream-dark); padding: 14px 16px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--charcoal); outline: none; transition: border-color 0.3s; width: 100%; resize: none; }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--terracotta); }
+    .form-group textarea { height: 120px; }
+    .form-submit { margin-top: 28px; display: flex; justify-content: flex-end; }
+    .btn-submit { padding: 16px 44px; background: var(--terracotta); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; border: none; cursor: none; transition: background 0.3s, transform 0.2s; }
+    .btn-submit:hover { background: var(--charcoal); transform: translateY(-2px); }
+
+    footer { background: var(--charcoal); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; color: var(--cream); opacity: 0.7; }
+    .footer-copy { font-size: 12px; color: rgba(245,240,232,0.35); letter-spacing: 0.04em; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 960px) {
+      nav { padding: 20px 24px; } nav.scrolled { padding: 14px 24px; }
+      .nav-links { gap: 16px; }
+      #hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+      .hero-visual { display: none; }
+      section { padding: 70px 24px; }
+      #about { grid-template-columns: 1fr; } .about-visual { display: none; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .soft-skills-grid { grid-template-columns: 1fr; }
+      .work-grid { grid-template-columns: 1fr; } .case-card:first-child { grid-column: span 1; }
+      .exp-layout { grid-template-columns: 1fr; gap: 40px; } .exp-nav { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Навигация -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">Татьяна Журавлёва</a>
+    <ul class="nav-links">
+      <li><a href="#work">Работы</a></li>
+      <li><a href="#experience">Опыт</a></li>
+      <li><a href="#about">Обо мне</a></li>
+      <li><a href="#skills">Навыки</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+  </nav>
+
+  <!-- ГЛАВНЫЙ ЭКРАН -->
+  <section id="hero">
+    <div class="hero-bg-shape"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">UX/UI &amp; Продуктовый дизайнер</p>
+      <h1 class="hero-name">Татьяна<br><em>Журавлёва</em></h1>
+      <p class="hero-title">5+ лет в дизайн-студии · 2 года в продуктовом стартапе</p>
+      <p class="hero-desc">Проектирую сложные интерфейсы, которые ощущаются просто — от мобильных приложений и админ-панелей до полноценных дизайн-систем. Опираюсь на UX-исследования, следую деталям.</p>
+      <div class="hero-cta">
+        <a href="#work" class="btn-primary">Смотреть работы</a>
+        <a href="#contact" class="btn-ghost">Написать мне <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-frame">
+        <div class="hero-img-placeholder">
+          <div class="avatar-icon">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="18" r="10" stroke="#C4714A" stroke-width="2"/><path d="M6 42c0-9.94 8.06-18 18-18s18 8.06 18 18" stroke="#C4714A" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <span class="hero-img-label">Ваше фото</span>
+        </div>
+        <div class="frame-accent"></div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">7+</span><span class="stat-label">Лет опыта</span></div>
+        <div class="stat"><span class="stat-num">5+</span><span class="stat-label">В студии</span></div>
+        <div class="stat"><span class="stat-num">2</span><span class="stat-label">В продукте</span></div>
+      </div>
+    </div>
+    <div class="scroll-indicator"><div class="scroll-line"></div><span class="scroll-text">Листать</span></div>
+  </section>
+
+  <!-- РАБОТЫ -->
+  <section id="work">
+    <div class="work-header reveal">
+      <div>
+        <p class="section-label">Избранные работы</p>
+        <h2 class="section-heading">Кейсы &amp; <em>проекты</em></h2>
+      </div>
+      <a href="https://tatiana-zhuravleva.super.site/" target="_blank" class="btn-ghost">Всё портфолио <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="work-grid reveal">
+
+      <!-- Карточка 1 — Hockey Scout Pro -->
+      <div class="case-card">
+        <div class="case-img-placeholder case-img-bg-1">
+          <svg class="case-placeholder-icon" width="56" height="56" viewBox="0 0 56 56" fill="none"><rect x="8" y="14" width="40" height="28" rx="3" stroke="white" stroke-width="2"/><circle cx="22" cy="26" r="5" stroke="white" stroke-width="2"/><path d="M8 36l12-10 10 8 10-12 8 14" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg>
+          <span class="case-placeholder-text">Hockey Scout Pro · Десктоп и Android</span>
+        </div>
+        <div class="case-overlay"><p class="case-overlay-text">Открыть кейс →</p></div>
+        <div class="case-info">
+          <div>
+            <div class="case-tags"><span class="tag">Продуктовый дизайн</span><span class="tag">Десктоп</span><span class="tag">Android</span></div>
+            <h3 class="case-title">Hockey Scout Pro</h3>
+            <p class="case-desc">Платформа для профессиональных скаутов — UX-исследование, JTBD-подход, проектирование под фреймворк QT</p>
+          </div>
+          <a href="https://tatiana-zhuravleva.super.site/" target="_blank" class="case-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <!-- Карточка 2 — Мобильные приложения -->
+      <div class="case-card">
+        <div class="case-img-placeholder case-img-bg-2">
+          <svg class="case-placeholder-icon" width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="14" y="4" width="20" height="40" rx="4" stroke="white" stroke-width="2"/><path d="M20 8h8M22 38h4" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="case-placeholder-text">Кросс-платформенные мобильные приложения</span>
+        </div>
+        <div class="case-overlay"><p class="case-overlay-text">Открыть кейс →</p></div>
+        <div class="case-info">
+          <div>
+            <div class="case-tags"><span class="tag">Мобильный UX</span><span class="tag">iOS и Android</span></div>
+            <h3 class="case-title">Мобильные приложения</h3>
+            <p class="case-desc">Кросс-платформенные приложения с кликабельными прототипами, дизайн-системой и гайдлайнами iOS и Android — Ronas IT</p>
+          </div>
+          <a href="https://tatiana-zhuravleva.super.site/" target="_blank" class="case-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <!-- Карточка 3 — Веб-приложения -->
+      <div class="case-card">
+        <div class="case-img-placeholder case-img-bg-3">
+          <svg class="case-placeholder-icon" width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="4" y="8" width="40" height="32" rx="2" stroke="white" stroke-width="2"/><rect x="10" y="14" width="12" height="8" rx="1" stroke="white" stroke-width="2"/><path d="M10 28h28M10 34h18" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="case-placeholder-text">Веб-приложения и админ-панели</span>
+        </div>
+        <div class="case-overlay"><p class="case-overlay-text">Открыть кейс →</p></div>
+        <div class="case-info">
+          <div>
+            <div class="case-tags"><span class="tag">Веб-приложение</span><span class="tag">UX-аудит</span><span class="tag">Админ-панель</span></div>
+            <h3 class="case-title">Сложные веб-приложения</h3>
+            <p class="case-desc">Тяжёлые админ-панели и веб-приложения с UX-аудитами по эвристикам Нильсена и адаптивной вёрсткой для всех устройств</p>
+          </div>
+          <a href="https://tatiana-zhuravleva.super.site/" target="_blank" class="case-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ОПЫТ РАБОТЫ -->
+  <section id="experience">
+    <div class="reveal">
+      <p class="section-label">История работы</p>
+      <h2 class="section-heading">Где я <em>работала</em></h2>
+    </div>
+    <div class="exp-layout">
+      <div class="exp-nav reveal">
+        <div class="exp-nav-item active">Ronas IT<br><span style="font-size:11px;opacity:0.6;font-weight:300;">Ноябрь 2020 — настоящее время</span></div>
+        <div class="exp-nav-item" style="margin-top:4px;">National Scouting Association<br><span style="font-size:11px;opacity:0.6;font-weight:300;">Сентябрь 2023 — настоящее время</span></div>
+      </div>
+      <div class="exp-entries">
+
+        <!-- Ronas IT -->
+        <div class="exp-entry reveal">
+          <div class="exp-header">
+            <h3 class="exp-role">Middle+ UX/UI Дизайнер</h3>
+            <span class="exp-period">Ноябрь 2020 — Настоящее время</span>
+          </div>
+          <p class="exp-company">Ronas IT</p>
+          <p class="exp-product">Кросс-платформенные мобильные приложения · Веб-приложения · Дизайн-системы · Behance &amp; Dribbble</p>
+          <ul class="exp-bullets">
+            <li>Дизайн кросс-платформенных мобильных приложений — создание кликабельных прототипов, совместная работа с верстальщиками, работа с дизайн-системой и гайдлайнами iOS и Android</li>
+            <li>Дизайн веб-приложений и сложных админ-панелей с нестандартными структурами данных и разветвлёнными пользовательскими сценариями</li>
+            <li>UX-аудит сайтов с опорой на эвристики Я. Нильсена; ревью аудитов других дизайнеров в команде</li>
+            <li>Ведение сайта компании — создание страниц и адаптивных версий совместно с маркетологами и верстальщиками</li>
+            <li>Создание и ревью кейсов на Behance; разработка документации с правилами работы над кейсами</li>
+            <li>Создание визуальных концептов на Dribbble — совместная работа с командой привлекла новых заказчиков и помогла компании попасть в рейтинг Top App Development Companies на Dribbble</li>
+          </ul>
+          <div class="exp-highlight"><strong>🏆 Достижение:</strong> Кейс, над которым я работала, был отобран и опубликован в галерее Behance в разделе UI/UX — одной из редакционных подборок платформы.</div>
+        </div>
+
+        <!-- National Scouting Association -->
+        <div class="exp-entry reveal">
+          <div class="exp-header">
+            <h3 class="exp-role">Product Designer</h3>
+            <span class="exp-period">Сентябрь 2023 — Настоящее время</span>
+          </div>
+          <p class="exp-company">National Scouting Association</p>
+          <p class="exp-product">Hockey Scout Pro — десктопное приложение и мобильное приложение под Android (фреймворк QT)</p>
+          <ul class="exp-bullets">
+            <li>Проводила UX-исследования: изучала проблемное поле и потребности профессиональных хоккейных скаутов</li>
+            <li>Применяла JTBD-подход при определении функционала приложения — ориентировалась на реальные цели и контекст пользователей</li>
+            <li>Создавала гипотезы и отрисовывала сложные интерфейсы с плотной структурой данных — от концепции до high-fidelity макетов</li>
+            <li>Плотно работала с разработчиками, создавала интерфейс для реализации в фреймворке QT</li>
+            <li>Тестировала дизайн на пользователях и итеративно вносила изменения по результатам</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ОБО МНЕ -->
+  <section id="about">
+    <div class="about-visual reveal">
+      <div class="about-accent-line"></div>
+      <div class="about-img-frame">
+        <div class="about-img-inner">
+          <div class="avatar-icon"><svg width="52" height="52" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="18" r="10" stroke="#C4714A" stroke-width="2"/><path d="M6 42c0-9.94 8.06-18 18-18s18 8.06 18 18" stroke="#C4714A" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <span style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--warm-gray);">Ваше фото здесь</span>
+        </div>
+      </div>
+      <div class="about-caption"><strong>Татьяна Журавлёва</strong>UX/UI и продуктовый дизайнер<br>Английский — B2</div>
+    </div>
+    <div class="about-text reveal">
+      <p class="section-label">Обо мне</p>
+      <h2 class="section-heading">Исследую,<br>продумываю, <em>создаю</em></h2>
+      <p class="about-body">Дизайнер с 7+ годами опыта — 5 лет в дизайн-студии и 2 года в роли продуктового дизайнера в стартапе. Работаю с мобильными приложениями, сложными веб-платформами, дизайн-системами и продуктовым мышлением в целом.</p>
+      <p class="about-body" style="margin-top:0;">Мне нравится пространство между исследованием и воплощением — переводить запутанные пользовательские проблемы в чистые, осмысленные интерфейсы. Активно делюсь знаниями: провожу ревью, организую воркшопы, веду тг-канал с подборкой референсов для команды.</p>
+      <p class="edu-section-label">Образование</p>
+      <div class="edu-item">
+        <div class="edu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C4714A" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div>
+          <p class="edu-degree">«Продуктовый подход для дизайнеров»</p>
+          <p class="edu-school">Яндекс Практикум · 124 часа · Удостоверение о повышении квалификации</p>
+          <p class="edu-year">Июнь 2025</p>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C4714A" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div>
+          <p class="edu-degree">Бакалавр дизайна, Факультет Искусств</p>
+          <p class="edu-school">Омский государственный педагогический университет</p>
+          <p class="edu-year">2020</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- НАВЫКИ -->
+  <section id="skills">
+    <div class="reveal">
+      <p class="section-label">Экспертиза</p>
+      <h2 class="section-heading">Навыки &amp; <em>инструменты</em></h2>
+      <p class="section-sub">Многопрофильный инструментарий, сформированный через реальные продукты и студийные проекты.</p>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <div class="skill-group-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4714A" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
+        <h3 class="skill-group-title">UX-дизайн</h3>
+        <ul class="skill-list">
+          <li>UX-исследования и интервью</li>
+          <li>JTBD-подход</li>
+          <li>Wireframes и User Flow</li>
+          <li>Customer Journey Map (CJM)</li>
+          <li>Юзабилити-тестирование</li>
+          <li>UX-аудит (эвристики Нильсена)</li>
+          <li>User Story</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4714A" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg></div>
+        <h3 class="skill-group-title">UI-дизайн</h3>
+        <ul class="skill-list">
+          <li>Проектирование сложных интерфейсов</li>
+          <li>Дизайн-системы и компоненты</li>
+          <li>Figma: Autolayout, Variables</li>
+          <li>Responsive и адаптивный layout</li>
+          <li>Кликабельные прототипы</li>
+          <li>Гайдлайны iOS и Android</li>
+          <li>Иллюстрации в кривых</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4714A" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <h3 class="skill-group-title">Продукт и прочее</h3>
+        <ul class="skill-list">
+          <li>Продуктовое мышление</li>
+          <li>Генерация и проверка гипотез</li>
+          <li>Дизайн-ревью и менторинг</li>
+          <li>Анимация (AE, Principle, Lottie)</li>
+          <li>Adobe Illustrator и Photoshop</li>
+          <li>HTML / CSS (базовые знания)</li>
+          <li>Английский — B2</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="soft-skills-grid reveal">
+      <div class="soft-skill-item">
+        <span class="soft-skill-num">01</span>
+        <p class="soft-skill-text">Провожу дизайн-ревью работ коллег — интерфейсы приложений, страницы сайта, иллюстрации, беханс-кейсы</p>
+      </div>
+      <div class="soft-skill-item">
+        <span class="soft-skill-num">02</span>
+        <p class="soft-skill-text">Веду тг-канал с подборкой референсов для тренировки насмотренности дизайнеров в команде</p>
+      </div>
+      <div class="soft-skill-item">
+        <span class="soft-skill-num">03</span>
+        <p class="soft-skill-text">Делала митапы для команды о юзабилити-тестировании, композиции, юзер-флоу — делилась знаниями и поднимала планку</p>
+      </div>
+      <div class="soft-skill-item">
+        <span class="soft-skill-num">04</span>
+        <p class="soft-skill-text">Проводила воркшоп, где совместно с командой мы сделали и опубликовали кейс на Behance</p>
+      </div>
+    </div>
+
+    <div class="tools-row reveal">
+      <span class="tool-badge">Figma</span>
+      <span class="tool-badge">After Effects</span>
+      <span class="tool-badge">Principle</span>
+      <span class="tool-badge">Lottie</span>
+      <span class="tool-badge">Illustrator</span>
+      <span class="tool-badge">Photoshop</span>
+      <span class="tool-badge">HTML / CSS</span>
+      <span class="tool-badge">Behance</span>
+      <span class="tool-badge">Dribbble</span>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section id="contact">
+    <div class="contact-inner reveal">
+      <p class="section-label">Связаться со мной</p>
+      <h2 class="section-heading">Давайте создадим что-то <em>классное</em></h2>
+      <p class="section-sub">Открыта к новым проектам, фрилансу и постоянной занятости. Если у вас интересная дизайн-задача — с удовольствием пообщаемся.</p>
+      <br/><br/>
+      <a href="mailto:tatianazh2412@gmail.com" class="contact-email">tatianazh2412@gmail.com</a>
+      <div class="social-links">
+        <a href="https://t.me/tazhuravleva" target="_blank" class="social-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 5L2 12.5l7 1M21 5l-4.5 15-7.5-6M21 5L9 13.5m0 0V19l3.5-3"/></svg>
+          Telegram
+        </a>
+        <a href="https://tatiana-zhuravleva.super.site/" target="_blank" class="social-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+          Портфолио
+        </a>
+        <a href="https://www.behance.net" target="_blank" class="social-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8c2 0 4 1 4 3s-2 3-4 3H2V6zM2 12h9c2.5 0 5 1 5 3.5S13.5 19 11 19H2v-7z"/><path d="M15 7h7M15 12h7"/></svg>
+          Behance
+        </a>
+        <a href="https://dribbble.com" target="_blank" class="social-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32M11.5 2.06c-1.96 5.66 1.56 11.26 3.5 14.69"/></svg>
+          Dribbble
+        </a>
+      </div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group"><label>Ваше имя</label><input type="text" placeholder="Алексей Иванов" /></div>
+          <div class="form-group"><label>Эл. почта</label><input type="email" placeholder="alex@company.com" /></div>
+        </div>
+        <div class="form-group" style="margin-bottom:20px;"><label>Тема</label><input type="text" placeholder="Хочу обсудить проект..." /></div>
+        <div class="form-group"><label>Сообщение</label><textarea placeholder="Расскажите о вашем проекте..."></textarea></div>
+        <div class="form-submit"><button class="btn-submit">Отправить</button></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-logo">Татьяна Журавлёва</span>
+    <span class="footer-copy">© 2026 · UX/UI и продуктовый дизайнер</span>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
+    });
+    (function animateRing() {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+      requestAnimationFrame(animateRing);
+    })();
+    document.querySelectorAll('a, button, .case-card, .skill-group, .tool-badge, .soft-skill-item, .exp-entry').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('expand'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('expand'));
+    });
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+    });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
