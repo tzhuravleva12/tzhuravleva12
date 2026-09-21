@@ -18,23 +18,17 @@
     em { font-style: normal; }
     .cursor { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; will-change: transform; transform-origin: center; }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 60px; transition: background 0.4s, padding 0.4s; }
-    nav.scrolled { background: rgba(245,245,245,0.93); backdrop-filter: blur(12px); padding: 18px 60px; border-bottom: 1px solid rgba(17,17,17,0.12); }
-    .nav-logo { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 400; letter-spacing: 0.03em; color: var(--charcoal); text-decoration: none; }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--warm-mid); text-decoration: none; position: relative; transition: color 0.3s; }
-    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--terracotta); transition: width 0.3s; }
-    .nav-links a:hover { color: var(--terracotta); }
-    .nav-links a:hover::after { width: 100%; }
-
-    #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 120px 60px 80px; position: relative; overflow: hidden; }
-    .hero-content { position: relative; z-index: 1; }
-    .hero-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
-    .hero-name { font-family: 'Inter', sans-serif; font-size: clamp(50px, 6vw, 82px); font-weight: 300; line-height: 1.05; color: var(--charcoal); margin-bottom: 16px; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
+    #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 96px 60px 80px; position: relative; overflow: hidden; }
+    .hero-content { position: relative; z-index: 1; width: 100%; max-width: 760px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .hero-name { font-family: 'Inter', sans-serif; font-size: clamp(50px, 6vw, 82px); font-weight: 300; line-height: 1.05; color: var(--charcoal); margin-bottom: 18px; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
     .hero-name em { color: var(--terracotta); }
-    .hero-title { font-size: 15px; font-weight: 300; color: var(--warm-mid); margin-bottom: 36px; opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards; }
-    .hero-desc { font-size: 15px; line-height: 1.8; color: var(--warm-mid); max-width: 440px; margin-bottom: 52px; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; }
-    .hero-cta { display: flex; gap: 20px; align-items: center; opacity: 0; animation: fadeUp 0.8s ease 1s forwards; }
+    .hero-desc { font-size: 15px; line-height: 1.8; color: var(--warm-mid); max-width: 640px; margin-bottom: 36px; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; }
+    .hero-contact-box { max-width: 420px; padding-top: 8px; opacity: 0; animation: fadeUp 0.8s ease 1s forwards; }
+    .hero-contact-title { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal); margin-bottom: 18px; }
+    .hero-contact-list { list-style: none; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .hero-contact-list a { display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-size: 15px; color: var(--warm-mid); text-decoration: none; transition: color 0.3s; }
+    .hero-contact-list a:hover { color: var(--terracotta); }
+    .hero-contact-list svg { flex-shrink: 0; }
     .mobile-photo { display: none; }
     .btn-primary { display: inline-block; padding: 14px 36px; background: var(--charcoal); color: var(--cream); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: background 0.3s, transform 0.2s; }
     .btn-primary:hover { background: var(--terracotta); transform: translateY(-2px); }
@@ -42,8 +36,8 @@
     .btn-ghost:hover { color: var(--terracotta); }
     .btn-ghost svg { transition: transform 0.3s; }
     .btn-ghost:hover svg { transform: translateX(4px); }
-    .hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; }
-    .hero-img-frame { width: 380px; height: 480px; background: var(--cream-dark); position: relative; overflow: hidden; opacity: 0; animation: fadeIn 1s ease 0.6s forwards; }
+    .hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; width: 100%; margin-bottom: 20px; }
+    .hero-img-frame { width: min(220px, 42vw); aspect-ratio: 1; background: var(--cream-dark); position: relative; overflow: hidden; opacity: 0; animation: fadeIn 1s ease 0.6s forwards; }
     .hero-img-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
     .avatar-icon { width: 100px; height: 100px; background: var(--terracotta-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
     .hero-img-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); }
@@ -195,36 +189,24 @@
 
   <svg class="cursor" id="cursor" width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="var(--terracotta)"/></svg>
 
-  <!-- Навигация -->
-  <nav id="navbar">
-    <a href="#hero" class="nav-logo">Татьяна Журавлева</a>
-    <ul class="nav-links">
-      <li><a href="#work">Работы</a></li>
-      <li><a href="#experience">Опыт</a></li>
-      <li><a href="#about">Обо мне</a></li>
-      <li><a href="#skills">Навыки</a></li>
-      <li><a href="#contact">Контакты</a></li>
-    </ul>
-  </nav>
-
   <!-- ГЛАВНЫЙ ЭКРАН -->
   <section id="hero">
     <div class="hero-content">
+      <div class="hero-visual">
+        <div class="hero-img-frame">
+          <img src="Images/photo_2024-02-08_12-02-33.jpg" alt="Татьяна Журавлева" style="width: 100%; height: 100%; object-fit: cover;"/>
+        </div>
+      </div>
       <img class="mobile-photo" src="Images/photo_2024-02-08_12-02-33.jpg" alt="Татьяна Журавлева"/>
-      <p class="hero-eyebrow">UX/UI &amp; Продуктовый дизайнер</p>
       <h1 class="hero-name">Татьяна<br><em>Журавлева</em></h1>
-      <p class="hero-title">5+ лет в дизайн-студии · 2 года в продуктовом стартапе</p>
       <p class="hero-desc">Привет! Я UX/UI дизайнер с опытом работы над сложными интерфейсами мобильных и веб-приложений 5+ лет. Изучаю и использую продуктовый подход в дизайне. Ищу работу в продукте или в студии с продуктовым подходом так как хочу сфокусироваться на работе над одним сервисом, активно участвовать в его развитии и больше работать в команде :)</p>
-      <div class="hero-cta">
-        <a href="#work" class="btn-primary">Смотреть работы</a>
-        <a href="#contact" class="btn-ghost">Написать мне <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="hero-contact-box">
+        <p class="hero-contact-title">Контакты</p>
+        <ul class="hero-contact-list">
+          <li><a href="mailto:tatianazh2412@gmail.com"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>tatianazh2412@gmail.com</a></li>
+          <li><a href="https://t.me/tazhuravleva" target="_blank" rel="noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 5L2 12.5l7 1M21 5l-4.5 15-7.5-6M21 5L9 13.5"/></svg>Telegram</a></li>
+        </ul>
       </div>
-    </div>
-    <div class="hero-visual">
-      <div class="hero-img-frame">
-        <img src="Images/photo_2024-02-08_12-02-33.jpg" alt="Татьяна Журавлева" style="width: 100%; height: 100%; object-fit: cover;"/>
-      </div>
-    </div>
     </div>
   </section>
 
@@ -474,9 +456,6 @@
     window.addEventListener('load', () => {
       history.replaceState(null, null, window.location.pathname);
       window.scrollTo(0, 0);
-    });
-    window.addEventListener('scroll', () => {
-      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
     });
     const observer = new IntersectionObserver(entries => {
       entries.forEach((entry, i) => {
