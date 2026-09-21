@@ -8,13 +8,15 @@
   <style>
     :root {
       --bg: #ffffff;
-      --paper: #f5f5f5;
+      --paper: #f7f7f7;
       --ink: #111111;
-      --muted: #4a4a4a;
+      --muted: #4b4b4b;
       --line: #e8e8e8;
+      --link: #2563eb;
+      --link-hover: #1d4ed8;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
@@ -25,14 +27,15 @@
       cursor: auto;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a { color: var(--link); text-decoration: none; transition: color 0.3s, border-color 0.3s; }
+    a:hover { color: var(--link-hover); }
     img { max-width: 100%; display: block; }
     em { font-style: normal; }
 
     .case-page {
-      max-width: 760px;
+      max-width: 1020px;
       margin: 0 auto;
-      padding: 72px 24px 64px;
+      padding: 72px 24px 80px;
     }
 
     .case-topbar {
@@ -40,33 +43,21 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 56px;
+      margin-bottom: 64px;
       padding-bottom: 20px;
       border-bottom: 1px solid var(--line);
     }
 
     .case-back {
       font-size: 14px;
-      color: var(--muted);
+      color: var(--link);
+      border-bottom: 1px solid var(--link);
+      padding-bottom: 4px;
     }
-
-    .case-name {
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
+    .case-back:hover { color: var(--link-hover); border-color: var(--link-hover); }
 
     .case-header {
-      margin-bottom: 42px;
-    }
-
-    .case-kicker {
-      margin: 0 0 12px;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
+      margin-bottom: 40px;
     }
 
     h1 {
@@ -74,7 +65,7 @@
       font-size: clamp(38px, 7vw, 70px);
       line-height: 0.96;
       letter-spacing: -0.06em;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     .case-subtitle {
@@ -85,24 +76,13 @@
       color: var(--muted);
     }
 
-    .case-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px 30px;
-      margin-top: 28px;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 14px;
-    }
-
     .case-section {
-      margin-top: 64px;
+      margin-top: 72px;
     }
 
     h2 {
       margin: 0 0 18px;
-      font-size: clamp(24px, 4vw, 36px);
+      font-size: clamp(28px, 3.5vw, 42px);
       font-weight: 400;
       line-height: 1.2;
       letter-spacing: -0.04em;
@@ -116,13 +96,13 @@
     }
 
     ul {
-      margin-left: 18px;
+      margin: 0 0 0 18px;
       padding: 0;
     }
 
     .case-image {
       width: 100%;
-      margin: 28px 0 18px;
+      margin: 40px 0 24px;
       border-radius: 10px;
       background: var(--paper);
     }
@@ -138,45 +118,39 @@
   <main class="case-page">
     <header class="case-topbar">
       <a class="case-back" href="index.html">← Назад</a>
-      <div class="case-name">Татьяна Журавлёва</div>
     </header>
 
     <header class="case-header">
-      <p class="case-kicker">Редизайн админ-панели</p>
       <h1>Handbid</h1>
-      <p class="case-subtitle">Сервис для управления благотворительными аукционами и сборами средств.</p>
-      <div class="case-meta">
-        <span>UX/UI дизайн</span>
-        <span>Админ-панель</span>
-        <span>Design system</span>
-      </div>
+      <p class="case-subtitle">Handbid - сервис для управления благотворительными аукционами</p>
     </header>
 
     <article>
       <img src="handbid/Handbid - сервис для управления благотворительными/1.png" alt="Handbid preview" class="case-image">
 
       <section class="case-section">
-        <h2>О проекте</h2>
-        <p>Заказчик обратился с просьбой провести аудит интерфейса и сделать редизайн админ-панели, чтобы сделать сервис более удобным, понятным и легче масштабируемым.</p>
-        <p>У продукта уже была собственная дизайн-система, поэтому задача состояла в том, чтобы улучшить навигацию, структуру экранов и скорость работы менеджеров в админ-панели.</p>
+        <p>Заказчик обратился с просьбой провести аудит интерфейса и сделать редизайн админ-панели, чтобы сделать сервис более удобным для пользователей и более гибким для дальнейших изменений и улучшений. У них была готовая дизайн-система для всего продукта, поэтому я провела исследование проблем и создала свои предложения по улучшению на базе их дизайн-системы.</p>
       </section>
 
       <section class="case-section">
-        <h2>Проблема</h2>
-        <p>В текущем интерфейсе было слишком много уровней вложенной навигации, а часть вкладок работала как фильтры и одновременно как разделы. Из-за этого пользователям было сложно быстро ориентироваться в структуре сервиса.</p>
+        <h2>Исследование</h2>
+        <p>В текущем дизайне было использовано вложенное боковое меню, что создавало проблемы при ориентировании в сервисе. Навигация была неудобной, так как вкладки вели не только на вложенные страницы, но и иногда выполняли роль фильтров, то есть их можно было расположить в горизонтальной навигации.</p>
         <img src="handbid/Handbid - сервис для управления благотворительными/old.png" alt="Старый интерфейс Handbid" class="case-image">
       </section>
 
       <section class="case-section">
         <h2>Решение</h2>
-        <p>Я предложила упорядочить навигацию: сделать основные разделы понятными и разделить их на логические блоки, а верхний уровень оставить для общей структуры и контекста организации. Это сократило количество лишних переходов и сделало интерфейс более предсказуемым.</p>
+        <p>Я предложила свое решение - сделать основные вкладки сервиса в сайдбаре - обзор(домашняя страница), вкладка для администратора, список всех контактов, список всех лотов, управление пожертвованиями.</p>
+        <p>Наверху можно увидеть организацию и аккаунт пользователя.</p>
+        <p>Ниже - табы с навигацией по всем мероприятиям организации- все аукционы, все мероприятия c пожертвованиями, все организованные сборы.</p>
+        <p>Заказчик настоял на расположении в сайдбаре статистики, которая меняется в зависимости от того, на какой странице находишься, так как к нему привыкли пользователи</p>
         <img src="handbid/Handbid - сервис для управления благотворительными/Frame_1.png" alt="Схема навигации Handbid" class="case-image">
         <img src="handbid/Handbid - сервис для управления благотворительными/Frame_2.png" alt="Структура Handbid" class="case-image">
       </section>
 
       <section class="case-section">
         <h2>Результат</h2>
-        <p>Редизайн помог привести интерфейс в более понятную и устойчивую структуру. Заказчик остался доволен предложенным подходом и в дальнейшем попросил выполнить доработки для других частей продукта.</p>
+        <p>Заказчик остался доволен редизайном и попросил сделать редизайн интерфейса для работы ведущего аукционом, а также редизайн дочерних продуктов компании.</p>
         <img src="handbid/Handbid - сервис для управления благотворительными/Frame_5.png" alt="Управление мероприятием" class="case-image">
         <img src="handbid/Handbid - сервис для управления благотворительными/Frame_6.png" alt="Управление аукционом" class="case-image">
       </section>

@@ -12,6 +12,8 @@
       --ink: #111111;
       --muted: #4b4b4b;
       --line: #e8e8e8;
+      --link: #2563eb;
+      --link-hover: #1d4ed8;
     }
 
     * { box-sizing: border-box; }
@@ -25,12 +27,13 @@
       cursor: auto;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a { color: var(--link); text-decoration: none; transition: color 0.3s, border-color 0.3s; }
+    a:hover { color: var(--link-hover); }
     img { max-width: 100%; display: block; }
     em { font-style: normal; }
 
     .case-page {
-      max-width: 760px;
+      max-width: 1020px;
       margin: 0 auto;
       padding: 72px 24px 80px;
     }
@@ -40,33 +43,21 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 56px;
+      margin-bottom: 64px;
       padding-bottom: 20px;
       border-bottom: 1px solid var(--line);
     }
 
     .case-back {
       font-size: 14px;
-      color: var(--muted);
+      color: var(--link);
+      border-bottom: 1px solid var(--link);
+      padding-bottom: 4px;
     }
-
-    .case-name {
-      font-size: 12px;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+    .case-back:hover { color: var(--link-hover); border-color: var(--link-hover); }
 
     .case-header {
       margin-bottom: 40px;
-    }
-
-    .case-kicker {
-      margin: 0 0 12px;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
     }
 
     h1 {
@@ -74,7 +65,7 @@
       font-size: clamp(38px, 7vw, 70px);
       line-height: 0.96;
       letter-spacing: -0.06em;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     .case-subtitle {
@@ -85,24 +76,13 @@
       color: var(--muted);
     }
 
-    .case-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px 30px;
-      margin-top: 28px;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 14px;
-    }
-
     .case-section {
-      margin-top: 64px;
+      margin-top: 72px;
     }
 
     h2 {
       margin: 0 0 18px;
-      font-size: clamp(24px, 4vw, 36px);
+      font-size: clamp(28px, 3.5vw, 42px);
       font-weight: 400;
       line-height: 1.2;
       letter-spacing: -0.04em;
@@ -122,7 +102,7 @@
 
     .case-image {
       width: 100%;
-      margin: 28px 0 18px;
+      margin: 40px 0 24px;
       border-radius: 10px;
       background: var(--paper);
     }
@@ -132,9 +112,12 @@
       align-items: center;
       gap: 8px;
       margin-top: 28px;
-      color: var(--muted);
+      color: var(--link);
       font-size: 14px;
+      border-bottom: 1px solid var(--link);
+      padding-bottom: 4px;
     }
+    .case-back-link:hover { color: var(--link-hover); border-color: var(--link-hover); }
 
     .case-note {
       border-left: 1px solid var(--line);
@@ -154,23 +137,16 @@
   <main class="case-page">
     <header class="case-topbar">
       <a class="case-back" href="index.html">← Назад</a>
-      <div class="case-name">Татьяна Журавлёва</div>
     </header>
 
     <header class="case-header">
-      <p class="case-kicker">Веб-приложение · UX/UI Design · 2025</p>
       <h1>Datacraft</h1>
-      <p class="case-subtitle">Приложение для обработки табличных данных — без сложных формул, без лишнего ПО.</p>
-      <div class="case-meta">
-        <span>UX/UI дизайнер</span>
-        <span>Веб-сервис</span>
-        <span>Figma · FigJam</span>
-      </div>
+      <p class="case-subtitle">Приложение для обработки табличных данных</p>
     </header>
 
     <article>
 
-    <img src="Datacraft/1.png" alt="Datacraft" class="case-img reveal">
+    <img src="Datacraft/1.png" alt="Datacraft" class="case-image">
 
     <section class="case-section">
       <h2>О проекте</h2>
@@ -185,7 +161,7 @@
 
     <section class="case-section">
       <h2>Целевая аудитория</h2>
-      <p><strong>Профессия:</strong> бухгалтеры, финансисты, аналитики — сотрудники малых и средних компаний, которые работают с Excel-отчётами и выгрузками из 1С или CRM.</p>
+      <p><strong>Профессия:</strong> бухгалтеры, финансисты, аналитики - сотрудники малых и средних компаний, которые работают с Excel-отчётами и выгрузками из 1С или CRM.</p>
       <p>Цели, желания: быстро проверить таблицу на ошибки и подготовить отчёт с визуальными примерами.</p>
     </section>
 
@@ -212,17 +188,17 @@
 
     <section class="case-section">
       <h2>Навигация</h2>
-      <p>Создала боковое меню с тремя основными разделами: таблицы, графики и дашборды. В каждой из этих вкладок предусмотрен быстрый доступ к конкретным объектам, поэтому работа с проектами становится заметно быстрее.</p>
+      <p>Создала боковое меню с тремя основными разделами - таблицы, графики, дашборды. В каждой из этих вкладок можно будет зайти на конкретный объект, он тоже показан вкладкой подменю, что позволяет получать быстрый доступ к каждому проекту.</p>
       <img src="Datacraft/3.png" alt="Навигация" class="case-image">
     </section>
 
     <section class="case-section">
       <h2>Импорт данных</h2>
       <ul>
-        <li>автоматическое определение структуры (заголовки, даты, числа);</li>
-        <li>подсветка ошибок и предложения исправлений;</li>
-        <li>поддержка Excel, CSV, Google Sheets;</li>
-        <li>AI-ассистент, который помогает быстро анализировать таблицу и устранять ошибки по запросу.</li>
+        <li>Автоматическое определение структуры (заголовки, даты, числа).</li>
+        <li>Подсветка ошибок и предложения исправлений.</li>
+        <li>Поддержка Excel, CSV, Google Sheets.</li>
+        <li>AI - ассистент, которого можно попросить проанализировать таблицу, устранить ошибки за тебя - просто написать запрос в боковой панели.</li>
       </ul>
       <img src="Datacraft/4.png" alt="Импорт данных" class="case-image">
       <img src="Datacraft/5.png" alt="Импорт данных" class="case-image">
@@ -232,12 +208,12 @@
 
     <section class="case-section">
       <h2>Создание графиков</h2>
-      <p>График можно создать на основе загруженной ранее таблицы или загрузить новую. У пользователя есть выбор осей, типов визуализации и фильтров.</p>
+      <p>График можно создать на основе загруженной ранее таблицы или загрузить новую.</p>
       <ul>
-        <li>выбор колонок для визуализации по осям X и Y;</li>
-        <li>несколько типов графиков: столбчатая диаграмма, круговая диаграмма, таблица;</li>
-        <li>возможность кастомизации цвета и отображения;</li>
-        <li>фильтрация по нужным параметрам.</li>
+        <li>Выбор колонок для визуализации - по оси X и Y. Есть дополнительные функции, такие как агрегирование, возможность разделить данные по дополнительным признакам.</li>
+        <li>Есть несколько типов графиков - столбчатая диаграмма, круговая диаграмма, таблица</li>
+        <li>Возможность кастомизации - можно выбрать цвета</li>
+        <li>Можно показать данные, соответствующие фильтрам</li>
       </ul>
       <img src="Datacraft/8.png" alt="Создание графиков" class="case-image">
       <img src="Datacraft/9.png" alt="Создание графиков" class="case-image">
@@ -247,15 +223,15 @@
     <section class="case-section">
       <h2>Конструктор дашбордов</h2>
       <ul>
-        <li>drag-and-drop для сборки из графиков;</li>
-        <li>гибкая настройка расположения и размеров блоков.</li>
+        <li>Drag-and-drop для сборки из графиков.</li>
+        <li>Гибкая настройка расположения и размеров.</li>
       </ul>
       <img src="Datacraft/11.png" alt="Конструктор дашбордов" class="case-image">
     </section>
 
     <section class="case-section">
       <h2>Результат</h2>
-      <p>Для заказчика получился прототип проекта, который закрывает потребность пользователя в простом инструменте редактирования табличных данных и создания презентаций в одном интерфейсе. Он интуитивно понятен, сокращает рутину и упрощает работу с таблицами.</p>
+      <p>Для заказчика получился прототип проекта, который закрывает потребность пользователя в простом инструменте редактирования табличных данных и создания презентаций в одном интерфейсе. Он интуитивно понятен, сокращает рутину и упрощает работу с таблицами. Проект готов к дальнейшему развитию и презентации инвесторам.</p>
       <a class="case-back-link" href="index.html">← К портфолио</a>
     </section>
 
