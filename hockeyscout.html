@@ -27,6 +27,17 @@
       cursor: auto;
     }
 
+      .case-back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 28px;
+        color: var(--link);
+        font-size: 14px;
+        border-bottom: 1px solid var(--link);
+        padding-bottom: 4px;
+      }
+      .case-back-link:hover { color: var(--link-hover); border-color: var(--link-hover); }
     a { color: var(--link); text-decoration: none; transition: color 0.3s, border-color 0.3s; }
     a:hover { color: var(--link-hover); }
     img { max-width: 100%; display: block; }
@@ -45,7 +56,6 @@
       gap: 16px;
       margin-bottom: 64px;
       padding-bottom: 20px;
-      border-bottom: 1px solid var(--line);
     }
 
     .case-back {
@@ -120,7 +130,6 @@
     <header class="case-topbar">
       <a class="case-back" href="index.html">← Назад</a>
     </header>
-
     <header class="case-header">
       <h1>Hockey Scout Pro Desktop App</h1>
       <p class="case-subtitle">HockeyScout это веб-приложение для хоккейного скаута — человека, который подбирает игроков для хоккейных клубов.</p>
@@ -139,7 +148,7 @@
       <section class="case-section">
         <h2>Портрет пользователя</h2>
         <p><strong>Возраст:</strong></p>
-        <p>от 40 до 70 лет</p>
+        <p>от 40 до 70 лет.</p>
         <p><strong>Цель:</strong></p>
         <p>Скауту необходимо быстро создать понятные и емкие заметки, которые помогут определиться с игроком в клуб.</p>
         <p><strong>Деятельность:</strong></p>
@@ -164,19 +173,19 @@
       <section class="case-section">
         <h2>Дефолтные ожидания</h2>
         <ul>
-          <li>Искать игроков в базе данных</li>
-          <li>Фильтровать игроков по характеристикам</li>
-          <li>Записать заметку об игроке</li>
-          <li>Поставить оценку игроку</li>
-          <li>Присвоить игроку статус</li>
-          <li>Добавлять в свое рабочее расписание матчи</li>
-          <li>Просматривать статистику по игроку</li>
+          <li>Искать игроков в базе данных.</li>
+          <li>Фильтровать игроков по характеристикам.</li>
+          <li>Записать заметку об игроке.</li>
+          <li>Поставить оценку игроку.</li>
+          <li>Присвоить игроку статус.</li>
+          <li>Добавлять в свое рабочее расписание матчи.</li>
+          <li>Просматривать статистику по игроку.</li>
         </ul>
         <h2>Дополнительные фичи</h2>
         <ul>
-          <li>Отправлять отчет по игроку</li>
-          <li>Создавать рейтинги игроков</li>
-          <li>Формировать отчеты о расходах</li>
+          <li>Отправлять отчет по игроку.</li>
+          <li>Создавать рейтинги игроков.</li>
+          <li>Формировать отчеты о расходах.</li>
         </ul>
       </section>
 
@@ -206,6 +215,8 @@
         <img src="hockeyscout/Hockey Scout Pro Desktop App/11_1.png" alt="Рейтинг игроков" class="case-image">
         <img src="hockeyscout/Hockey Scout Pro Desktop App/15.png" alt="Результат" class="case-image">
       </section>
+
+      <a class="case-back-link" href="index.html">← К портфолио</a>
     </article>
   </main>
 </body>

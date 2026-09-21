@@ -36,6 +36,7 @@
     .hero-contact-list a { display: inline-flex; align-items: center; justify-content: center; gap: 0; font-size: 15px; color: var(--link); text-decoration: none; border-bottom: 1px solid var(--link); padding-bottom: 4px; transition: color 0.3s, border-color 0.3s; }
     .hero-contact-list a:hover { color: var(--link-hover); border-color: var(--link-hover); }
     .hero-contact-list svg { flex-shrink: 0; margin-right: 8px; }
+    .email-icon { display: inline-block; font-size: 18px; line-height: 1; margin-right: 8px; }
     .mobile-photo { display: none; opacity: 0; animation: fadeUp 1.3s var(--ease-smooth) 0.1s forwards; }
     .hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; width: 100%; margin-bottom: 20px; }
     .hero-img-frame { width: min(220px, 42vw); aspect-ratio: 1; background: var(--gray-300); position: relative; overflow: hidden; opacity: 0; animation: fadeUp 1.3s var(--ease-smooth) 0.1s forwards; }
@@ -99,11 +100,11 @@
       </div>
       <img class="mobile-photo" src="Images/photo_2024-02-08_12-02-33.jpg" alt="Татьяна Журавлева"/>
       <h1 class="hero-name">Татьяна <em>Журавлева</em></h1>
-      <p class="hero-desc">Привет! Я UX/UI дизайнер с опытом работы над сложными интерфейсами мобильных и веб-приложений 5+ лет. Изучаю и использую продуктовый подход в дизайне. Ищу работу в продукте или в студии с продуктовым подходом, так как хочу сфокусироваться на работе над одним сервисом, активно участвовать в его развитии и больше работать в команде :)</p>
+      <p class="hero-desc">Привет! Я UX/UI дизайнер с опытом работы над сложными интерфейсами мобильных и веб-приложений 5+ лет. Изучаю и использую продуктовый подход в дизайне.<br>Ищу работу в продукте или в студии с продуктовым подходом, так как хочу сфокусироваться на работе над одним сервисом, активно участвовать в его развитии и больше работать в команде :).</p>
       <div class="hero-contact-box">
         <ul class="hero-contact-list">
-          <li><a href="mailto:tatianazh2412@gmail.com"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>tatianazh2412@gmail.com</a></li>
-          <li><a href="https://t.me/tazhuravleva" target="_blank" rel="noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 5L2 12.5l7 1M21 5l-4.5 15-7.5-6M21 5L9 13.5"/></svg>Telegram</a></li>
+          <li><a href="mailto:tatianazh2412@gmail.com"><span class="email-icon" aria-hidden="true">✉️</span>tatianazh2412@gmail.com</a></li>
+          <li><a href="https://t.me/tazhuravleva" target="_blank" rel="noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#229ED9"/><path d="m17.9 6.4-2.5 11.7c-.2.8-.7 1-1.4.6l-3.8-2.8-1.8 1.7c-.2.2-.3.3-.6.3l.2-3.9 7-6.3c.3-.3-.1-.4-.5-.1L6 13.1l-3.8-1.2c-.8-.2-.8-.8.2-1.2l14.8-5.7c.7-.3 1.3.2.7 1.1Z" fill="#fff"/></svg>Telegram</a></li>
         </ul>
       </div>
     </div>
@@ -124,7 +125,7 @@
         <div class="case-info">
           <div>
             <h3 class="case-title"><a href="datacraft.html">Datacraft</a></h3>
-            <p class="case-desc">Приложение для обработки табличных данных</p>
+            <p class="case-desc">Приложение для обработки табличных данных.</p>
           </div>
         </div>
       </div>
@@ -145,7 +146,7 @@
         <div class="case-info">
           <div>
             <h3 class="case-title"><a href="handbid.html">Handbid</a></h3>
-            <p class="case-desc">Handbid - сервис для управления благотворительными аукционами</p>
+            <p class="case-desc">Handbid - сервис для управления благотворительными аукционами.</p>
           </div>
         </div>
       </div>
@@ -166,11 +167,11 @@
         <p class="exp-company" style="margin-bottom:10px;">Ronas IT</p>
         <p class="exp-product">Ноябрь 2020 — Настоящее время</p>
         <ul class="exp-bullets">
-          <li>Дизайн кросс-платформенных мобильных приложений — создание кликабельных прототипов, совместная работа с верстальщиками, работа с дизайн-системой и гайдлайнами iOS и Android</li>
-          <li>Дизайн веб-приложений и сложных админ-панелей с нестандартными структурами данных и разветвлёнными пользовательскими сценариями</li>
-          <li>UX-аудит сайтов с опорой на эвристики Я. Нильсена; ревью аудитов других дизайнеров в команде</li>
-          <li>Ведение сайта компании — создание страниц и адаптивных версий совместно с маркетологами и верстальщиками</li>
-          <li>Создание и ревью кейсов на Behance; разработка документации с правилами работы над кейсами</li>
+          <li>Дизайн кросс-платформенных мобильных приложений — создание кликабельных прототипов, совместная работа с верстальщиками, работа с дизайн-системой и гайдлайнами iOS и Android.</li>
+          <li>Дизайн веб-приложений и сложных админ-панелей с нестандартными структурами данных и разветвлёнными пользовательскими сценариями.</li>
+          <li>UX-аудит сайтов с опорой на эвристики Я. Нильсена; ревью аудитов других дизайнеров в команде.</li>
+          <li>Ведение сайта компании — создание страниц и адаптивных версий совместно с маркетологами и верстальщиками.</li>
+          <li>Создание и ревью кейсов на Behance; разработка документации с правилами работы над кейсами.</li>
         </ul>
       </div>
 
@@ -181,11 +182,11 @@
         <p class="exp-company" style="margin-bottom:10px;">National Scouting Association</p>
         <p class="exp-product">Сентябрь 2023 — Настоящее время</p>
         <ul class="exp-bullets">
-          <li>Проводила UX-исследования: изучала проблемное поле и потребности профессиональных хоккейных скаутов</li>
-          <li>Применяла JTBD-подход при определении функционала приложения — ориентировалась на реальные цели и контекст пользователей</li>
-          <li>Создавала гипотезы и отрисовывала сложные интерфейсы с плотной структурой данных — от концепции до high-fidelity макетов</li>
-          <li>Плотно работала с разработчиками, создавала интерфейс для реализации в фреймворке QT</li>
-          <li>Тестировала дизайн на пользователях и итеративно вносила изменения по результатам</li>
+          <li>Проводила UX-исследования: изучала проблемное поле и потребности профессиональных хоккейных скаутов.</li>
+          <li>Применяла JTBD-подход при определении функционала приложения — ориентировалась на реальные цели и контекст пользователей.</li>
+          <li>Создавала гипотезы и отрисовывала сложные интерфейсы с плотной структурой данных — от концепции до high-fidelity макетов.</li>
+          <li>Плотно работала с разработчиками, создавала интерфейс для реализации в фреймворке QT.</li>
+          <li>Тестировала дизайн на пользователях и итеративно вносила изменения по результатам.</li>
         </ul>
       </div>
     </div>
@@ -196,11 +197,11 @@
     <div class="contact-inner reveal">
       <h2 class="section-heading">Буду рада обсудить сотрудничество!</h2>
       <a href="mailto:tatianazh2412@gmail.com" class="contact-email">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-right: 8px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="email-icon" aria-hidden="true">✉️</span>
         tatianazh2412@gmail.com
       </a>
       <a href="https://t.me/tazhuravleva" target="_blank" class="contact-email">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-right: 8px;"><path d="M21 5L2 12.5l7 1M21 5l-4.5 15-7.5-6M21 5L9 13.5m0 0V19l3.5-3"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="margin-right: 8px;"><circle cx="12" cy="12" r="10" fill="#229ED9"/><path d="m17.9 6.4-2.5 11.7c-.2.8-.7 1-1.4.6l-3.8-2.8-1.8 1.7c-.2.2-.3.3-.6.3l.2-3.9 7-6.3c.3-.3-.1-.4-.5-.1L6 13.1l-3.8-1.2c-.8-.2-.8-.8.2-1.2l14.8-5.7c.7-.3 1.3.2.7 1.1Z" fill="#fff"/></svg>
         Telegram
       </a>
     </div>

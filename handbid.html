@@ -28,6 +28,17 @@
     }
 
     a { color: var(--link); text-decoration: none; transition: color 0.3s, border-color 0.3s; }
+      .case-back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 28px;
+        color: var(--link);
+        font-size: 14px;
+        border-bottom: 1px solid var(--link);
+        padding-bottom: 4px;
+      }
+      .case-back-link:hover { color: var(--link-hover); border-color: var(--link-hover); }
     a:hover { color: var(--link-hover); }
     img { max-width: 100%; display: block; }
     em { font-style: normal; }
@@ -45,7 +56,6 @@
       gap: 16px;
       margin-bottom: 64px;
       padding-bottom: 20px;
-      border-bottom: 1px solid var(--line);
     }
 
     .case-back {
@@ -122,7 +132,7 @@
 
     <header class="case-header">
       <h1>Handbid</h1>
-      <p class="case-subtitle">Handbid - сервис для управления благотворительными аукционами</p>
+      <p class="case-subtitle">Handbid - сервис для управления благотворительными аукционами.</p>
     </header>
 
     <article>
@@ -143,7 +153,7 @@
         <p>Я предложила свое решение - сделать основные вкладки сервиса в сайдбаре - обзор(домашняя страница), вкладка для администратора, список всех контактов, список всех лотов, управление пожертвованиями.</p>
         <p>Наверху можно увидеть организацию и аккаунт пользователя.</p>
         <p>Ниже - табы с навигацией по всем мероприятиям организации- все аукционы, все мероприятия c пожертвованиями, все организованные сборы.</p>
-        <p>Заказчик настоял на расположении в сайдбаре статистики, которая меняется в зависимости от того, на какой странице находишься, так как к нему привыкли пользователи</p>
+        <p>Заказчик настоял на расположении в сайдбаре статистики, которая меняется в зависимости от того, на какой странице находишься, так как к нему привыкли пользователи.</p>
         <img src="handbid/Handbid - сервис для управления благотворительными/Frame_1.png" alt="Схема навигации Handbid" class="case-image">
         <img src="handbid/Handbid - сервис для управления благотворительными/Frame_2.png" alt="Структура Handbid" class="case-image">
       </section>
@@ -154,6 +164,8 @@
         <img src="handbid/Handbid - сервис для управления благотворительными/Frame_5.png" alt="Управление мероприятием" class="case-image">
         <img src="handbid/Handbid - сервис для управления благотворительными/Frame_6.png" alt="Управление аукционом" class="case-image">
       </section>
+
+      <a class="case-back-link" href="index.html">← К портфолио</a>
     </article>
   </main>
 </body>
