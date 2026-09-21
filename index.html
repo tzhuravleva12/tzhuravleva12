@@ -3,165 +3,140 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Татьяна Журавлева — UX/UI и Продуктовый Дизайнер</title>
+  <title>Татьяна Журавлева</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --cream: #f5f5f5; --cream-dark: #e2e2e2;
-      --terracotta: #111111; --terracotta-light: #4a4a4a;
-      --terracotta-pale: #eeeeee; --charcoal: #111111;
-      --warm-gray: #5f5f5f; --warm-mid: #2d2d2d; --white: #ffffff;
+      --black: #111111;
+      --gray-900: #1a1a1a;
+      --gray-700: #4a4a4a;
+      --gray-500: #6f6f6f;
+      --gray-300: #d9d9d9;
+      --gray-200: #eeeeee;
+      --white: #ffffff;
+      --ink: #111111;
+      --muted: #4b4b4b;
+      --soft: #f3f3f3;
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: #ffffff; color: var(--charcoal); overflow-x: hidden; cursor: none; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; cursor: auto; }
     em { font-style: normal; }
-    .cursor { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; will-change: transform; transform-origin: center; }
 
     #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 96px 60px 80px; position: relative; overflow: hidden; }
     .hero-content { position: relative; z-index: 1; width: 100%; max-width: 760px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
     .hero-name { font-family: 'Inter', sans-serif; font-size: clamp(50px, 6vw, 82px); font-weight: 300; line-height: 1.05; color: var(--charcoal); margin-bottom: 18px; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
-    .hero-name em { color: var(--terracotta); }
-    .hero-desc { font-size: 15px; line-height: 1.8; color: var(--warm-mid); max-width: 640px; margin-bottom: 36px; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; }
+    .hero-name em { color: var(--black); }
+    .hero-desc { font-size: 15px; line-height: 1.8; color: var(--muted); max-width: 640px; margin-bottom: 36px; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; }
     .hero-contact-box { max-width: 420px; padding-top: 8px; opacity: 0; animation: fadeUp 0.8s ease 1s forwards; }
-    .hero-contact-title { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal); margin-bottom: 18px; }
     .hero-contact-list { list-style: none; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    .hero-contact-list a { display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-size: 15px; color: var(--warm-mid); text-decoration: none; transition: color 0.3s; }
-    .hero-contact-list a:hover { color: var(--terracotta); }
+    .hero-contact-list a { display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-size: 15px; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+    .hero-contact-list a:hover { color: var(--black); }
     .hero-contact-list svg { flex-shrink: 0; }
     .mobile-photo { display: none; }
-    .btn-primary { display: inline-block; padding: 14px 36px; background: var(--charcoal); color: var(--cream); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: background 0.3s, transform 0.2s; }
-    .btn-primary:hover { background: var(--terracotta); transform: translateY(-2px); }
-    .btn-ghost { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--warm-mid); text-decoration: none; font-weight: 400; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
-    .btn-ghost:hover { color: var(--terracotta); }
+    .btn-primary { display: inline-block; padding: 14px 36px; background: var(--black); color: var(--white); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: background 0.3s, transform 0.2s; }
+    .btn-primary:hover { background: var(--gray-900); transform: translateY(-2px); }
+    .btn-ghost { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; font-weight: 400; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
+    .btn-ghost:hover { color: var(--black); }
     .btn-ghost svg { transition: transform 0.3s; }
     .btn-ghost:hover svg { transform: translateX(4px); }
     .hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; width: 100%; margin-bottom: 20px; }
-    .hero-img-frame { width: min(220px, 42vw); aspect-ratio: 1; background: var(--cream-dark); position: relative; overflow: hidden; opacity: 0; animation: fadeIn 1s ease 0.6s forwards; }
+    .hero-img-frame { width: min(220px, 42vw); aspect-ratio: 1; background: var(--gray-300); position: relative; overflow: hidden; opacity: 0; animation: fadeIn 1s ease 0.6s forwards; }
     .hero-img-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
-    .avatar-icon { width: 100px; height: 100px; background: var(--terracotta-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-    .hero-img-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); }
-    .frame-accent { position: absolute; bottom: -16px; right: -16px; width: 120px; height: 120px; border: 2px solid var(--terracotta); opacity: 0.35; }
-    .hero-stats { position: absolute; bottom: 30px; left: -20px; background: var(--white); padding: 18px 24px; display: flex; gap: 28px; box-shadow: 0 8px 40px rgba(42,37,32,0.08); opacity: 0; animation: fadeUp 0.8s ease 1.2s forwards; }
+    .avatar-icon { width: 100px; height: 100px; background: var(--gray-200); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .hero-img-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); }
+    .frame-accent { position: absolute; bottom: -16px; right: -16px; width: 120px; height: 120px; border: 2px solid var(--black); opacity: 0.35; }
+    .hero-stats { position: absolute; bottom: 30px; left: -20px; background: var(--white); padding: 18px 24px; display: flex; gap: 28px; box-shadow: 0 8px 40px rgba(17,17,17,0.08); opacity: 0; animation: fadeUp 0.8s ease 1.2s forwards; }
     .stat { text-align: center; }
-    .stat-num { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 400; color: var(--terracotta); display: block; }
-    .stat-label { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--warm-gray); }
+    .stat-num { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 400; color: var(--black); display: block; }
+    .stat-label { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-500); }
 
     section { padding: 100px 60px; }
-    .section-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 16px; }
-    .section-heading { font-family: 'Inter', sans-serif; font-size: clamp(34px, 4vw, 52px); font-weight: 300; line-height: 1.18; color: var(--charcoal); margin-bottom: 20px; }
-    .section-heading em { color: var(--terracotta); }
-    .section-sub { font-size: 15px; line-height: 1.75; color: var(--warm-mid); max-width: 500px; }
+.section-heading { font-family: 'Inter', sans-serif; font-size: clamp(34px, 4vw, 52px); font-weight: 300; line-height: 1.18; color: var(--ink); margin-bottom: 20px; }
+    .section-heading em { color: var(--black); }
+    .section-sub { font-size: 15px; line-height: 1.75; color: var(--muted); max-width: 500px; }
 
     /* РАБОТЫ */
     #work { background: var(--white); }
     .work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
     .work-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-    .case-card { position: relative; overflow: hidden; background: var(--cream); cursor: none; }
+    .case-card { position: relative; overflow: hidden; background: var(--soft); cursor: pointer; }
     .case-card img { transition: transform 0.7s cubic-bezier(0.23,1,0.32,1); }
     .case-card:hover img { transform: scale(1.04); }
     .case-img-placeholder { width: 100%; aspect-ratio: 16/7; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; transition: transform 0.7s cubic-bezier(0.23,1,0.32,1); }
     .case-card:hover .case-img-placeholder { transform: scale(1.04); }
-    .case-img-bg-1 { background: linear-gradient(135deg, #dedede 0%, #8d8d8d 100%); }
-    .case-img-bg-2 { background: linear-gradient(135deg, #d9d9d9 0%, #7a7a7a 100%); }
-    .case-img-bg-3 { background: linear-gradient(135deg, #e2e2e2 0%, #a0a0a0 100%); }
+    .case-img-bg-1 { background: linear-gradient(135deg, #e5e5e5 0%, #8a8a8a 100%); }
+    .case-img-bg-2 { background: linear-gradient(135deg, #d9d9d9 0%, #767676 100%); }
+    .case-img-bg-3 { background: linear-gradient(135deg, #ededed 0%, #9a9a9a 100%); }
     .case-placeholder-icon { opacity: 0.3; }
     .case-placeholder-text { font-size: 11px; letter-spacing: 0.08em; color: rgba(255,255,255,0.7); }
     .case-info { padding: 28px 32px 28px 0; display: flex; justify-content: space-between; align-items: flex-start; }
     .case-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
-    .tag { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; background: var(--terracotta-pale); color: var(--terracotta); font-weight: 500; }
-    .case-title { font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 400; color: var(--charcoal); transition: color 0.3s; }
-    .case-card:hover .case-title { color: var(--terracotta); }
-    .case-desc { font-size: 13px; color: var(--warm-gray); margin-top: 6px; line-height: 1.6; }
-    .case-arrow { width: 44px; height: 44px; border: 1px solid var(--cream-dark); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; text-decoration: none; }
-    .case-arrow:hover { background: var(--terracotta); border-color: var(--terracotta); }
-    .case-arrow svg path { stroke: var(--warm-gray); transition: stroke 0.3s; }
+    .tag { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; background: var(--gray-200); color: var(--black); font-weight: 500; }
+    .case-title { font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 400; color: var(--ink); transition: color 0.3s; }
+    .case-card:hover .case-title { color: var(--black); }
+    .case-desc { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+    .case-arrow { width: 44px; height: 44px; border: 1px solid var(--gray-300); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; text-decoration: none; }
+    .case-arrow:hover { background: var(--black); border-color: var(--black); }
+    .case-arrow svg path { stroke: var(--gray-700); transition: stroke 0.3s; }
     .case-arrow:hover svg path { stroke: white; }
 
     /* ОПЫТ */
-    #experience { background: var(--cream); }
+    #experience { background: var(--soft); }
     .exp-layout { display: grid; grid-template-columns: 220px 1fr; gap: 80px; margin-top: 60px; }
     .exp-nav { position: sticky; top: 120px; height: fit-content; }
-    .exp-nav-item { padding: 14px 0 14px 20px; border-left: 2px solid var(--cream-dark); cursor: none; transition: all 0.3s; color: var(--warm-gray); font-size: 13px; margin-bottom: 4px; line-height: 1.5; }
-    .exp-nav-item.active { border-color: var(--terracotta); color: var(--charcoal); font-weight: 500; }
+    .exp-nav-item { padding: 14px 0 14px 20px; border-left: 2px solid var(--gray-300); cursor: pointer; transition: all 0.3s; color: var(--gray-500); font-size: 13px; margin-bottom: 4px; line-height: 1.5; }
+    .exp-nav-item.active { border-color: var(--black); color: var(--ink); font-weight: 500; }
     .exp-entries { display: flex; flex-direction: column; gap: 48px; }
     .exp-entry { padding: 40px; background: var(--white); border-top: 2px solid transparent; transition: border-color 0.3s; }
-    .exp-entry:hover { border-color: var(--terracotta); }
+    .exp-entry:hover { border-color: var(--black); }
     .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
-    .exp-role { font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 400; color: var(--charcoal); }
-    .exp-period { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terracotta); background: var(--terracotta-pale); padding: 6px 14px; white-space: nowrap; }
-    .exp-company { font-size: 14px; color: var(--warm-mid); margin-bottom: 4px; font-weight: 500; }
-    .exp-product { font-size: 13px; color: var(--warm-gray); margin-bottom: 24px; }
+    .exp-role { font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 400; color: var(--ink); }
+    .exp-period { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--gray-200); padding: 6px 14px; white-space: nowrap; }
+    .exp-company { font-size: 14px; color: var(--muted); margin-bottom: 4px; font-weight: 500; }
+    .exp-product { font-size: 13px; color: var(--gray-500); margin-bottom: 24px; }
     .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .exp-bullets li { font-size: 14px; line-height: 1.7; color: var(--warm-mid); padding-left: 20px; position: relative; }
-    .exp-bullets li::before { content: ''; position: absolute; left: 0; top: 11px; width: 6px; height: 1px; background: var(--terracotta); }
-    .exp-highlight { margin-top: 20px; padding: 16px 20px; background: var(--terracotta-pale); border-left: 3px solid var(--terracotta); font-size: 13px; color: var(--warm-mid); line-height: 1.6; }
-    .exp-highlight strong { color: var(--terracotta); }
+    .exp-bullets li { font-size: 14px; line-height: 1.7; color: var(--muted); padding-left: 20px; position: relative; }
+    .exp-bullets li::before { content: ''; position: absolute; left: 0; top: 11px; width: 6px; height: 1px; background: var(--black); }
+    .exp-highlight { margin-top: 20px; padding: 16px 20px; background: var(--gray-200); border-left: 3px solid var(--black); font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .exp-highlight strong { color: var(--black); }
 
     /* ОБО МНЕ */
     #about { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; background: var(--white); }
     .about-visual { position: relative; }
-    .about-img-frame { width: 100%; aspect-ratio: 3/4; background: var(--cream-dark); position: relative; overflow: hidden; }
-    .about-img-inner { position: absolute; inset: 0; background: linear-gradient(160deg, var(--terracotta-pale) 0%, var(--cream-dark) 100%); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
-    .about-accent-line { position: absolute; top: 20px; left: -20px; width: 3px; height: 80px; background: var(--terracotta); }
-    .about-caption { position: absolute; bottom: -20px; right: -20px; background: var(--charcoal); color: var(--cream); padding: 20px 24px; font-size: 12px; letter-spacing: 0.04em; max-width: 210px; line-height: 1.6; }
+    .about-img-frame { width: 100%; aspect-ratio: 3/4; background: var(--gray-300); position: relative; overflow: hidden; }
+    .about-img-inner { position: absolute; inset: 0; background: linear-gradient(160deg, var(--gray-200) 0%, var(--gray-300) 100%); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+    .about-accent-line { position: absolute; top: 20px; left: -20px; width: 3px; height: 80px; background: var(--black); }
+    .about-caption { position: absolute; bottom: -20px; right: -20px; background: var(--gray-900); color: var(--white); padding: 20px 24px; font-size: 12px; letter-spacing: 0.04em; max-width: 210px; line-height: 1.6; }
     .about-caption strong { display: block; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 300; margin-bottom: 4px; }
     .about-text { padding-top: 20px; }
-    .about-body { font-size: 15px; line-height: 1.85; color: var(--warm-mid); margin-top: 28px; margin-bottom: 20px; }
-    .edu-section-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 16px; margin-top: 40px; }
-    .edu-item { padding: 18px 0; border-bottom: 1px solid var(--cream-dark); display: flex; gap: 16px; align-items: flex-start; }
-    .edu-icon { width: 36px; height: 36px; background: var(--terracotta-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .edu-degree { font-size: 14px; font-weight: 500; color: var(--charcoal); margin-bottom: 2px; }
-    .edu-school { font-size: 13px; color: var(--warm-mid); }
-    .edu-year { font-size: 11px; letter-spacing: 0.08em; color: var(--terracotta); text-transform: uppercase; margin-top: 2px; }
-
-    /* НАВЫКИ */
-    #skills { background: var(--charcoal); }
-    #skills .section-label { color: var(--terracotta-light); }
-    #skills .section-heading { color: var(--cream); }
-    #skills .section-sub { color: rgba(245,240,232,0.5); }
-    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 60px; background: rgba(245,240,232,0.06); }
-    .skill-group { padding: 44px 36px; background: var(--charcoal); transition: background 0.3s; }
-    .skill-group:hover { background: rgba(245,240,232,0.04); }
-    .skill-group-icon { width: 44px; height: 44px; background: rgba(17,17,17,0.12); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; border-radius: 2px; }
-    .skill-group-title { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 400; color: var(--cream); margin-bottom: 20px; }
-    .skill-list { list-style: none; }
-    .skill-list li { font-size: 13px; color: rgba(245,240,232,0.55); padding: 8px 0; border-bottom: 1px solid rgba(245,240,232,0.06); display: flex; align-items: center; gap: 10px; transition: color 0.3s; }
-    .skill-list li:hover { color: var(--terracotta-light); }
-    .skill-list li::before { content: ''; width: 4px; height: 4px; background: var(--terracotta); border-radius: 50%; flex-shrink: 0; opacity: 0.6; }
-    .soft-skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(245,240,232,0.06); margin-top: 2px; }
-    .soft-skill-item { padding: 28px 36px; background: var(--charcoal); transition: background 0.3s; display: flex; gap: 16px; align-items: flex-start; }
-    .soft-skill-item:hover { background: rgba(245,240,232,0.04); }
-    .soft-skill-num { font-family: 'Inter', sans-serif; font-size: 36px; font-weight: 300; color: var(--terracotta); opacity: 0.35; flex-shrink: 0; line-height: 1; }
-    .soft-skill-text { font-size: 13px; color: rgba(245,240,232,0.55); line-height: 1.7; padding-top: 4px; }
-    .tools-row { margin-top: 60px; display: flex; gap: 16px; flex-wrap: wrap; }
-    .tool-badge { padding: 10px 20px; border: 1px solid rgba(245,240,232,0.12); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(245,240,232,0.5); transition: all 0.3s; }
-    .tool-badge:hover { border-color: var(--terracotta); color: var(--terracotta-light); }
+    .about-body { font-size: 15px; line-height: 1.85; color: var(--muted); margin-top: 28px; margin-bottom: 20px; }
+    .edu-item { padding: 18px 0; border-bottom: 1px solid var(--gray-300); display: flex; gap: 16px; align-items: flex-start; }
+    .edu-icon { width: 36px; height: 36px; background: var(--gray-200); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .edu-degree { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+    .edu-school { font-size: 13px; color: var(--muted); }
+    .edu-year { font-size: 11px; letter-spacing: 0.08em; color: var(--black); text-transform: uppercase; margin-top: 2px; }
 
     /* КОНТАКТЫ */
-    #contact { background: var(--cream); text-align: center; padding: 120px 60px; }
+    #contact { background: var(--soft); text-align: center; padding: 120px 60px; }
     .contact-inner { max-width: 680px; margin: 0 auto; }
     #contact .section-heading { font-size: clamp(38px, 5vw, 62px); margin-bottom: 24px; }
     #contact .section-sub { margin: 0 auto 52px; text-align: center; }
-    .contact-email { font-family: 'Inter', sans-serif; font-size: clamp(18px, 2.5vw, 28px); font-weight: 300; color: var(--charcoal); text-decoration: none; display: inline-block; border-bottom: 1px solid var(--terracotta); padding-bottom: 4px; transition: color 0.3s; margin-bottom: 40px; }
-    .contact-email:hover { color: var(--terracotta); }
+    .contact-email { font-family: 'Inter', sans-serif; font-size: clamp(18px, 2.5vw, 28px); font-weight: 300; color: var(--ink); text-decoration: none; display: inline-block; border-bottom: 1px solid var(--black); padding-bottom: 4px; transition: color 0.3s; margin-bottom: 40px; }
+    .contact-email:hover { color: var(--black); }
     .social-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 60px; flex-wrap: wrap; }
-    .social-link { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-mid); text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 6px; }
-    .social-link:hover { color: var(--terracotta); }
+    .social-link { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 6px; }
+    .social-link:hover { color: var(--black); }
     .contact-form { background: var(--white); padding: 48px; margin-top: 60px; text-align: left; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
     .form-group { display: flex; flex-direction: column; gap: 8px; }
-    .form-group label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); }
-    .form-group input, .form-group textarea { background: var(--cream); border: 1px solid var(--cream-dark); padding: 14px 16px; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--charcoal); outline: none; transition: border-color 0.3s; width: 100%; resize: none; }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--terracotta); }
+    .form-group label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); }
+    .form-group input, .form-group textarea { background: var(--soft); border: 1px solid var(--gray-300); padding: 14px 16px; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--ink); outline: none; transition: border-color 0.3s; width: 100%; resize: none; }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--black); }
     .form-group textarea { height: 120px; }
     .form-submit { margin-top: 28px; display: flex; justify-content: flex-end; }
-    .btn-submit { padding: 16px 44px; background: var(--terracotta); color: var(--white); font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; border: none; cursor: none; transition: background 0.3s, transform 0.2s; }
-    .btn-submit:hover { background: var(--charcoal); transform: translateY(-2px); }
-
-    footer { background: var(--charcoal); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; }
-    .footer-logo { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 300; color: var(--cream); opacity: 0.7; }
-    .footer-copy { font-size: 12px; color: rgba(245,240,232,0.35); letter-spacing: 0.04em; }
+    .btn-submit { padding: 16px 44px; background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; border: none; cursor: pointer; transition: background 0.3s, transform 0.2s; }
+    .btn-submit:hover { background: var(--gray-900); transform: translateY(-2px); }
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -187,8 +162,6 @@
 </head>
 <body>
 
-  <svg class="cursor" id="cursor" width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="var(--terracotta)"/></svg>
-
   <!-- ГЛАВНЫЙ ЭКРАН -->
   <section id="hero">
     <div class="hero-content">
@@ -201,7 +174,6 @@
       <h1 class="hero-name">Татьяна<br><em>Журавлева</em></h1>
       <p class="hero-desc">Привет! Я UX/UI дизайнер с опытом работы над сложными интерфейсами мобильных и веб-приложений 5+ лет. Изучаю и использую продуктовый подход в дизайне. Ищу работу в продукте или в студии с продуктовым подходом так как хочу сфокусироваться на работе над одним сервисом, активно участвовать в его развитии и больше работать в команде :)</p>
       <div class="hero-contact-box">
-        <p class="hero-contact-title">Контакты</p>
         <ul class="hero-contact-list">
           <li><a href="mailto:tatianazh2412@gmail.com"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>tatianazh2412@gmail.com</a></li>
           <li><a href="https://t.me/tazhuravleva" target="_blank" rel="noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 5L2 12.5l7 1M21 5l-4.5 15-7.5-6M21 5L9 13.5"/></svg>Telegram</a></li>
@@ -214,7 +186,6 @@
   <section id="work">
     <div class="work-header reveal">
       <div>
-        <p class="section-label">Избранные работы</p>
         <h2 class="section-heading">Кейсы &amp; <em>проекты</em></h2>
       </div>
       <a href="https://tatiana-zhuravleva.super.site/" target="_blank" class="btn-ghost">Всё портфолио <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M11 1L17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -222,7 +193,7 @@
     <div class="work-grid reveal">
 
       <!-- Карточка 1 — Datacraft (featured) -->
-      <div class="case-card" onclick="location.href='datacraft.html'" style="cursor:none;">
+      <div class="case-card" onclick="location.href='datacraft.html'" style="cursor:pointer;">
         <img src="Datacraft/1.png" alt="Datacraft — веб-приложение для работы с данными" style="width: 100%; height: auto; display: block;"/>
         <div class="case-info">
           <div>
@@ -235,7 +206,7 @@
       </div>
 
       <!-- Карточка 2 — Hockey Scout Pro -->
-      <div class="case-card" onclick="location.href='hockeyscout.html'" style="cursor:none;">
+      <div class="case-card" onclick="location.href='hockeyscout.html'" style="cursor:pointer;">
         <img src="hockeyscout/Hockey Scout Pro Desktop App/1.png" alt="Hockey Scout Pro — платформа для скаутов" style="width: 100%; height: auto; display: block;"/>
         <div class="case-info">
           <div>
@@ -247,7 +218,7 @@
         </div>
       </div>
 
-      <div class="case-card" onclick="location.href='handbid.html'" style="cursor:none;">
+      <div class="case-card" onclick="location.href='handbid.html'" style="cursor:pointer;">
         <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/b9647aa2-7148-4def-8d6b-3162ce986cea/handbid/w=1920,quality=90,fit=scale-down" alt="Handbid — сервис для управления благотворительными аукционами" style="width: 100%; height: auto; display: block;"/>
         <div class="case-info">
           <div>
@@ -265,165 +236,46 @@
   <!-- ОПЫТ РАБОТЫ -->
   <section id="experience">
     <div class="reveal">
-      <p class="section-label">История работы</p>
-      <h2 class="section-heading">Где я <em>работала</em></h2>
+      <h2 class="section-heading">Опыт работы</h2>
     </div>
-    <div class="exp-layout">
-      <div class="exp-nav reveal">
-        <div class="exp-nav-item active">Ronas IT<br><span style="font-size:11px;opacity:0.6;font-weight:300;">Ноябрь 2020 — настоящее время</span></div>
-        <div class="exp-nav-item" style="margin-top:4px;">National Scouting Association<br><span style="font-size:11px;opacity:0.6;font-weight:300;">Сентябрь 2023 — настоящее время</span></div>
-      </div>
-      <div class="exp-entries">
-
-        <!-- Ronas IT -->
-        <div class="exp-entry reveal">
-          <div class="exp-header">
-            <h3 class="exp-role">Middle+ UX/UI Дизайнер</h3>
-            <span class="exp-period">Ноябрь 2020 — Настоящее время</span>
-          </div>
-          <p class="exp-company">Ronas IT</p>
-          <p class="exp-product">Кросс-платформенные мобильные приложения · Веб-приложения · Дизайн-системы · Behance &amp; Dribbble</p>
-          <ul class="exp-bullets">
-            <li>Дизайн кросс-платформенных мобильных приложений — создание кликабельных прототипов, совместная работа с верстальщиками, работа с дизайн-системой и гайдлайнами iOS и Android</li>
-            <li>Дизайн веб-приложений и сложных админ-панелей с нестандартными структурами данных и разветвлёнными пользовательскими сценариями</li>
-            <li>UX-аудит сайтов с опорой на эвристики Я. Нильсена; ревью аудитов других дизайнеров в команде</li>
-            <li>Ведение сайта компании — создание страниц и адаптивных версий совместно с маркетологами и верстальщиками</li>
-            <li>Создание и ревью кейсов на Behance; разработка документации с правилами работы над кейсами</li>
-            <li>Создание визуальных концептов на Dribbble — совместная работа с командой привлекла новых заказчиков и помогла компании попасть в рейтинг Top App Development Companies на Dribbble</li>
-          </ul>
+    <div class="exp-entries reveal">
+      <div class="exp-entry" style="padding:0; background:transparent; border:none;">
+        <div class="exp-header" style="margin-bottom:8px;">
+          <h3 class="exp-role">Middle+ UX/UI Дизайнер</h3>
+          <span class="exp-period">Ноябрь 2020 — Настоящее время</span>
         </div>
-
-        <!-- National Scouting Association -->
-        <div class="exp-entry reveal">
-          <div class="exp-header">
-            <h3 class="exp-role">Product Designer</h3>
-            <span class="exp-period">Сентябрь 2023 — Настоящее время</span>
-          </div>
-          <p class="exp-company">National Scouting Association</p>
-          <p class="exp-product">Hockey Scout Pro — десктопное приложение и мобильное приложение под Android (фреймворк QT)</p>
-          <ul class="exp-bullets">
-            <li>Проводила UX-исследования: изучала проблемное поле и потребности профессиональных хоккейных скаутов</li>
-            <li>Применяла JTBD-подход при определении функционала приложения — ориентировалась на реальные цели и контекст пользователей</li>
-            <li>Создавала гипотезы и отрисовывала сложные интерфейсы с плотной структурой данных — от концепции до high-fidelity макетов</li>
-            <li>Плотно работала с разработчиками, создавала интерфейс для реализации в фреймворке QT</li>
-            <li>Тестировала дизайн на пользователях и итеративно вносила изменения по результатам</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ОБО МНЕ -->
-  <section id="about">
-    <div class="about-text reveal">
-      <p class="section-label">Образование</p>
-      <h2 class="section-heading">Образование и курсы</h2>
-      <p class="edu-section-label">Образование</p>
-      <div class="edu-item">
-        <div class="edu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C4714A" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-        <div>
-          <p class="edu-degree">«Продуктовый подход для дизайнеров»</p>
-          <p class="edu-school">Яндекс Практикум · 124 часа · Удостоверение о повышении квалификации</p>
-          <p class="edu-year">Июнь 2025</p>
-        </div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C4714A" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-        <div>
-          <p class="edu-degree">Бакалавр дизайна, Факультет Искусств</p>
-          <p class="edu-school">Омский государственный педагогический университет</p>
-          <p class="edu-year">2020</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- НАВЫКИ -->
-  <section id="skills">
-    <div class="reveal">
-      <p class="section-label">Экспертиза</p>
-      <h2 class="section-heading">Навыки &amp; <em>инструменты</em></h2>
-      <p class="section-sub">Многопрофильный инструментарий, сформированный через реальные продукты и студийные проекты.</p>
-    </div>
-    <div class="skills-grid reveal">
-      <div class="skill-group">
-        <div class="skill-group-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4714A" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
-        <h3 class="skill-group-title">UX-дизайн</h3>
-        <ul class="skill-list">
-          <li>UX-исследования и интервью</li>
-          <li>JTBD-подход</li>
-          <li>Wireframes и User Flow</li>
-          <li>Customer Journey Map (CJM)</li>
-          <li>Юзабилити-тестирование</li>
-          <li>UX-аудит (эвристики Нильсена)</li>
-          <li>User Story</li>
+        <p class="exp-company" style="margin-bottom:10px;">Ronas IT</p>
+        <p class="exp-product">Кросс-платформенные мобильные приложения · Веб-приложения · Дизайн-системы · Behance &amp; Dribbble</p>
+        <ul class="exp-bullets">
+          <li>Дизайн кросс-платформенных мобильных приложений — создание кликабельных прототипов, совместная работа с верстальщиками, работа с дизайн-системой и гайдлайнами iOS и Android</li>
+          <li>Дизайн веб-приложений и сложных админ-панелей с нестандартными структурами данных и разветвлёнными пользовательскими сценариями</li>
+          <li>UX-аудит сайтов с опорой на эвристики Я. Нильсена; ревью аудитов других дизайнеров в команде</li>
+          <li>Ведение сайта компании — создание страниц и адаптивных версий совместно с маркетологами и верстальщиками</li>
+          <li>Создание и ревью кейсов на Behance; разработка документации с правилами работы над кейсами</li>
         </ul>
       </div>
-      <div class="skill-group">
-        <div class="skill-group-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4714A" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg></div>
-        <h3 class="skill-group-title">UI-дизайн</h3>
-        <ul class="skill-list">
-          <li>Проектирование сложных интерфейсов</li>
-          <li>Дизайн-системы и компоненты</li>
-          <li>Figma: Autolayout, Variables</li>
-          <li>Responsive и адаптивный layout</li>
-          <li>Кликабельные прототипы</li>
-          <li>Гайдлайны iOS и Android</li>
-          <li>Иллюстрации в кривых</li>
+
+      <div class="exp-entry" style="padding:0; background:transparent; border:none;">
+        <div class="exp-header" style="margin-bottom:8px;">
+          <h3 class="exp-role">Product Designer</h3>
+          <span class="exp-period">Сентябрь 2023 — Настоящее время</span>
+        </div>
+        <p class="exp-company" style="margin-bottom:10px;">National Scouting Association</p>
+        <p class="exp-product">Hockey Scout Pro — десктопное приложение и мобильное приложение под Android (фреймворк QT)</p>
+        <ul class="exp-bullets">
+          <li>Проводила UX-исследования: изучала проблемное поле и потребности профессиональных хоккейных скаутов</li>
+          <li>Применяла JTBD-подход при определении функционала приложения — ориентировалась на реальные цели и контекст пользователей</li>
+          <li>Создавала гипотезы и отрисовывала сложные интерфейсы с плотной структурой данных — от концепции до high-fidelity макетов</li>
+          <li>Плотно работала с разработчиками, создавала интерфейс для реализации в фреймворке QT</li>
+          <li>Тестировала дизайн на пользователях и итеративно вносила изменения по результатам</li>
         </ul>
       </div>
-      <div class="skill-group">
-        <div class="skill-group-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4714A" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-        <h3 class="skill-group-title">Продукт и прочее</h3>
-        <ul class="skill-list">
-          <li>Продуктовое мышление</li>
-          <li>Генерация и проверка гипотез</li>
-          <li>Дизайн-ревью и менторинг</li>
-          <li>Анимация (AE, Principle, Lottie)</li>
-          <li>Adobe Illustrator и Photoshop</li>
-          <li>HTML / CSS (базовые знания)</li>
-          <li>Английский — B2</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="soft-skills-grid reveal">
-      <div class="soft-skill-item">
-        <span class="soft-skill-num">01</span>
-        <p class="soft-skill-text">Провожу дизайн-ревью работ коллег — интерфейсы приложений, страницы сайта, иллюстрации, беханс-кейсы</p>
-      </div>
-      <div class="soft-skill-item">
-        <span class="soft-skill-num">02</span>
-        <p class="soft-skill-text">Веду тг-канал с подборкой референсов для тренировки насмотренности дизайнеров в команде</p>
-      </div>
-      <div class="soft-skill-item">
-        <span class="soft-skill-num">03</span>
-        <p class="soft-skill-text">Делала митапы для команды о юзабилити-тестировании, композиции, юзер-флоу — делилась знаниями и поднимала планку</p>
-      </div>
-      <div class="soft-skill-item">
-        <span class="soft-skill-num">04</span>
-        <p class="soft-skill-text">Проводила воркшоп, где совместно с командой мы сделали и опубликовали кейс на Behance</p>
-      </div>
-    </div>
-
-    <div class="tools-row reveal">
-      <span class="tool-badge">Figma</span>
-      <span class="tool-badge">After Effects</span>
-      <span class="tool-badge">Principle</span>
-      <span class="tool-badge">Lottie</span>
-      <span class="tool-badge">Illustrator</span>
-      <span class="tool-badge">Photoshop</span>
-      <span class="tool-badge">HTML / CSS</span>
-      <span class="tool-badge">Behance</span>
-      <span class="tool-badge">Dribbble</span>
     </div>
   </section>
 
   <!-- КОНТАКТЫ -->
   <section id="contact">
     <div class="contact-inner reveal">
-      <p class="section-label">Контакты</p>
       <a href="mailto:tatianazh2412@gmail.com" class="contact-email">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-right: 8px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         tatianazh2412@gmail.com
@@ -435,24 +287,7 @@
     </div>
   </section>
 
-  <footer>
-    <span class="footer-logo">Татьяна Журавлёва</span>
-    <span class="footer-copy">© 2026 · UX/UI и продуктовый дизайнер</span>
-  </footer>
-
   <script>
-    const cursor = document.getElementById('cursor');
-    let mx = 0, my = 0;
-    let cursorScale = 1;
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px) scale(${cursorScale})`;
-    });
-    const caseCards = document.querySelectorAll('.case-card');
-    caseCards.forEach(card => {
-      card.addEventListener('mouseenter', () => { cursorScale = 10; cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px) scale(10)`; });
-      card.addEventListener('mouseleave', () => { cursorScale = 1; cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px) scale(1)`; });
-    });
     window.addEventListener('load', () => {
       history.replaceState(null, null, window.location.pathname);
       window.scrollTo(0, 0);
