@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <title>ProVisio — редизайн экранов наблюдения</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --paper: #f7f7f7;
+      --ink: #111111;
+      --muted: #4b4b4b;
+      --line: #e8e8e8;
+      --link: #2563eb;
+      --link-hover: #1d4ed8;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      cursor: auto;
+    }
+
+    a { color: var(--link); text-decoration: none; transition: color 0.3s, border-color 0.3s; }
+    a:hover { color: var(--link-hover); }
+    img { max-width: 100%; display: block; }
+    em { font-style: normal; }
+
+    .case-page {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 72px 24px 80px;
+    }
+
+    .case-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 64px;
+      padding-bottom: 20px;
+    }
+
+    .case-back {
+      font-size: 14px;
+      color: var(--link);
+      border-bottom: 1px solid var(--link);
+      padding-bottom: 4px;
+    }
+    .case-back:hover { color: var(--link-hover); border-color: var(--link-hover); }
+
+    .case-header { margin-bottom: 40px; }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(38px, 7vw, 70px);
+      line-height: 0.96;
+      letter-spacing: -0.06em;
+      font-weight: 400;
+    }
+
+    .case-subtitle {
+      margin-top: 18px;
+      max-width: 700px;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .case-section { margin-top: 72px; }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.04em;
+    }
+
+    p, li {
+      margin: 0 0 16px;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    ul { margin: 0 0 0 18px; padding: 0; }
+
+    .case-image {
+      width: 100%;
+      margin: 40px 0 24px;
+      border-radius: 10px;
+      background: var(--paper);
+    }
+
+    .case-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 28px;
+      color: var(--link);
+      font-size: 14px;
+      border-bottom: 1px solid var(--link);
+      padding-bottom: 4px;
+    }
+    .case-back-link:hover { color: var(--link-hover); border-color: var(--link-hover); }
+
+    @media (max-width: 640px) {
+      .case-page { padding-top: 48px; }
+      .case-topbar { margin-bottom: 36px; }
+      .case-subtitle { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="case-page">
+    <header class="case-topbar">
+      <a class="case-back" href="index.html">← Назад</a>
+    </header>
+
+    <header class="case-header">
+      <h1>ProVisio</h1>
+      <p class="case-subtitle">Редизайн экранов наблюдения за работой станций самообслуживания.</p>
+    </header>
+
+    <article>
+      <section class="case-section">
+        <p>Такие станции работают в точках общественного питания. Они позволяют покупать обеды не обращаясь к кассиру, просто нужно отсканировать свой поднос с едой и система сама сформирует чек.</p>
+        <p>За всеми станциями наблюдает ответственный работник. Работнику на экран выводятся live view записи, работник может смотреть, что происходит, корректировать если необходимо, изменять количество позиций, подтверждать возраст, если товар с ограничениями по возрасту и т.д.</p>
+        <p>Задача состоит в редизайне этих экранов так, чтобы они решали проблемы доступности для людей пожилого возраста, но при этом необходимо чтобы все экраны станций могли уместить на один экран и за ними можно было наблюдать одновременно.</p>
+        <p>Ограничение - возраст сотрудников и количество касс - от 1 до 8.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>До</h2>
+        <img src="provisio/ProVisio/image_2.png" alt="Исходный экран ProVisio" class="case-image">
+      </section>
+
+      <section class="case-section">
+        <h2>После</h2>
+        <img src="provisio/ProVisio/basket_view_8_cards.png" alt="ProVisio, восемь карточек станций" class="case-image">
+        <img src="provisio/ProVisio/basket_view_4_cards.png" alt="ProVisio, четыре карточки станций" class="case-image">
+        <img src="provisio/ProVisio/Correction_verification.png" alt="ProVisio, подтверждение исправления" class="case-image">
+      </section>
+
+      <a class="case-back-link" href="index.html">← К портфолио</a>
+    </article>
+  </main>
+</body>
+</html>
