@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <title>Разработка приложения для игроков fantasy-спорта — Татьяна Журавлева</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --paper: #f7f7f7;
+      --ink: #111111;
+      --muted: #4b4b4b;
+      --link: #2563eb;
+      --link-hover: #1d4ed8;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      cursor: auto;
+    }
+
+    a { color: var(--link); text-decoration: none; transition: color 0.3s, border-color 0.3s; }
+    a:hover { color: var(--link-hover); }
+    img { max-width: 100%; display: block; }
+
+    .case-page {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 72px 24px 80px;
+    }
+
+    .case-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 64px;
+      padding-bottom: 20px;
+    }
+
+    .case-back, .case-back-link {
+      color: var(--link);
+      font-size: 14px;
+      border-bottom: 1px solid var(--link);
+      padding-bottom: 4px;
+    }
+    .case-back:hover, .case-back-link:hover { color: var(--link-hover); border-color: var(--link-hover); }
+
+    .case-header { margin-bottom: 40px; }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(38px, 7vw, 70px);
+      line-height: 0.96;
+      letter-spacing: -0.06em;
+      font-weight: 400;
+    }
+
+    .case-section { margin-top: 72px; }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.04em;
+    }
+
+    h3 { margin: 28px 0 14px; font-size: 22px; font-weight: 400; line-height: 1.3; }
+    p, li {
+      margin: 0 0 16px;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    ul { margin: 0 0 20px 18px; padding: 0; }
+    .case-image { width: 100%; margin: 40px 0 24px; border-radius: 10px; background: var(--paper); }
+    .case-note { margin: 32px 0; padding: 20px 24px; background: var(--paper); }
+    .case-note h3 { margin-top: 0; }
+    .case-note p:last-child { margin-bottom: 0; }
+    .case-back-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; }
+
+    @media (max-width: 640px) {
+      .case-page { padding-top: 48px; }
+      .case-topbar { margin-bottom: 36px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="case-page">
+    <header class="case-topbar">
+      <a class="case-back" href="index.html">← Назад</a>
+    </header>
+
+    <header class="case-header">
+      <h1>Разработка приложения для игроков fantasy-спорта</h1>
+    </header>
+
+    <article>
+      <img src="fantasy sport/Разработка приложения для игроков fantasy-спорта/1.png" alt="Приложение для игроков fantasy-спорта" class="case-image">
+
+      <section class="case-section">
+        <h2>О проекте</h2>
+        <p>Fantasy спорт - это игра, распространенная в США, где пользователи управляют виртуальными спортивными командами. Прообразами игроков являются настоящие спортсмены, играющие в данный момент за ту или иную команду. Пользователи могут набрать себе игроков из реально существующих команд и начать соревнование с другими пользователями. На исход соревнования влияют баллы и физическое состояние настоящих игроков.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>Задача</h2>
+        <p>Необходимо создать продукт, который был бы конкурентоспособен среди других приложений fantasy sport.  Его особенностью должны стать удобство, гибкость в использовании, возможность настроить процесс игры.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>Исследование</h2>
+        <p>Я провела анализ конкурентов и выявила их сильные и слабые стороны, чтобы учесть при разработке дизайна. Определила черты типичного пользователя таких приложений, их боли и потребности.</p>
+
+        <h3>Персона пользователя</h3>
+        <p><strong>Возраст и пол</strong></p>
+        <p>от 16 до 40 лет, мужчины</p>
+        <p><strong>Интересы</strong></p>
+        <p>Это любители спорта, с выраженной страстью к различным дисциплинам — от футбола и баскетбола до американского футбола и киберспорта.</p>
+        <p>Они следят за статистикой, играми и спортивными событиями, и часто имеют глубокие знания о командах и игроках.</p>
+        <p><strong>Боли</strong></p>
+        <ul>
+          <li>Сложные или перегруженные интерфейсы, особенно для новичков, могут запутывать при создании команды, выборе игроков или поиске информации.</li>
+          <li>Ошибки в интерфейсе, такие как неудобное расположение информации или труднодоступные настройки, создают раздражение.</li>
+          <li>Недостаток четкой информации о правилах, начислении очков или структуре игры затрудняет понимание результатов.</li>
+          <li>Трудно интерпретировать статистику и понять, что повлияло на исход игры.</li>
+        </ul>
+
+        <aside class="case-note">
+          <p>💡</p>
+          <h3>Гипотеза:</h3>
+          <p>Я предполагаю, что если добавить возможность управлять игроками в течение игры, это привлечет новых пользователей.</p>
+        </aside>
+
+        <h3>Функционал</h3>
+        <p><strong>Основной:</strong></p>
+        <ul>
+          <li>Создание и управление командой</li>
+          <li>Присоединение к лигам</li>
+          <li>Получение уведомлений</li>
+          <li>Отображение статистики и результатов</li>
+          <li>Соревновательный аспект и лидерборды</li>
+          <li>Платежи и монетизация</li>
+          <li>Аналитика и прогнозы</li>
+        </ul>
+        <p><strong>Уникальный:</strong></p>
+        <p>Управление командой в течение игры —<br>по четвертям и половинам матча</p>
+      </section>
+
+      <section class="case-section">
+        <h2>Карта проекта</h2>
+        <img src="fantasy sport/Разработка приложения для игроков fantasy-спорта/bc652aae-952e-4522-a9b5-ebf09d14e32a.png" alt="Карта проекта" class="case-image">
+      </section>
+
+      <section class="case-section">
+        <h2>Процесс набора игроков - драфт</h2>
+        <p>Драфт — это процесс набора игроков в команду. В фентези-спорте он устроен так: каждый участник соревнования по очереди набирает себе в команду по одному игроку. На это дается несколько минут. Экран драфта выглядит как поле с карточками, куда можно поместить игрока. У каждого участника соревнования свой столбец. Можно подробнее посмотреть игроков чужих команд.</p>
+        <p>Я сделала классический экран драфта, опираясь на основного конкурента клиентов - приложение Sleeper. Особенность в более понятном информировании о статусе драфта - наверху есть уведомление о том, что сейчас происходит и что предлагается сделать пользователю.</p>
+        <img src="fantasy sport/Разработка приложения для игроков fantasy-спорта/1999c4e4-3813-49cb-b473-d76537d3fb25.png" alt="Экран драфта" class="case-image">
+      </section>
+
+      <section class="case-section">
+        <h2>Процесс игры - экран лиги</h2>
+        <p>После набора спортсменов в команду можно играть. Пользователи объединяются в лиги и проводят между собой матчи. Они проходят в течение всего спортивного сезона по настоящим правилам. Результат зависит от поведения настоящих игроков, их успехов и неудач в настоящем спорте, полученных баллов, забитых мячей или даже полученных травм. Каждому игроку из команды противопоставляется игрок-соперник с той же ролью на поле.</p>
+        <p>На экране лиги можно управлять составом своей команды, посмотреть, с какими игроками из команды-противника соревнуются мои игроки, управлять настройками лиги и драфтом, продавать и покупать игроков в команду.</p>
+        <img src="fantasy sport/Разработка приложения для игроков fantasy-спорта/8a411f55-54d7-4adc-8c61-1bbbdde0e3ce.png" alt="Экран лиги" class="case-image">
+      </section>
+
+      <section class="case-section">
+        <h2>Управление составом игроков на поле</h2>
+        <p>Игроков можно ставить на поле или отправлять на скамью запасных.<br>Их можно менять местами или выбирать из списка еще не поучаствовавших в игре.</p>
+        <img src="fantasy sport/Разработка приложения для игроков fantasy-спорта/a1bf0aed-05d5-4540-a771-83495d376455.png" alt="Управление составом игроков на поле" class="case-image">
+      </section>
+
+      <section class="case-section">
+        <h2>Настройки</h2>
+        <p>В настройках можно управлять размером лиги, правилами продажи игроков, начислениями баллов игрокам.</p>
+        <img src="fantasy sport/Разработка приложения для игроков fantasy-спорта/11.png" alt="Настройки приложения" class="case-image">
+      </section>
+
+      <section class="case-section">
+        <h2>Профиль игрока</h2>
+        <p>Можно добавить игрока в избранное или к себе в команду, выставить его на продажу, посмотреть результаты игр с ним, посмотреть предварительные оценки на будущие матчи.</p>
+        <img src="fantasy sport/Разработка приложения для игроков fantasy-спорта/12.png" alt="Профиль игрока" class="case-image">
+      </section>
+
+      <section class="case-section">
+        <h2>Итог</h2>
+        <p>Создан прототип приложения, который делает вход в игру проще для новичков, даёт больше контроля опытным пользователям, выделяется на фоне конкурентов  возможностью управления командой во время матча.</p>
+        <p>Приложение находится в разработке и в дальнейшем мы сможем проверить гипотезу и узнать, насколько эта функция повысит вовлечённость пользователей.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>Спасибо за внимание!</h2>
+      </section>
+
+      <a class="case-back-link" href="index.html">← К портфолио</a>
+    </article>
+  </main>
+</body>
+</html>
