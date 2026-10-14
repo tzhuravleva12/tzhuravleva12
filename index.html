@@ -28,8 +28,6 @@
     em { font-style: normal; }
     a { color: var(--link); }
     a:hover { color: var(--link-hover); }
-    a:not(.copy-email-link):not(.contact-email):not(.hero-contact-list a):visited { color: #6d28d9; }
-    a:not(.copy-email-link):not(.contact-email):not(.hero-contact-list a):focus-visible { color: #6d28d9; }
 
     #hero { min-height: 100svh; display: flex; align-items: flex-start; padding: 80px max(24px, calc((100vw - 972px) / 2)) 48px; position: relative; overflow: hidden; }
     .hero-layout { width: 100%; max-width: 972px; margin-inline: auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "title visual" "bio visual" "contacts visual" "cases cases"; align-items: start; gap: 32px 36px; }
@@ -48,8 +46,8 @@
     .hero-bio p + p { margin-top: 12px; }
     .hero-contact-box { grid-area: contacts; padding-top: 0; }
     .hero-contact-list { width: min(100%, 362px); list-style: none; display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
-    .hero-contact-list a { position: relative; display: inline-flex; min-height: 48px; width: 100%; align-items: center; justify-content: center; border: 1px solid #5650c8; border-radius: 999px; padding: 8px 14px; color: #514bbd; font-size: 12px; text-decoration: none; transition: color 0.2s, background 0.2s; }
-    .hero-contact-list a:hover { color: #38329f; background: #f8f7ff; }
+    .hero-contact-list a { position: relative; display: inline-flex; min-height: 48px; width: 100%; align-items: center; justify-content: center; border: 1px solid var(--link); border-radius: 999px; padding: 8px 14px; color: var(--link); font-size: 12px; text-decoration: none; transition: color 0.2s, background 0.2s; }
+    .hero-contact-list a:hover { color: var(--link-hover); background: transparent; }
     .hero-cases { grid-area: cases; display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 4px; color: var(--link); font-size: 13px; text-decoration: none; }
     .hero-cases:hover { color: var(--link-hover); }
     .hero-cases-arrow { display: block; width: 13px; height: 42px; margin-top: 2px; }
@@ -173,6 +171,11 @@
       .hero-card { padding-inline: 18px; }
       .hero-info-row { grid-template-columns: 70px minmax(0, 1fr); }
     }
+    a:visited { color: #6d28d9; }
+    a:visited:hover { color: #6d28d9; }
+    a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+    .hero-contact-list a:visited,
+    .contact-email:visited { border-color: #6d28d9; }
   </style>
 </head>
 <body>
