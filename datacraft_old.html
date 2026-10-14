@@ -5,8 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="robots" content="noindex, nofollow, noarchive" />
   <title>Datacraft — Татьяна Журавлёва</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
+    @font-face {
+      font-family: 'Geist';
+      src: url('Geist/Geist-VariableFont_wght.ttf') format('truetype');
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --cream: #F5F0E8; --cream-dark: #EDE6D6;
@@ -15,7 +21,7 @@
       --warm-gray: #8C8077; --warm-mid: #6B5F55; --white: #FDFAF5;
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; cursor: none; }
+    body { font-family: 'Geist', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; cursor: none; }
 
     .cursor { width: 10px; height: 10px; background: var(--terracotta); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: multiply; }
     .cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--terracotta); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), width 0.3s, height 0.3s, opacity 0.3s; opacity: 0.6; }
@@ -24,7 +30,7 @@
     /* Nav */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 60px; transition: background 0.4s, padding 0.4s; }
     nav.scrolled { background: rgba(245,240,232,0.93); backdrop-filter: blur(12px); padding: 18px 60px; border-bottom: 1px solid rgba(196,113,74,0.12); }
-    .nav-logo { font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 400; letter-spacing: 0.03em; color: var(--charcoal); text-decoration: none; }
+    .nav-logo { font-family: 'Geist', sans-serif; font-size: 22px; font-weight: 400; letter-spacing: 0.03em; color: var(--charcoal); text-decoration: none; }
     .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
     .nav-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--warm-mid); text-decoration: none; position: relative; transition: color 0.3s; }
     .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--terracotta); transition: width 0.3s; }
@@ -61,7 +67,7 @@
     .case-back-pill svg { transition: transform 0.3s; }
     .case-back-pill:hover svg { transform: translateX(-3px); }
     .case-eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta-light); font-weight: 500; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s ease 0.1s forwards; }
-    .case-title-hero { font-family: 'Inter', sans-serif; font-size: clamp(52px, 7vw, 96px); font-weight: 300; line-height: 1.0; color: var(--cream); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease 0.25s forwards; }
+    .case-title-hero { font-family: 'Geist', sans-serif; font-size: clamp(52px, 7vw, 96px); font-weight: 300; line-height: 1.0; color: var(--cream); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease 0.25s forwards; }
     .case-title-hero em { color: var(--terracotta-light); }
     .case-subtitle { font-size: 18px; font-weight: 300; color: rgba(245,240,232,0.6); max-width: 560px; line-height: 1.7; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
     .case-meta-row {
@@ -92,7 +98,7 @@
     /* Sections */
     .case-section { margin-bottom: 72px; }
     .case-section-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 16px; }
-    .case-section-title { font-family: 'Inter', sans-serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 300; line-height: 1.2; color: var(--charcoal); margin-bottom: 24px; }
+    .case-section-title { font-family: 'Geist', sans-serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 300; line-height: 1.2; color: var(--charcoal); margin-bottom: 24px; }
     .case-section-title em { color: var(--terracotta); }
     .case-text { font-size: 15px; line-height: 1.85; color: var(--warm-mid); margin-bottom: 20px; }
     .case-text strong { color: var(--charcoal); font-weight: 500; }
@@ -110,7 +116,7 @@
 
     .case-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin: 32px 0; }
     .case-col-block { background: var(--white); padding: 32px; }
-    .case-col-block h4 { font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 400; color: var(--charcoal); margin-bottom: 16px; }
+    .case-col-block h4 { font-family: 'Geist', sans-serif; font-size: 22px; font-weight: 400; color: var(--charcoal); margin-bottom: 16px; }
 
     .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin: 32px 0; }
     .story-card { background: var(--white); padding: 32px 28px; border-top: 2px solid var(--cream-dark); transition: border-color 0.3s; }
@@ -123,7 +129,7 @@
     .feature-row.reverse { }
     .feature-row.reverse .feature-img { order: -1; }
     .feature-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 10px; }
-    .feature-title { font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 400; color: var(--charcoal); margin-bottom: 16px; }
+    .feature-title { font-family: 'Geist', sans-serif; font-size: 26px; font-weight: 400; color: var(--charcoal); margin-bottom: 16px; }
     .feature-text { font-size: 14px; line-height: 1.8; color: var(--warm-mid); }
     .feature-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
     .feature-list li { font-size: 14px; line-height: 1.6; color: var(--warm-mid); padding-left: 18px; position: relative; }
@@ -135,7 +141,7 @@
 
     /* Result block */
     .case-result { background: var(--charcoal); padding: 72px 60px; margin: 72px -60px 0; text-align: center; }
-    .case-result h3 { font-family: 'Inter', sans-serif; font-size: clamp(30px, 4vw, 50px); font-weight: 300; color: var(--cream); margin-bottom: 24px; }
+    .case-result h3 { font-family: 'Geist', sans-serif; font-size: clamp(30px, 4vw, 50px); font-weight: 300; color: var(--cream); margin-bottom: 24px; }
     .case-result h3 em { color: var(--terracotta-light); }
     .case-result p { font-size: 16px; line-height: 1.85; color: rgba(245,240,232,0.6); max-width: 660px; margin: 0 auto; }
 
@@ -147,7 +153,7 @@
     .back-link:hover svg { transform: translateX(-4px); }
 
     footer { background: var(--charcoal); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; margin-top: 0; }
-    .footer-logo { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 300; color: var(--cream); opacity: 0.7; text-decoration: none; }
+    .footer-logo { font-family: 'Geist', sans-serif; font-size: 18px; font-weight: 300; color: var(--cream); opacity: 0.7; text-decoration: none; }
     .footer-copy { font-size: 12px; color: rgba(245,240,232,0.35); }
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
