@@ -38,10 +38,12 @@
     .hero-visual { grid-area: visual; position: relative; min-width: 0; min-height: 710px; margin: 0; }
     .hero-card { position: absolute; top: 74px; left: 0; display: flex; align-items: center; width: 94%; min-height: 600px; padding: 40px 30px; border-radius: 18px; background: #f7f7f7; transform: rotate(2deg); }
     .hero-photo { position: absolute; z-index: 1; top: 0; right: 0; width: 190px; height: 190px; object-fit: cover; object-position: 66% center; border-radius: 16px; box-shadow: 0 8px 24px rgba(17, 17, 17, 0.12); }
-    .hero-info-list { display: flex; flex-direction: column; gap: 60px; width: 100%; }
+    .hero-info-list { display: flex; flex-direction: column; gap: 40px; width: 100%; }
     .hero-info-row { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 12px; align-items: start; }
     .hero-info-label { color: #8a8a8a; font-size: 14px; line-height: 1.5; }
     .hero-info-value { color: var(--ink); font-size: 16px; line-height: 1.65; }
+    .hero-info-tags { display: flex; flex-direction: column; gap: 0; }
+    .hero-info-tag-row { display: flex; flex-wrap: wrap; column-gap: 12px; line-height: inherit; }
     .hero-info-value strong { display: block; font-weight: 500; }
     .hero-bio { max-width: 420px; }
     .hero-section-label { margin-bottom: 12px; color: #8a8a8a; font-size: 14px; }
@@ -166,7 +168,7 @@
       .hero-card { grid-area: visual; position: relative; top: auto; left: auto; width: 100%; min-height: 0; padding: 40px 24px; transform: rotate(1deg); }
       .hero-photo { grid-area: photo; position: relative; top: auto; right: auto; justify-self: start; width: 126px; height: 126px; }
       .hero-contact-box { grid-area: contacts; }
-      .hero-info-list { gap: 18px; }
+      .hero-info-list { gap: 14px; }
       .hero-info-row { grid-template-columns: 80px minmax(0, 1fr); gap: 10px; }
       .hero-info-value { font-size: 16px; }
       .hero-contact-list a { width: min(100%, 362px); }
@@ -183,7 +185,7 @@
       .hero-layout { row-gap: 12px; }
       .hero-visual { min-height: 630px; }
       .hero-card { min-height: 520px; }
-      .hero-info-list { gap: 28px; }
+      .hero-info-list { gap: 24px; }
       #work { padding-top: 0; }
     }
     a:visited { color: #6d28d9; }
@@ -221,15 +223,29 @@
             </div>
             <div class="hero-info-row">
               <span class="hero-info-label">Навыки</span>
-              <p class="hero-info-value">UI/UX&nbsp; Product design&nbsp; Variables<br>Animation&nbsp; Illustration<br>After Effects&nbsp; Adobe Illustrator<br>AI-friendly&nbsp; HTML/CSS</p>
+              <div class="hero-info-value hero-info-tags">
+                <div class="hero-info-tag-row"><span>UI/UX</span> <span>Product design</span> <span>Variables</span></div>
+                <div class="hero-info-tag-row"><span>Animation</span> <span>Illustration</span></div>
+                <div class="hero-info-tag-row"><span>After Effects</span> <span>Adobe Illustrator</span></div>
+                <div class="hero-info-tag-row"><span>AI-friendly</span> <span>HTML/CSS</span></div>
+              </div>
             </div>
             <div class="hero-info-row">
               <span class="hero-info-label">Проекты</span>
-              <p class="hero-info-value">Desktop-приложения<br>SaaS-платформы<br>CRM-системы&nbsp; Админ-панели<br>iOS-приложения<br>Android-приложения</p>
+              <div class="hero-info-value hero-info-tags">
+                <div class="hero-info-tag-row"><span>Desktop-приложения</span></div>
+                <div class="hero-info-tag-row"><span>SaaS-платформы</span></div>
+                <div class="hero-info-tag-row"><span>CRM-системы</span> <span>Админ-панели</span></div>
+                <div class="hero-info-tag-row"><span>iOS-приложения</span></div>
+                <div class="hero-info-tag-row"><span>Android-приложения</span></div>
+              </div>
             </div>
             <div class="hero-info-row">
               <span class="hero-info-label">Сферы</span>
-              <p class="hero-info-value">FoodTech&nbsp; Ecommerce&nbsp; Medicine<br>Event&nbsp; Sport</p>
+              <div class="hero-info-value hero-info-tags">
+                <div class="hero-info-tag-row"><span>FoodTech</span> <span>Ecommerce</span> <span>Medicine</span></div>
+                <div class="hero-info-tag-row"><span>Event</span> <span>Sport</span></div>
+              </div>
             </div>
           </div>
         </div>
