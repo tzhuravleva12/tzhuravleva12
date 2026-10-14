@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="robots" content="noindex, nofollow, noarchive" />
   <title>Татьяна Журавлева</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -22,14 +24,16 @@
       --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; cursor: auto; }
+    body { font-family: 'Geist', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; cursor: auto; }
     em { font-style: normal; }
     a { color: var(--link); }
     a:hover { color: var(--link-hover); }
+    a:not(.copy-email-link):not(.contact-email):not(.hero-contact-list a):visited { color: #6d28d9; }
+    a:not(.copy-email-link):not(.contact-email):not(.hero-contact-list a):focus-visible { color: #6d28d9; }
 
     #hero { min-height: auto; display: flex; align-items: center; justify-content: center; padding: 156px max(24px, calc((100vw - 972px) / 2)) 132px; position: relative; overflow: hidden; }
     .hero-content { position: relative; z-index: 1; width: 100%; max-width: 760px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-    .hero-name { font-family: 'Inter', sans-serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 400; line-height: 1.05; color: var(--charcoal); margin-bottom: 18px; white-space: nowrap; opacity: 0; animation: fadeUp 1.3s var(--ease-smooth) 0.3s forwards; }
+    .hero-name { font-family: 'Geist', sans-serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 400; line-height: 1.05; color: var(--charcoal); margin-bottom: 18px; white-space: nowrap; opacity: 0; animation: fadeUp 1.3s var(--ease-smooth) 0.3s forwards; }
     .hero-name em { color: var(--black); }
     .hero-desc { font-size: 15px; line-height: 1.8; color: var(--muted); max-width: 640px; margin-bottom: 36px; opacity: 0; animation: fadeUp 1.3s var(--ease-smooth) 0.55s forwards; }
     .hero-contact-box { max-width: 420px; padding-top: 8px; opacity: 0; animation: fadeUp 1.3s var(--ease-smooth) 0.8s forwards; }
@@ -43,7 +47,7 @@
     .hero-img-frame { width: min(220px, 42vw); aspect-ratio: 1; background: var(--gray-300); position: relative; overflow: hidden; border-radius: 20px; opacity: 0; animation: fadeUp 1.3s var(--ease-smooth) 0.1s forwards; }
 
     section { padding: 100px max(24px, calc((100vw - 972px) / 2)); }
-.section-heading { font-family: 'Inter', sans-serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 400; line-height: 1.18; color: var(--ink); margin-bottom: 20px; }
+.section-heading { font-family: 'Geist', sans-serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 400; line-height: 1.18; color: var(--ink); margin-bottom: 20px; }
 
     /* РАБОТЫ */
     #work { background: var(--white); padding-top: 24px; }
@@ -51,23 +55,27 @@
     .work-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
     .case-card {
       position: relative;
-      overflow: hidden;
       cursor: pointer;
+    }
+    .case-media {
+      overflow: hidden;
       border-radius: 20px;
+      -webkit-border-radius: 20px;
+      background: var(--soft);
     }
     .case-card img {
       display: block;
-      width: auto;
-      max-width: 100%;
+      width: 100%;
       height: auto;
-      margin: 0 auto;
       object-fit: contain;
-      border-radius: 20px;
       transition: transform 0.6s var(--ease-smooth);
+      transform-origin: center center;
     }
-    .case-card:hover img { transform: scale(1.05); }
+    .case-card:hover .case-media img {
+      transform: scale(1.05);
+    }
     .case-info { padding: 28px 32px 28px 0; }
-    .case-title { font-family: 'Inter', sans-serif; font-size: clamp(26px, 3vw, 34px); font-weight: 400; color: var(--link); transition: color 0.3s; }
+    .case-title { font-family: 'Geist', sans-serif; font-size: clamp(26px, 3vw, 34px); font-weight: 400; color: var(--link); transition: color 0.3s; }
     .case-title:hover { color: var(--link-hover); }
     .case-desc { font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.6; }
 
@@ -76,7 +84,7 @@
     #experience .section-heading { margin-bottom: 32px; }
     .exp-entries { display: flex; flex-direction: column; gap: 48px; }
     .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
-    .exp-role { font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 400; color: var(--ink); }
+    .exp-role { font-family: 'Geist', sans-serif; font-size: 26px; font-weight: 400; color: var(--ink); }
     .exp-company { font-size: 14px; color: var(--muted); margin-bottom: 4px; font-weight: 500; }
     .exp-product { font-size: 13px; color: var(--gray-500); margin-bottom: 24px; }
     .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
@@ -87,8 +95,30 @@
     #contact { background: var(--soft); text-align: center; padding: 120px max(24px, calc((100vw - 972px) / 2)); }
     .contact-inner { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 12px; }
     #contact .section-heading { font-size: clamp(28px, 3.5vw, 42px); margin-bottom: 24px; }
-    .contact-email { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 300; color: var(--link); text-decoration: none; display: inline-flex; align-items: center; border-bottom: 1px solid var(--link); padding-bottom: 4px; transition: color 0.3s, border-color 0.3s; }
+    .contact-email { font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 400; color: var(--link); text-decoration: none; display: inline-flex; align-items: center; border-bottom: 1px solid var(--link); padding-bottom: 4px; transition: color 0.3s, border-color 0.3s; position: relative; }
     .contact-email:hover { color: var(--link-hover); border-color: var(--link-hover); }
+    .copy-tooltip {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 12px);
+      transform: translateX(-50%) translateY(12px);
+      background: #111111;
+      color: #ffffff;
+      font-family: 'Geist', sans-serif;
+      font-size: 14px;
+      line-height: 1.4;
+      padding: 10px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 8px 24px rgba(17, 17, 17, 0.18);
+    }
+    .copy-tooltip.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity 1.2s var(--ease-smooth), transform 1.2s var(--ease-smooth); }
@@ -115,11 +145,11 @@
       </div>
       <img class="mobile-photo" src="Images/photo_2024-02-08_12-02-33.jpg" alt="Татьяна Журавлева" style="border-radius: 20px;"/>
       <h1 class="hero-name">Татьяна <em>Журавлева</em></h1>
-      <p class="hero-desc">Привет! Я UX/UI дизайнер с опытом работы над сложными интерфейсами мобильных и веб-приложений 5+ лет. Изучаю и использую продуктовый подход в дизайне.<br>Ищу работу в продукте или в студии с продуктовым подходом, так как хочу сфокусироваться на работе над одним сервисом, активно участвовать в его развитии и больше работать в команде :).</p>
+      <p class="hero-desc">Привет! Я UX/UI дизайнер с опытом работы над сложными интерфейсами мобильных и веб-приложений 5+ лет. Изучаю и использую продуктовый подход в дизайне.<br>Ищу работу в продукте или в студии с продуктовым подходом, так как хочу сфокусироваться на работе над одним сервисом, активно участвовать в его развитии и больше работать в команде :)</p>
       <div class="hero-contact-box">
         <ul class="hero-contact-list">
-          <li><a href="mailto:tatianazh2412@gmail.com"><span class="email-icon" aria-hidden="true">✉️</span>tatianazh2412@gmail.com</a></li>
-          <li><a href="https://t.me/tazhuravleva" target="_blank" rel="noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#229ED9"/><path d="m17.9 6.4-2.5 11.7c-.2.8-.7 1-1.4.6l-3.8-2.8-1.8 1.7c-.2.2-.3.3-.6.3l.2-3.9 7-6.3c.3-.3-.1-.4-.5-.1L6 13.1l-3.8-1.2c-.8-.2-.8-.8.2-1.2l14.8-5.7c.7-.3 1.3.2.7 1.1Z" fill="#fff"/></svg>Telegram</a></li>
+          <li><a href="https://t.me/tazhuravleva" target="_blank" rel="noreferrer">Telegram: @tazhuravleva</a></li>
+          <li><a href="mailto:tatianazh2412@gmail.com" class="copy-email-link">Почта: tatianazh2412@gmail.com<span class="copy-tooltip">Почта скопирована</span></a></li>
         </ul>
       </div>
     </div>
@@ -131,7 +161,9 @@
     <div class="work-grid">
 
       <div class="case-card" onclick="location.href='provisio.html'" style="cursor:pointer;">
-        <img src="provisio.png" alt="ProVisio — редизайн экранов наблюдения за работой станций самообслуживания" style="display: block; max-width: 100%; height: auto;"/>
+        <div class="case-media">
+          <img src="provisio.png" alt="ProVisio — редизайн экранов наблюдения за работой станций самообслуживания" style="display: block; width: 100%; height: auto;"/>
+        </div>
         <div class="case-info">
           <div>
             <h3 class="case-title"><a href="provisio.html">ProVisio</a></h3>
@@ -142,7 +174,9 @@
 
       <!-- Карточка 1 — Datacraft (featured) -->
       <div class="case-card" onclick="location.href='datacraft.html'" style="cursor:pointer;">
-        <img src="datacraft.png" alt="Datacraft — веб-приложение для работы с данными" style="display: block; max-width: 100%; height: auto;"/>
+        <div class="case-media">
+          <img src="datacraft.png" alt="Datacraft — веб-приложение для работы с данными" style="display: block; width: 100%; height: auto;"/>
+        </div>
         <div class="case-info">
           <div>
             <h3 class="case-title"><a href="datacraft.html">Datacraft</a></h3>
@@ -153,7 +187,9 @@
 
       <!-- Карточка 2 — Hockey Scout Pro -->
       <div class="case-card" onclick="location.href='hockeyscout.html'" style="cursor:pointer;">
-        <img src="hockeyscout pro.png" alt="Hockey Scout Pro — платформа для скаутов" style="display: block; max-width: 100%; height: auto;"/>
+        <div class="case-media">
+          <img src="hockeyscout pro.png" alt="Hockey Scout Pro — платформа для скаутов" style="display: block; width: 100%; height: auto;"/>
+        </div>
         <div class="case-info">
           <div>
             <h3 class="case-title"><a href="hockeyscout.html">Hockey Scout Pro Desktop App</a></h3>
@@ -163,7 +199,9 @@
       </div>
 
       <div class="case-card" onclick="location.href='handbid.html'" style="cursor:pointer;">
-        <img src="handbid.png" alt="Handbid — сервис для управления благотворительными аукционами" style="display: block; max-width: 100%; height: auto;"/>
+        <div class="case-media">
+          <img src="handbid.png" alt="Handbid — сервис для управления благотворительными аукционами" style="display: block; width: 100%; height: auto;"/>
+        </div>
         <div class="case-info">
           <div>
             <h3 class="case-title"><a href="handbid.html">Handbid</a></h3>
@@ -173,7 +211,9 @@
       </div>
 
       <div class="case-card" onclick="location.href='fantasy.html'" style="cursor:pointer;">
-        <img src="fantasy sport.png" alt="Приложение для игроков fantasy-спорта" style="display: block; max-width: 100%; height: auto;"/>
+        <div class="case-media">
+          <img src="fantasy sport.png" alt="Приложение для игроков fantasy-спорта" style="display: block; width: 100%; height: auto;"/>
+        </div>
         <div class="case-info">
           <div>
             <h3 class="case-title"><a href="fantasy.html">Разработка приложения для игроков fantasy-спорта</a></h3>
@@ -228,14 +268,8 @@
   <section id="contact">
     <div class="contact-inner reveal">
       <h2 class="section-heading">Буду рада обсудить сотрудничество!</h2>
-      <a href="mailto:tatianazh2412@gmail.com" class="contact-email">
-        <span class="email-icon" aria-hidden="true">✉️</span>
-        tatianazh2412@gmail.com
-      </a>
-      <a href="https://t.me/tazhuravleva" target="_blank" class="contact-email">
-        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="margin-right: 8px;"><circle cx="12" cy="12" r="10" fill="#229ED9"/><path d="m17.9 6.4-2.5 11.7c-.2.8-.7 1-1.4.6l-3.8-2.8-1.8 1.7c-.2.2-.3.3-.6.3l.2-3.9 7-6.3c.3-.3-.1-.4-.5-.1L6 13.1l-3.8-1.2c-.8-.2-.8-.8.2-1.2l14.8-5.7c.7-.3 1.3.2.7 1.1Z" fill="#fff"/></svg>
-        Telegram
-      </a>
+      <a href="https://t.me/tazhuravleva" target="_blank" class="contact-email">Telegram: @tazhuravleva</a>
+      <a href="mailto:tatianazh2412@gmail.com" class="contact-email copy-email-link">Почта: tatianazh2412@gmail.com<span class="copy-tooltip">Почта скопирована</span></a>
     </div>
   </section>
 
@@ -244,6 +278,34 @@
       history.replaceState(null, null, window.location.pathname);
       window.scrollTo(0, 0);
     });
+
+    async function copyEmailToClipboard(text, trigger) {
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (err) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+
+      const tooltip = trigger.querySelector('.copy-tooltip');
+      if (!tooltip) return;
+
+      tooltip.classList.add('visible');
+      clearTimeout(trigger.copyTooltipTimer);
+      trigger.copyTooltipTimer = setTimeout(() => tooltip.classList.remove('visible'), 1600);
+    }
+
+    document.querySelectorAll('.copy-email-link').forEach(link => {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        copyEmailToClipboard('tatianazh2412@gmail.com', this);
+      });
+    });
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 50);
