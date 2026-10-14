@@ -50,9 +50,9 @@
 .section-heading { font-family: 'Geist', sans-serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 400; line-height: 1.18; color: var(--ink); margin-bottom: 20px; }
 
     /* РАБОТЫ */
-    #work { background: var(--white); padding-top: 24px; }
-    .work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 8px; }
-    .work-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
+    #work { background: var(--white); padding-top: 10px; }
+    .work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0; }
+    .work-grid { display: grid; grid-template-columns: 1fr; gap: 48px; margin-top: 0; }
     .case-card {
       position: relative;
       cursor: pointer;
@@ -157,8 +157,8 @@
 
   <!-- РАБОТЫ -->
   <section id="work">
-    <div class="work-header reveal"></div>
-    <div class="work-grid">
+    <div class="work-header reveal" style="margin-bottom: 0;"></div>
+    <div class="work-grid" style="margin-top: 0;">
 
       <div class="case-card" onclick="location.href='provisio.html'" style="cursor:pointer;">
         <div class="case-media">
