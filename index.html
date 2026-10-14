@@ -31,20 +31,28 @@
     a:not(.copy-email-link):not(.contact-email):not(.hero-contact-list a):visited { color: #6d28d9; }
     a:not(.copy-email-link):not(.contact-email):not(.hero-contact-list a):focus-visible { color: #6d28d9; }
 
-    #hero { min-height: auto; display: flex; align-items: center; justify-content: center; padding: 156px max(24px, calc((100vw - 972px) / 2)) 132px; position: relative; overflow: hidden; }
-    .hero-content { position: relative; z-index: 1; width: 100%; max-width: 760px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-    .hero-name { font-family: 'Geist', sans-serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 400; line-height: 1.05; color: var(--charcoal); margin-bottom: 18px; white-space: nowrap; opacity: 0; animation: fadeUp 1.3s var(--ease-smooth) 0.3s forwards; }
-    .hero-name em { color: var(--black); }
-    .hero-desc { font-size: 15px; line-height: 1.8; color: var(--muted); max-width: 640px; margin-bottom: 36px; opacity: 0; animation: fadeUp 1.3s var(--ease-smooth) 0.55s forwards; }
-    .hero-contact-box { max-width: 420px; padding-top: 8px; opacity: 0; animation: fadeUp 1.3s var(--ease-smooth) 0.8s forwards; }
-    .hero-contact-list { list-style: none; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    .hero-contact-list a { display: inline-flex; align-items: center; justify-content: center; gap: 0; font-size: 15px; color: var(--link); text-decoration: none; border-bottom: 1px solid var(--link); padding-bottom: 4px; transition: color 0.3s, border-color 0.3s; }
-    .hero-contact-list a:hover { color: var(--link-hover); border-color: var(--link-hover); }
-    .hero-contact-list svg { flex-shrink: 0; margin-right: 8px; }
-    .email-icon { display: inline-block; font-size: 18px; line-height: 1; margin-right: 8px; }
-    .mobile-photo { display: none; opacity: 0; animation: fadeUp 1.3s var(--ease-smooth) 0.1s forwards; }
-    .hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; width: 100%; margin-bottom: 44px; }
-    .hero-img-frame { width: min(220px, 42vw); aspect-ratio: 1; background: var(--gray-300); position: relative; overflow: hidden; border-radius: 20px; opacity: 0; animation: fadeUp 1.3s var(--ease-smooth) 0.1s forwards; }
+    #hero { min-height: 100svh; display: flex; align-items: flex-start; padding: 80px max(24px, calc((100vw - 972px) / 2)) 48px; position: relative; overflow: hidden; }
+    .hero-layout { width: 100%; max-width: 972px; margin-inline: auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "title visual" "bio visual" "contacts visual" "cases cases"; align-items: start; gap: 32px 36px; }
+    .hero-title { grid-area: title; max-width: 510px; font-size: clamp(36px, 3.5vw, 40px); font-weight: 600; line-height: 1.2; color: var(--ink); }
+    .hero-visual { grid-area: visual; position: relative; min-width: 0; min-height: 760px; margin: 0; }
+    .hero-card { position: absolute; top: 74px; left: 0; display: flex; align-items: center; width: 94%; min-height: 670px; padding: 40px 30px; border-radius: 18px; background: #f7f7f7; transform: rotate(2deg); }
+    .hero-photo { position: absolute; z-index: 1; top: 0; right: 0; width: 190px; height: 190px; object-fit: cover; object-position: 66% center; border-radius: 16px; box-shadow: 0 8px 24px rgba(17, 17, 17, 0.12); }
+    .hero-info-list { display: flex; flex-direction: column; gap: 60px; width: 100%; }
+    .hero-info-row { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 12px; align-items: start; }
+    .hero-info-label { color: #8a8a8a; font-size: 12px; line-height: 1.5; }
+    .hero-info-value { color: var(--ink); font-size: 13px; line-height: 1.65; }
+    .hero-info-value strong { display: block; font-weight: 500; }
+    .hero-bio { grid-area: bio; }
+    .hero-section-label { margin-bottom: 12px; color: #8a8a8a; font-size: 12px; }
+    .hero-bio p:not(.hero-section-label) { color: var(--ink); font-size: 13px; line-height: 1.55; }
+    .hero-bio p + p { margin-top: 12px; }
+    .hero-contact-box { grid-area: contacts; padding-top: 0; }
+    .hero-contact-list { width: min(100%, 362px); list-style: none; display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
+    .hero-contact-list a { position: relative; display: inline-flex; min-height: 48px; width: 100%; align-items: center; justify-content: center; border: 1px solid #5650c8; border-radius: 999px; padding: 8px 14px; color: #514bbd; font-size: 12px; text-decoration: none; transition: color 0.2s, background 0.2s; }
+    .hero-contact-list a:hover { color: #38329f; background: #f8f7ff; }
+    .hero-cases { grid-area: cases; display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 4px; color: var(--link); font-size: 13px; text-decoration: none; }
+    .hero-cases:hover { color: var(--link-hover); }
+    .hero-cases-arrow { display: block; width: 13px; height: 42px; margin-top: 2px; }
 
     section { padding: 100px max(24px, calc((100vw - 972px) / 2)); }
 .section-heading { font-family: 'Geist', sans-serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 400; line-height: 1.18; color: var(--ink); margin-bottom: 20px; }
@@ -143,11 +151,27 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 960px) {
-      #hero { grid-template-columns: 1fr; padding: 124px 24px 96px; }
-      .hero-visual { display: none; }
-      .mobile-photo { display: block; width: 200px; height: 200px; object-fit: cover; margin: 20px 0 44px; }
       section { padding: 70px 24px; }
+      #hero { min-height: auto; padding: 76px 24px 56px; }
       #work { padding-top: 48px; }
+    }
+    @media (max-width: 840px) {
+      .hero-layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "photo" "title" "visual" "bio" "contacts"; gap: 24px; }
+      .hero-title { max-width: 600px; font-size: clamp(34px, 8vw, 44px); }
+      .hero-visual { display: contents; }
+      .hero-card { grid-area: visual; position: relative; top: auto; left: auto; width: 100%; min-height: 0; padding: 40px 24px; transform: rotate(1deg); }
+      .hero-photo { grid-area: photo; position: relative; top: auto; right: auto; justify-self: start; width: 126px; height: 126px; }
+      .hero-info-list { gap: 18px; }
+      .hero-info-row { grid-template-columns: 80px minmax(0, 1fr); gap: 10px; }
+      .hero-info-value { font-size: 12px; }
+      .hero-contact-list a { width: min(100%, 362px); }
+      .hero-cases { display: none; }
+    }
+    @media (max-width: 380px) {
+      #hero { padding-inline: 20px; }
+      .hero-title { font-size: 32px; }
+      .hero-card { padding-inline: 18px; }
+      .hero-info-row { grid-template-columns: 70px minmax(0, 1fr); }
     }
   </style>
 </head>
@@ -155,21 +179,44 @@
 
   <!-- ГЛАВНЫЙ ЭКРАН -->
   <section id="hero">
-    <div class="hero-content">
+    <div class="hero-layout">
+      <h1 class="hero-title">UX/UI designer, Product designer сложных web- и мобильных интерфейсов B2B</h1>
       <div class="hero-visual">
-        <div class="hero-img-frame">
-          <img src="Images/photo_2024-02-08_12-02-33.jpg" alt="Татьяна Журавлева" style="width: 100%; height: 100%; object-fit: cover;"/>
+        <div class="hero-card">
+          <div class="hero-info-list">
+            <div class="hero-info-row">
+              <span class="hero-info-label">Опыт работы</span>
+              <p class="hero-info-value"><strong>Ronas IT</strong>2019 – 2026<strong>Hockey Scout Pro</strong>2023 – н. в.</p>
+            </div>
+            <div class="hero-info-row">
+              <span class="hero-info-label">Навыки</span>
+              <p class="hero-info-value">UI/UX&nbsp; Product design&nbsp; Variables<br>Animation&nbsp; Illustration<br>After Effects&nbsp; Adobe Illustrator<br>AI-friendly&nbsp; HTML/CSS</p>
+            </div>
+            <div class="hero-info-row">
+              <span class="hero-info-label">Проекты</span>
+              <p class="hero-info-value">Desktop-приложения<br>SaaS-платформы<br>CRM-системы&nbsp; Админ-панели<br>iOS-приложения<br>Android-приложения</p>
+            </div>
+            <div class="hero-info-row">
+              <span class="hero-info-label">Сферы</span>
+              <p class="hero-info-value">FoodTech&nbsp; Ecommerce&nbsp; Medicine<br>Event&nbsp; Sport</p>
+            </div>
+          </div>
         </div>
+        <img class="hero-photo" src="Images/photo_2024-02-08_12-02-33.jpg" alt="Татьяна Журавлева" />
       </div>
-      <img class="mobile-photo" src="Images/photo_2024-02-08_12-02-33.jpg" alt="Татьяна Журавлева" style="border-radius: 20px;"/>
-      <h1 class="hero-name">Татьяна <em>Журавлева</em></h1>
-      <p class="hero-desc">Привет! Я UX/UI дизайнер с опытом работы над сложными интерфейсами мобильных и веб-приложений 5+ лет. Изучаю и использую продуктовый подход в дизайне.<br>Ищу работу в продукте или в студии с продуктовым подходом, так как хочу сфокусироваться на работе над одним сервисом, активно участвовать в его развитии и больше работать в команде :)</p>
+      <div class="hero-bio">
+        <p class="hero-section-label">Обо мне</p>
+        <p>Привет! Меня зовут Таня, я UX/UI дизайнер с опытом работы над сложными интерфейсами веб- и мобильных приложений 5+ лет. Изучаю и использую продуктовый подход в дизайне.</p>
+        <p>Ищу работу в продукте или в студии с продуктовым подходом, так как хочу сфокусироваться на работе над одним сервисом, активно участвовать в его развитии и больше работать в команде :)</p>
+      </div>
       <div class="hero-contact-box">
+        <p class="hero-section-label">Контакты</p>
         <ul class="hero-contact-list">
           <li><a href="https://t.me/tazhuravleva" target="_blank" rel="noreferrer">Telegram: @tazhuravleva</a></li>
           <li><a href="mailto:tatianazh2412@gmail.com" class="copy-email-link">Почта: tatianazh2412@gmail.com<span class="copy-tooltip">Почта скопирована</span></a></li>
         </ul>
       </div>
+      <a class="hero-cases" href="#work"><span>Смотреть кейсы</span><img class="hero-cases-arrow" src="new arrow.png" alt="" aria-hidden="true" /></a>
     </div>
   </section>
 
