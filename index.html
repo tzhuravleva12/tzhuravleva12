@@ -50,7 +50,16 @@
     .work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; }
     .work-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
     .case-card { position: relative; overflow: hidden; cursor: pointer; }
-    .case-card img { display: block; transition: transform 0.6s var(--ease-smooth); }
+    .case-card img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+      object-fit: contain;
+      border-radius: 20px;
+      transition: transform 0.6s var(--ease-smooth);
+    }
     .case-card:hover img { transform: scale(1.05); }
     .case-info { padding: 28px 32px 28px 0; }
     .case-title { font-family: 'Inter', sans-serif; font-size: clamp(26px, 3vw, 34px); font-weight: 400; color: var(--link); transition: color 0.3s; }
@@ -121,7 +130,7 @@
     <div class="work-grid">
 
       <div class="case-card" onclick="location.href='provisio.html'" style="cursor:pointer;">
-        <img src="provisio/ProVisio/basket view 8 cards.png" alt="ProVisio — редизайн экранов наблюдения за работой станций самообслуживания" style="width: 100%; height: auto; display: block;"/>
+        <img src="provisio.png" alt="ProVisio — редизайн экранов наблюдения за работой станций самообслуживания" style="display: block; max-width: 100%; height: auto;"/>
         <div class="case-info">
           <div>
             <h3 class="case-title"><a href="provisio.html">ProVisio</a></h3>
@@ -132,7 +141,7 @@
 
       <!-- Карточка 1 — Datacraft (featured) -->
       <div class="case-card" onclick="location.href='datacraft.html'" style="cursor:pointer;">
-        <img src="Datacraft/1.png" alt="Datacraft — веб-приложение для работы с данными" style="width: 100%; height: auto; display: block;"/>
+        <img src="datacraft.png" alt="Datacraft — веб-приложение для работы с данными" style="display: block; max-width: 100%; height: auto;"/>
         <div class="case-info">
           <div>
             <h3 class="case-title"><a href="datacraft.html">Datacraft</a></h3>
@@ -143,7 +152,7 @@
 
       <!-- Карточка 2 — Hockey Scout Pro -->
       <div class="case-card" onclick="location.href='hockeyscout.html'" style="cursor:pointer;">
-        <img src="hockeyscout/Hockey Scout Pro Desktop App/1.png" alt="Hockey Scout Pro — платформа для скаутов" style="width: 100%; height: auto; display: block;"/>
+        <img src="hockeyscout pro.png" alt="Hockey Scout Pro — платформа для скаутов" style="display: block; max-width: 100%; height: auto;"/>
         <div class="case-info">
           <div>
             <h3 class="case-title"><a href="hockeyscout.html">Hockey Scout Pro Desktop App</a></h3>
@@ -153,7 +162,7 @@
       </div>
 
       <div class="case-card" onclick="location.href='handbid.html'" style="cursor:pointer;">
-        <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/b9647aa2-7148-4def-8d6b-3162ce986cea/handbid/w=1920,quality=90,fit=scale-down" alt="Handbid — сервис для управления благотворительными аукционами" style="width: 100%; height: auto; display: block;"/>
+        <img src="handbid.png" alt="Handbid — сервис для управления благотворительными аукционами" style="display: block; max-width: 100%; height: auto;"/>
         <div class="case-info">
           <div>
             <h3 class="case-title"><a href="handbid.html">Handbid</a></h3>
@@ -163,7 +172,7 @@
       </div>
 
       <div class="case-card" onclick="location.href='fantasy.html'" style="cursor:pointer;">
-        <img src="fantasy sport/Разработка приложения для игроков fantasy-спорта/1.png" alt="Приложение для игроков fantasy-спорта" style="width: 100%; height: auto; display: block;"/>
+        <img src="fantasy sport.png" alt="Приложение для игроков fantasy-спорта" style="display: block; max-width: 100%; height: auto;"/>
         <div class="case-info">
           <div>
             <h3 class="case-title"><a href="fantasy.html">Разработка приложения для игроков fantasy-спорта</a></h3>
