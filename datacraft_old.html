@@ -28,7 +28,7 @@
     /* Nav */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 60px; transition: background 0.4s, padding 0.4s; }
     nav.scrolled { background: rgba(245,240,232,0.93); backdrop-filter: blur(12px); padding: 18px 60px; border-bottom: 1px solid rgba(196,113,74,0.12); }
-    .nav-logo { font-family: 'Geist', sans-serif; font-size: 22px; font-weight: 400; letter-spacing: 0; color: var(--charcoal); text-decoration: none; }
+    .nav-logo { font-family: 'Geist', sans-serif; font-size: 24px; font-weight: 400; letter-spacing: 0; color: var(--charcoal); text-decoration: none; }
     .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
     .nav-links a { font-size: 12px; letter-spacing: 0; text-transform: uppercase; color: var(--warm-mid); text-decoration: none; position: relative; transition: color 0.3s; }
     .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--terracotta); transition: width 0.3s; }
@@ -57,14 +57,14 @@
     .case-back-pill {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 8px 16px; border: 1px solid rgba(245,240,232,0.2);
-      font-size: 11px; letter-spacing: 0; text-transform: uppercase;
+      font-size: 12px; letter-spacing: 0; text-transform: uppercase;
       color: rgba(245,240,232,0.6); text-decoration: none;
       margin-bottom: 48px; transition: all 0.3s;
     }
     .case-back-pill:hover { border-color: var(--terracotta); color: var(--terracotta-light); }
     .case-back-pill svg { transition: transform 0.3s; }
     .case-back-pill:hover svg { transform: translateX(-3px); }
-    .case-eyebrow { font-size: 11px; letter-spacing: 0; text-transform: uppercase; color: var(--terracotta-light); font-weight: 500; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s ease 0.1s forwards; }
+    .case-eyebrow { font-size: 12px; letter-spacing: 0; text-transform: uppercase; color: var(--terracotta-light); font-weight: 500; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s ease 0.1s forwards; }
     .case-title-hero { font-family: 'Geist', sans-serif; font-size: clamp(52px, 7vw, 96px); font-weight: 300; line-height: 1.0; color: var(--cream); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease 0.25s forwards; }
     .case-title-hero em { color: var(--terracotta-light); }
     .case-subtitle { font-size: 16px; font-weight: 300; color: rgba(245,240,232,0.6); max-width: 560px; line-height: 1.7; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
@@ -76,7 +76,7 @@
     }
     .case-meta-item { padding: 0 48px 0 0; }
     .case-meta-item:not(:last-child) { border-right: 1px solid rgba(245,240,232,0.1); margin-right: 48px; }
-    .case-meta-label { font-size: 10px; letter-spacing: 0; text-transform: uppercase; color: rgba(245,240,232,0.35); margin-bottom: 6px; }
+    .case-meta-label { font-size: 12px; letter-spacing: 0; text-transform: uppercase; color: rgba(245,240,232,0.35); margin-bottom: 6px; }
     .case-meta-value { font-size: 14px; color: rgba(245,240,232,0.75); }
 
     /* Body */
@@ -95,39 +95,39 @@
 
     /* Sections */
     .case-section { margin-bottom: 72px; }
-    .case-section-label { font-size: 10px; letter-spacing: 0; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 16px; }
-    .case-section-title { font-family: 'Geist', sans-serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 300; line-height: 1.2; color: var(--charcoal); margin-bottom: 24px; }
+    .case-section-label { font-size: 12px; letter-spacing: 0; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 16px; }
+    .case-section-title { font-family: 'Geist', sans-serif; font-size: clamp(32px, 3.5vw, 44px); font-weight: 300; line-height: 1.2; color: var(--charcoal); margin-bottom: 24px; }
     .case-section-title em { color: var(--terracotta); }
-    .case-text { font-size: 15px; line-height: 1.85; color: var(--warm-mid); margin-bottom: 20px; }
+    .case-text { font-size: 16px; line-height: 1.85; color: var(--warm-mid); margin-bottom: 20px; }
     .case-text strong { color: var(--charcoal); font-weight: 500; }
 
     .case-highlight {
       background: var(--white); border-left: 3px solid var(--terracotta);
       padding: 28px 32px; margin: 32px 0;
     }
-    .case-highlight p { font-size: 15px; line-height: 1.8; color: var(--warm-mid); }
+    .case-highlight p { font-size: 16px; line-height: 1.8; color: var(--warm-mid); }
     .case-highlight strong { color: var(--charcoal); }
 
     .case-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
-    .case-list li { font-size: 15px; line-height: 1.7; color: var(--warm-mid); padding-left: 22px; position: relative; }
+    .case-list li { font-size: 16px; line-height: 1.7; color: var(--warm-mid); padding-left: 22px; position: relative; }
     .case-list li::before { content: ''; position: absolute; left: 0; top: 12px; width: 8px; height: 1px; background: var(--terracotta); }
 
     .case-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin: 32px 0; }
     .case-col-block { background: var(--white); padding: 32px; }
-    .case-col-block h4 { font-family: 'Geist', sans-serif; font-size: 22px; font-weight: 400; color: var(--charcoal); margin-bottom: 16px; }
+    .case-col-block h4 { font-family: 'Geist', sans-serif; font-size: 24px; font-weight: 400; color: var(--charcoal); margin-bottom: 16px; }
 
     .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin: 32px 0; }
     .story-card { background: var(--white); padding: 32px 28px; border-top: 2px solid var(--cream-dark); transition: border-color 0.3s; }
     .story-card:hover { border-color: var(--terracotta); }
-    .story-role { font-size: 10px; letter-spacing: 0; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 12px; }
+    .story-role { font-size: 12px; letter-spacing: 0; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 12px; }
     .story-text { font-size: 14px; line-height: 1.7; color: var(--warm-mid); }
 
     /* Feature row: text + image side by side */
     .feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; background: var(--white); padding: 48px; margin: 3px 0; }
     .feature-row.reverse { }
     .feature-row.reverse .feature-img { order: -1; }
-    .feature-label { font-size: 10px; letter-spacing: 0; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 10px; }
-    .feature-title { font-family: 'Geist', sans-serif; font-size: 26px; font-weight: 400; color: var(--charcoal); margin-bottom: 16px; }
+    .feature-label { font-size: 12px; letter-spacing: 0; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 10px; }
+    .feature-title { font-family: 'Geist', sans-serif; font-size: 24px; font-weight: 400; color: var(--charcoal); margin-bottom: 16px; }
     .feature-text { font-size: 14px; line-height: 1.8; color: var(--warm-mid); }
     .feature-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
     .feature-list li { font-size: 14px; line-height: 1.6; color: var(--warm-mid); padding-left: 18px; position: relative; }
@@ -139,7 +139,7 @@
 
     /* Result block */
     .case-result { background: var(--charcoal); padding: 72px 60px; margin: 72px -60px 0; text-align: center; }
-    .case-result h3 { font-family: 'Geist', sans-serif; font-size: clamp(30px, 4vw, 50px); font-weight: 300; color: var(--cream); margin-bottom: 24px; }
+    .case-result h3 { font-family: 'Geist', sans-serif; font-size: clamp(32px, 4vw, 50px); font-weight: 300; color: var(--cream); margin-bottom: 24px; }
     .case-result h3 em { color: var(--terracotta-light); }
     .case-result p { font-size: 16px; line-height: 1.85; color: rgba(245,240,232,0.6); max-width: 660px; margin: 0 auto; }
 
@@ -151,7 +151,7 @@
     .back-link:hover svg { transform: translateX(-4px); }
 
     footer { background: var(--charcoal); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; margin-top: 0; }
-    .footer-logo { font-family: 'Geist', sans-serif; font-size: 18px; font-weight: 300; color: var(--cream); opacity: 0.7; text-decoration: none; }
+    .footer-logo { font-family: 'Geist', sans-serif; font-size: 16px; font-weight: 300; color: var(--cream); opacity: 0.7; text-decoration: none; }
     .footer-copy { font-size: 12px; color: rgba(245,240,232,0.35); }
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }

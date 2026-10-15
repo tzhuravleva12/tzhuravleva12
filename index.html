@@ -34,7 +34,7 @@
     #hero { min-height: auto; display: flex; align-items: flex-start; padding: 112px max(24px, calc((100vw - 972px) / 2)) 8px; position: relative; overflow: hidden; }
     .hero-layout { width: 100%; max-width: 972px; margin-inline: auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "copy visual" "cases cases"; align-items: start; gap: 32px 36px; }
     .hero-copy { grid-area: copy; display: flex; flex-direction: column; gap: 32px; }
-    .hero-title { font-family: 'Geist', sans-serif; max-width: 510px; font-size: clamp(36px, 3.5vw, 40px); font-weight: 600; line-height: 1.2; color: var(--ink); }
+    .hero-title { font-family: 'Geist', sans-serif; max-width: 510px; font-size: clamp(40px, 3.5vw, 48px); font-weight: 600; line-height: 1.2; color: var(--ink); }
     .hero-visual { grid-area: visual; position: relative; min-width: 0; min-height: 710px; margin: 0; }
     .hero-card { position: absolute; top: 74px; left: 0; display: flex; align-items: center; width: 94%; min-height: 600px; padding: 40px 30px; border-radius: 18px; background: #f7f7f7; transform: rotate(2deg); }
     .hero-photo { position: absolute; z-index: 1; top: 0; right: 0; width: 170px; height: 170px; overflow: hidden; border-radius: 16px; box-shadow: 0 8px 24px rgba(17, 17, 17, 0.12); }
@@ -54,11 +54,11 @@
     .hero-contact-list { width: min(100%, 362px); list-style: none; display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
     .hero-contact-list a { position: relative; display: inline-flex; min-height: 48px; width: 100%; align-items: center; justify-content: center; border: 1px solid var(--link); border-radius: 999px; padding: 8px 14px; color: var(--link); font-size: 16px; text-decoration: none; transition: color 0.2s, background 0.2s; }
     .hero-contact-list a:hover { color: var(--link-hover); background: transparent; }
-    .hero-cases { grid-area: cases; display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 4px; color: #8a8a8a; font-size: 13px; }
+    .hero-cases { grid-area: cases; display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 4px; color: #8a8a8a; font-size: 14px; }
     .hero-cases-arrow { display: block; width: 13px; height: 42px; margin-top: 2px; }
 
     section { padding: 100px max(24px, calc((100vw - 972px) / 2)); }
-.section-heading { font-family: 'Geist', sans-serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 400; line-height: 1.18; color: var(--ink); margin-bottom: 20px; }
+.section-heading { font-family: 'Geist', sans-serif; font-size: clamp(32px, 3.5vw, 42px); font-weight: 400; line-height: 1.18; color: var(--ink); margin-bottom: 20px; }
 
     /* РАБОТЫ */
     #work { background: var(--white); padding-top: 10px; }
@@ -86,9 +86,9 @@
       transform: scale(1.05);
     }
     .case-info { padding: 28px 32px 28px 0; }
-    .case-title { font-family: 'Geist', sans-serif; font-size: clamp(26px, 3vw, 34px); font-weight: 400; color: var(--link); transition: color 0.3s; }
+    .case-title { font-family: 'Geist', sans-serif; font-size: clamp(24px, 3vw, 34px); font-weight: 400; color: var(--link); transition: color 0.3s; }
     .case-title:hover { color: var(--link-hover); }
-    .case-desc { font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.6; }
+    .case-desc { font-size: 14px; color: var(--muted); margin-top: 16px; line-height: 1.6; }
     .case-card .case-desc { font-size: 16px; }
 
     /* ОПЫТ */
@@ -111,11 +111,58 @@
       border: 0;
       background: var(--white);
     }
+    .behance-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      width: 100%;
+      max-width: 960px;
+      margin-top: 0;
+    }
+    .behance-intro {
+      width: 100%;
+      max-width: 960px;
+      margin-top: 32px;
+      margin-bottom: 20px;
+    }
+    .behance-heading {
+      margin: 0 0 12px;
+      font-family: 'Geist', sans-serif;
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    .behance-description {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .behance-card {
+      display: block;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+    .behance-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform 0.6s var(--ease-smooth);
+      transform-origin: center center;
+    }
+    .behance-card:hover img,
+    .behance-card:focus-visible img {
+      transform: scale(1.05);
+    }
+    @media (max-width: 640px) {
+      .behance-grid { grid-template-columns: 1fr; gap: 20px; }
+    }
     #experience { background: var(--soft); }
     #experience .section-heading { margin-bottom: 32px; }
     .exp-entries { display: flex; flex-direction: column; gap: 48px; width: 100%; max-width: 750px; }
     .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
-    .exp-role { font-family: 'Geist', sans-serif; font-size: 26px; font-weight: 400; color: var(--ink); }
+    .exp-role { font-family: 'Geist', sans-serif; font-size: 24px; font-weight: 400; color: var(--ink); }
     .exp-company { font-size: 16px; color: var(--muted); margin-bottom: 4px; font-weight: 500; }
     .exp-product { font-size: 16px; color: var(--gray-500); margin-bottom: 24px; }
     .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
@@ -125,7 +172,7 @@
     /* КОНТАКТЫ */
     #contact { background: var(--soft); text-align: center; padding: 120px max(24px, calc((100vw - 972px) / 2)); }
     .contact-inner { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    #contact .section-heading { font-size: clamp(28px, 3.5vw, 42px); margin-bottom: 24px; }
+    #contact .section-heading { font-size: clamp(32px, 3.5vw, 42px); margin-bottom: 24px; }
     .contact-email { font-family: 'Geist', sans-serif; font-size: 16px; font-weight: 400; color: var(--link); text-decoration: none; display: inline-flex; align-items: center; border-bottom: 1px solid var(--link); padding-bottom: 4px; transition: color 0.3s, border-color 0.3s; position: relative; }
     .contact-email:hover { color: var(--link-hover); border-color: var(--link-hover); }
     .copy-tooltip {
@@ -163,7 +210,7 @@
     @media (max-width: 970px) {
       .hero-layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "photo" "title" "bio" "visual" "contacts"; row-gap: 32px; column-gap: 24px; }
       .hero-copy { display: contents; }
-      .hero-title { grid-area: title; max-width: 600px; font-size: clamp(34px, 8vw, 44px); }
+      .hero-title { grid-area: title; max-width: 600px; font-size: clamp(40px, 8vw, 44px); }
       .hero-bio { grid-area: bio; width: 92%; max-width: none; }
       .hero-visual { display: contents; }
       .hero-card { grid-area: visual; position: relative; top: auto; left: auto; width: 100%; min-height: 0; padding: 40px 24px; transform: rotate(1deg); }
@@ -177,13 +224,14 @@
     }
     @media (max-width: 380px) {
       #hero { padding-inline: 20px; }
-      .hero-title { font-size: 32px; }
+      .hero-title { font-size: 36px; }
       .hero-card { padding-inline: 18px; }
       .hero-info-row { grid-template-columns: 70px minmax(0, 1fr); }
     }
     @media (min-width: 1025px) and (max-height: 850px) {
       #hero { padding: 56px max(24px, calc((100vw - 972px) / 2)) 8px; }
       .hero-layout { row-gap: 12px; }
+      .hero-title { font-size: 40px; }
       .hero-visual { min-height: 630px; }
       .hero-card { min-height: 520px; }
       .hero-info-list { gap: 24px; }
@@ -299,18 +347,6 @@
         </div>
       </div>
 
-      <div class="case-card" onclick="location.href='handbid.html'" style="cursor:pointer;">
-        <div class="case-media">
-          <img src="handbid.png" alt="Handbid — сервис для управления благотворительными аукционами" style="display: block; width: 100%; height: auto;"/>
-        </div>
-        <div class="case-info">
-          <div>
-            <h3 class="case-title"><a href="handbid.html">Handbid</a></h3>
-            <p class="case-desc">Handbid - сервис для управления благотворительными аукционами.</p>
-          </div>
-        </div>
-      </div>
-
       <div class="case-card" onclick="location.href='fantasy.html'" style="cursor:pointer;">
         <div class="case-media">
           <img src="fantasy sport.png" alt="Приложение для игроков fantasy-спорта" style="display: block; width: 100%; height: auto;"/>
@@ -319,6 +355,18 @@
           <div>
             <h3 class="case-title"><a href="fantasy.html">Разработка приложения для игроков fantasy-спорта</a></h3>
             <p class="case-desc">Fantasy спорт - это игра, распространенная в США, где пользователи управляют виртуальными спортивными командами.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card" onclick="location.href='handbid.html'" style="cursor:pointer;">
+        <div class="case-media">
+          <img src="handbid.png" alt="Handbid — сервис для управления благотворительными аукционами" style="display: block; width: 100%; height: auto;"/>
+        </div>
+        <div class="case-info">
+          <div>
+            <h3 class="case-title"><a href="handbid.html">Handbid</a></h3>
+            <p class="case-desc">Handbid - сервис для управления благотворительными аукционами.</p>
           </div>
         </div>
       </div>
@@ -334,6 +382,24 @@
     </div>
     <div class="concepts-visual reveal">
       <img src="концепты.png" alt="Концепты" loading="lazy" />
+    </div>
+    <div class="behance-intro reveal">
+      <h3 class="behance-heading">Behance-кейсы</h3>
+      <p class="behance-description">Собираю Behance-кейсы, которые привлекают лидов. Сделала кейс, который попал в галерею Behance в разделе UI/UX.</p>
+    </div>
+    <div class="behance-grid reveal">
+      <a class="behance-card" href="https://www.behance.net/gallery/194352565/Banking-App-Design-Concept-Ronas-IT" target="_blank" rel="noopener noreferrer">
+        <img src="behance/banking case.png" alt="Концепт банковского приложения" loading="lazy" />
+      </a>
+      <a class="behance-card" href="https://www.behance.net/gallery/198004119/Dateasy-Dating-Mobile-App-Ronas-IT?tracking_source=search_projects%7Cronasit&amp;l=4" target="_blank" rel="noopener noreferrer">
+        <img src="behance/dateasy.png" alt="Концепт мобильного приложения Dateasy" loading="lazy" />
+      </a>
+      <a class="behance-card" href="https://www.behance.net/gallery/208093111/Insurimind-Insurance-Mobile-App-Ronas-IT" target="_blank" rel="noopener noreferrer">
+        <img src="behance/insurance case.png" alt="Концепт приложения для страхования" loading="lazy" />
+      </a>
+      <a class="behance-card" href="https://www.behance.net/gallery/190384551/Master-Key-Property-Management-Web-App-Ronas-IT" target="_blank" rel="noopener noreferrer">
+        <img src="behance/Behance Cover.png" alt="Обложка кейса Master Key на Behance" loading="lazy" />
+      </a>
     </div>
   </section>
 
