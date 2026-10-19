@@ -14,329 +14,48 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; letter-spacing: 0; }
     :root {
       --black: #111111;
-
-
-
-
-      --gray-900: #1a1a1a;
-      --gray-600: #666666;
-      --gray-500: #86868b;
-      --gray-400: #a1a1a6;
-      --gray-300: #d2d2d7;
-      --gray-200: #e8e8ed;
-      --gray-100: #f5f5f7;
+      --gray-500: #6f6f6f;
+      --gray-300: #d9d9d9;
+      --gray-200: #eeeeee;
       --white: #ffffff;
-
-
-
-
-
-
-
-
-
-
-      --accent: #0071e3;
-      --accent-hover: #0077ed;
-      --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+      --ink: #111111;
+      --muted: #4b4b4b;
+      --soft: #f3f3f3;
+      --link: #2563eb;
+      --link-hover: #1d4ed8;
+      --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
     }
-
     html { scroll-behavior: smooth; }
-    body { 
-      font-family: 'Geist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-      background: var(--white); 
-      color: var(--black); 
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /* HERO SECTION */
-    #hero { 
-
-      min-height: 100vh; 
-      display: flex; 
-      align-items: center; 
-
-      padding: 0 max(24px, calc((100vw - 1140px) / 2)); 
-      position: relative;
-      background: var(--white);
-    }
-    .hero-layout { 
-      width: 100%; 
-
-      max-width: 1140px; 
-      margin-inline: auto; 
-      display: grid; 
-
-
-      grid-template-columns: 1fr 480px; 
-      gap: 64px; 
-      align-items: center;
-    }
-
-    .hero-copy { display: flex; flex-direction: column; gap: 40px; }
-    .hero-title { 
-
-      font-size: clamp(44px, 5.5vw, 68px); 
-      font-weight: 600; 
-
-
-
-      line-height: 1.05; 
-      letter-spacing: -0.04em; 
-      color: var(--black);
-    }
-
-    .hero-bio { max-width: 580px; }
-    .hero-section-label { 
-
-
-      display: inline-block;
-      margin-bottom: 20px; 
-      color: var(--accent); 
-      font-size: 14px; 
-
-      font-weight: 600; 
-      text-transform: uppercase; 
-
-      letter-spacing: 0.05em;
-    }
-    .hero-bio p:not(.hero-section-label) { 
-
-
-
-      color: var(--gray-600); 
-      font-size: 20px; 
-      line-height: 1.55; 
-      font-weight: 400;
-    }
-    .hero-bio p + p { margin-top: 24px; }
-    
-    .hero-contact-list { 
-      list-style: none; 
-      display: flex; 
-
-      gap: 16px; 
-      margin-top: 8px;
-    }
-    .hero-contact-list a { 
-      display: inline-flex; 
-      align-items: center; 
-
-
-      height: 56px;
-      padding: 0 32px; 
-      background: var(--black); 
-      color: var(--white); 
-
-      border-radius: 14px; 
-      text-decoration: none; 
-      font-size: 16px;
-      font-weight: 500; 
-
-      transition: all 0.3s var(--ease-smooth);
-    }
-    .hero-contact-list a:hover { 
-      background: #333;
-      transform: translateY(-2px);
-
-
-      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-    }
-    .hero-contact-list li:last-child a {
-      background: var(--gray-100);
-
-      color: var(--black);
-    }
-    .hero-contact-list li:last-child a:hover {
-      background: var(--gray-200);
-    }
-
-    .hero-visual { position: relative; }
-    .hero-card { 
-
-
-
-
-
-      background: var(--gray-100); 
-      border-radius: 32px; 
-      padding: 48px; 
-      position: relative;
-
-      overflow: hidden;
-    }
-    .hero-photo { 
-
-
-
-      width: 120px; 
-      height: 120px; 
-      border-radius: 24px; 
-      overflow: hidden; 
-
-
-      margin-bottom: 40px;
-      background: var(--white);
-    }
-    .hero-photo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); }
-
-
-
-
-
-
-    .hero-info-list { display: flex; flex-direction: column; gap: 32px; }
-    .hero-info-row { display: flex; flex-direction: column; gap: 10px; }
-    .hero-info-label { font-size: 13px; color: var(--gray-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-    .hero-info-value { font-size: 16px; color: var(--black); font-weight: 500; }
-    .hero-info-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .hero-info-tags span { 
-
-
-
-
-
-      background: var(--white); 
-      padding: 6px 14px; 
-      border-radius: 10px; 
-      font-size: 14px; 
-      color: var(--gray-600);
-      font-weight: 500;
-      border: 1px solid rgba(0,0,0,0.03);
-    }
-
-    .hero-cases { 
-      position: absolute; 
-
-
-
-      bottom: 48px; 
-      left: max(24px, calc((100vw - 1140px) / 2)); 
-      display: flex; 
-
-      align-items: center; 
-
-      gap: 12px; 
-      color: var(--gray-400);
-
-      font-size: 14px;
-      font-weight: 500;
-      text-decoration: none;
-    }
-
-    .hero-cases-arrow { width: 12px; height: auto; transform: rotate(90deg); opacity: 0.6; }
-
-
-    /* SECTION GENERAL */
-    section:not(#hero) { padding: 120px max(24px, calc((100vw - 1140px) / 2)); }
-    .section-heading { 
-      font-size: clamp(36px, 4vw, 48px); 
-      font-weight: 600; 
-      line-height: 1.1; 
-      letter-spacing: -0.03em; 
-      margin-bottom: 64px; 
-    }
-
-
-
-
-
-    /* WORK GRID */
-    #work { background: var(--white); }
-    .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
-    .case-card { text-decoration: none; color: inherit; }
-    .case-media { 
-      aspect-ratio: 4/3; 
-      background: var(--gray-100); 
-      border-radius: 28px; 
-      overflow: hidden; 
-      margin-bottom: 24px;
-      transition: transform 0.5s var(--ease-smooth);
-    }
-    .case-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-smooth); }
-    .case-card:hover .case-media { transform: translateY(-8px); }
-    .case-card:hover .case-media img { transform: scale(1.05); }
-    .case-title { font-size: 24px; font-weight: 600; margin-bottom: 12px; color: var(--black); }
-    .case-desc { font-size: 16px; color: var(--gray-600); line-height: 1.5; }
-
-    /* CONCEPTS & BEHANCE */
-    #concepts { background: var(--gray-100); border-radius: 60px; margin: 0 24px; width: calc(100% - 48px); }
-    .concepts-visual { border-radius: 40px; margin-bottom: 80px; box-shadow: 0 40px 80px rgba(0,0,0,0.08); }
-    .behance-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
-    .behance-card { border-radius: 24px; overflow: hidden; transition: all 0.4s var(--ease-smooth); }
-    .behance-card:hover { transform: scale(1.02); }
-
-    /* EXPERIENCE */
-    #experience { background: var(--white); }
-    .exp-entries { max-width: 800px; }
-    .exp-entry { padding-bottom: 64px; border-bottom: 1px solid var(--gray-200); margin-bottom: 64px; }
-    .exp-entry:last-child { border-bottom: none; }
-    .exp-role { font-size: 32px; font-weight: 600; margin-bottom: 12px; }
-    .exp-company { font-size: 18px; color: var(--accent); font-weight: 600; margin-bottom: 4px; }
-    .exp-product { font-size: 16px; color: var(--gray-500); margin-bottom: 32px; }
-    .exp-bullets li { font-size: 18px; color: var(--gray-600); margin-bottom: 16px; padding-left: 24px; position: relative; }
-    .exp-bullets li::before { content: "—"; position: absolute; left: 0; color: var(--gray-300); }
-
-    /* CONTACT */
-    #contact { background: var(--black); color: var(--white); text-align: center; border-radius: 60px 60px 0 0; }
-    #contact .section-heading { color: var(--white); margin-bottom: 32px; }
-    .contact-email { 
-      font-size: clamp(24px, 4vw, 40px); 
-      color: var(--white); 
-      text-decoration: none; 
-      font-weight: 500; 
-      border-bottom: 2px solid rgba(255,255,255,0.2);
-      transition: border-color 0.3s;
-    }
-    .contact-email:hover { border-color: var(--white); }
-
-    /* RESPONSIVE */
-    @media (max-width: 1100px) {
-      .hero-layout { grid-template-columns: 1fr; gap: 64px; text-align: left; }
-      .hero-visual { max-width: 500px; }
-      .hero-cases { display: none; }
-      .work-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 640px) {
-      #hero { padding-top: 100px; padding-bottom: 80px; }
-      .hero-title { font-size: 40px; }
-      .hero-contact-list { flex-direction: column; }
-      .hero-card { padding: 32px; }
-      .behance-grid { grid-template-columns: 1fr; }
-      #concepts, #contact { border-radius: 40px 40px 0 0; margin: 0; width: 100%; }
-    }
+    body { font-family: 'Geist', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; cursor: auto; }
+    em { font-style: normal; }
+    a { color: var(--link); }
+    a:hover { color: var(--link-hover); }
+
+    #hero { min-height: auto; display: flex; align-items: flex-start; padding: 112px max(24px, calc((100vw - 972px) / 2)) 8px; position: relative; overflow: hidden; }
+    .hero-layout { width: 100%; max-width: 972px; margin-inline: auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "copy visual" "cases cases"; align-items: start; gap: 32px 36px; }
+    .hero-copy { grid-area: copy; display: flex; flex-direction: column; gap: 32px; }
+    .hero-title { font-family: 'Geist', sans-serif; max-width: 510px; font-size: clamp(40px, 3.5vw, 48px); font-weight: 600; line-height: 1.2; color: var(--ink); }
+    .hero-visual { grid-area: visual; position: relative; min-width: 0; min-height: 710px; margin: 0; }
+    .hero-card { position: absolute; top: 74px; left: 0; display: flex; align-items: center; width: 94%; min-height: 600px; padding: 40px 30px; border-radius: 18px; background: #f7f7f7; transform: rotate(2deg); }
+    .hero-photo { position: absolute; z-index: 1; top: 0; right: 0; width: 170px; height: 170px; overflow: hidden; border-radius: 16px; box-shadow: 0 8px 24px rgba(17, 17, 17, 0.12); }
+    .hero-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 66% center; transform: scale(1.4); }
+    .hero-info-list { display: flex; flex-direction: column; gap: 40px; width: 100%; }
+    .hero-info-row { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 12px; align-items: start; }
+    .hero-info-label { color: #8a8a8a; font-size: 14px; line-height: 1.5; }
+    .hero-info-value { color: var(--ink); font-size: 16px; line-height: 1.65; }
+    .hero-info-tags { display: flex; flex-direction: column; gap: 0; }
+    .hero-info-tag-row { display: flex; flex-wrap: wrap; column-gap: 12px; line-height: inherit; }
+    .hero-info-value strong { display: block; font-weight: 500; }
+    .hero-bio { max-width: 420px; }
+    .hero-section-label { margin-bottom: 12px; color: #8a8a8a; font-size: 14px; }
+    .hero-bio p:not(.hero-section-label) { color: var(--ink); font-size: 16px; line-height: 1.55; }
+    .hero-bio p + p { margin-top: 12px; }
+    .hero-contact-box { padding-top: 0; }
+    .hero-contact-list { width: min(100%, 362px); list-style: none; display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
+    .hero-contact-list a { position: relative; display: inline-flex; min-height: 48px; width: 100%; align-items: center; justify-content: center; border: 1px solid var(--link); border-radius: 999px; padding: 8px 14px; color: var(--link); font-size: 16px; text-decoration: none; transition: color 0.2s, background 0.2s; }
+    .hero-contact-list a:hover { color: var(--link-hover); background: transparent; }
+    .hero-cases { grid-area: cases; display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 4px; color: #8a8a8a; font-size: 14px; }
+    .hero-cases-arrow { display: block; width: 13px; height: 42px; margin-top: 2px; }
 
     section { padding: 100px max(24px, calc((100vw - 972px) / 2)); }
 .section-heading { font-family: 'Geist', sans-serif; font-size: clamp(32px, 3.5vw, 42px); font-weight: 400; line-height: 1.18; color: var(--ink); margin-bottom: 20px; }
@@ -534,7 +253,7 @@
         <h1 class="hero-title">UX/UI designer, Product designer сложных web- и мобильных интерфейсов B2B</h1>
         <div class="hero-bio">
           <p class="hero-section-label">Обо мне</p>
-          <p>Привет! Меня зовут Татьяна, я UX/UI дизайнер с опытом работы над сложными интерфейсами веб- и мобильных приложений 5+ лет. Изучаю и использую продуктовый подход в дизайне.</p>
+          <p>Привет! Меня зовут Таня, я UX/UI дизайнер с опытом работы над сложными интерфейсами веб- и мобильных приложений 5+ лет. Изучаю и использую продуктовый подход в дизайне.</p>
           <p>Ищу работу в продукте или в студии с продуктовым подходом, так как хочу сфокусироваться на работе над одним сервисом, активно участвовать в его развитии и больше работать в команде :)</p>
         </div>
         <div class="hero-contact-box">
@@ -546,46 +265,40 @@
       </div>
       <div class="hero-visual">
         <div class="hero-card">
-          <div class="hero-photo"><img src="Images/photo_2024-02-08_12-02-33.jpg" alt="Татьяна Журавлева" /></div>
           <div class="hero-info-list">
             <div class="hero-info-row">
               <span class="hero-info-label">Опыт работы</span>
-
-              <p class="hero-info-value">Ronas IT (2020 – 2026), Hockey Scout Pro (2026)</p>
+              <p class="hero-info-value"><strong>Ronas IT</strong>2019 – 2026<strong>Hockey Scout Pro</strong>2023 – н. в.</p>
             </div>
             <div class="hero-info-row">
               <span class="hero-info-label">Навыки</span>
-
-
-
-
-
-              <div class="hero-info-tags">
-                <span>UI/UX</span> <span>Product design</span> <span>Variables</span> <span>Animation</span> <span>After Effects</span> <span>HTML/CSS</span>
+              <div class="hero-info-value hero-info-tags">
+                <div class="hero-info-tag-row"><span>UI/UX</span> <span>Product design</span> <span>Variables</span></div>
+                <div class="hero-info-tag-row"><span>Animation</span> <span>Illustration</span></div>
+                <div class="hero-info-tag-row"><span>After Effects</span> <span>Adobe Illustrator</span></div>
+                <div class="hero-info-tag-row"><span>AI-friendly</span> <span>HTML/CSS</span></div>
               </div>
             </div>
             <div class="hero-info-row">
-
-
-
-
-
-
-
-
-
-
+              <span class="hero-info-label">Проекты</span>
+              <div class="hero-info-value hero-info-tags">
+                <div class="hero-info-tag-row"><span>Desktop-приложения</span></div>
+                <div class="hero-info-tag-row"><span>SaaS-платформы</span></div>
+                <div class="hero-info-tag-row"><span>CRM-системы</span> <span>Админ-панели</span></div>
+                <div class="hero-info-tag-row"><span>iOS-приложения</span></div>
+                <div class="hero-info-tag-row"><span>Android-приложения</span></div>
+              </div>
+            </div>
+            <div class="hero-info-row">
               <span class="hero-info-label">Сферы</span>
-
-
-
-              <div class="hero-info-tags">
-                <span>FoodTech</span> <span>Ecommerce</span> <span>Medicine</span> <span>Event</span> <span>Sport</span>
+              <div class="hero-info-value hero-info-tags">
+                <div class="hero-info-tag-row"><span>FoodTech</span> <span>Ecommerce</span> <span>Medicine</span></div>
+                <div class="hero-info-tag-row"><span>Event</span> <span>Sport</span></div>
               </div>
             </div>
           </div>
         </div>
-
+        <div class="hero-photo"><img src="Images/photo_2024-02-08_12-02-33.jpg" alt="Татьяна Журавлева" /></div>
       </div>
       <div class="hero-cases"><span>Смотреть кейсы</span><img class="hero-cases-arrow" src="new arrow.png" alt="" aria-hidden="true" /></div>
     </div>
@@ -628,12 +341,7 @@
         <div class="case-info">
           <div>
             <h3 class="case-title"><a href="fantasy.html">Разработка приложения для игроков fantasy-спорта</a></h3>
-            <p class="case-desc">Fantasy football - это игра, распространенная в США, где пользователи управляют виртуальными спортивными командами. 
-              <br> Цели: Создать конкурентоспособное мобильное приложение, которое делает вход в игру проще для новичков и даёт опытным пользователям гибкость и контроль. 
-              <br>Задачи: UX-исследование, визуальный концепт и дизайн система, разработка ключевых сценариев: процесс драфта, управление составом, экран лиги, настройки, профиль спортсмена.
-              <br>Роль: Продуктовый дизайнер. Отвечала за весь цикл от исследования до передачи в разработку. Работа вместе с PM и iOS-разработчиками.
-
-. </p>
+            <p class="case-desc">Fantasy спорт - это игра, распространенная в США, где пользователи управляют виртуальными спортивными командами.</p>
           </div>
         </div>
       </div>
