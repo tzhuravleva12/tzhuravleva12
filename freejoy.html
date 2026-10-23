@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <title>Datacraft — Татьяна Журавлёва</title>
+  <style>
+    @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-Light.ttf') format('truetype'); font-style: normal; font-weight: 300; font-display: swap; }
+    @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-Regular.ttf') format('truetype'); font-style: normal; font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-Medium.ttf') format('truetype'); font-style: normal; font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-SemiBold.ttf') format('truetype'); font-style: normal; font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-Bold.ttf') format('truetype'); font-style: normal; font-weight: 700; font-display: swap; }
+    :root {
+      --bg: #ffffff;
+      --paper: #f7f7f7;
+      --ink: #111111;
+      --muted: #4b4b4b;
+      --line: #e8e8e8;
+      --link: #2563eb;
+      --link-hover: #1d4ed8;
+    }
+
+    * { box-sizing: border-box; letter-spacing: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Geist', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      cursor: auto;
+    }
+
+    a { color: var(--link); text-decoration: none; transition: color 0.3s, border-color 0.3s; }
+    a:hover { color: var(--link-hover); }
+    img { max-width: 100%; display: block; }
+    em { font-style: normal; }
+
+    .case-page {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 72px 24px 80px;
+    }
+
+    .case-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 64px;
+      padding-bottom: 20px;
+    }
+
+    .case-back {
+      font-size: 14px;
+      color: var(--link);
+      border-bottom: 1px solid var(--link);
+      padding-bottom: 4px;
+    }
+    .case-back:hover { color: var(--link-hover); border-color: var(--link-hover); }
+
+    .case-header {
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(40px, 7vw, 70px);
+      line-height: 0.96;
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+
+    .case-subtitle {
+      margin-top: 18px;
+      max-width: 560px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .case-section {
+      margin-top: 72px;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: clamp(32px, 3.5vw, 42px);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    p, li {
+      margin: 0 0 16px;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 0 0 0 18px;
+      padding: 0;
+    }
+
+    .case-image {
+      width: 100%;
+      margin: 40px 0 24px;
+      border-radius: 10px;
+      background: var(--paper);
+    }
+
+    .case-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 28px;
+      color: var(--link);
+      font-size: 14px;
+      border-bottom: 1px solid var(--link);
+      padding-bottom: 4px;
+    }
+    .case-back-link:hover { color: var(--link-hover); border-color: var(--link-hover); }
+
+    .case-note {
+      border-left: 1px solid var(--line);
+      padding-left: 18px;
+      margin: 18px 0 0;
+    }
+
+    @media (max-width: 640px) {
+      .case-page { padding-top: 48px; }
+      .case-topbar { margin-bottom: 36px; }
+      .case-subtitle { font-size: 16px; }
+    }
+    a:visited { color: #6d28d9; }
+    a:visited:hover { color: #6d28d9; }
+    a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+    .case-back:visited,
+    .case-back-link:visited { border-color: #6d28d9; }
+  </style>
+</head>
+<body>
+
+  <main class="case-page">
+    <header class="case-topbar">
+      <a class="case-back" href="index.html">← Назад</a>
+    </header>
+
+    <header class="case-header">
+      <h1>Datacraft</h1>
+      <p class="case-subtitle">Freejoy - просмотр сериалов и чтение новелл.</p>
+    </header>
+
+    <article>
+
+    <img src="Datacraft/1.png" alt="Datacraft" class="case-image">
+
+    <section class="case-section">
+      <h2>О проекте</h2>
+      <p>Заказчик обратился с просьбой создать веб-сервис, который упростит работу с табличными данными для пользователей без глубоких навыков в Excel.</p>
+      <p>Основные ожидания:</p>
+      <ul>
+        <li>интуитивный интерфейс;</li>
+        <li>возможность быстрой валидации данных;</li>
+        <li>простые инструменты для создания графиков и дашбордов.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Целевая аудитория</h2>
+      <p><strong>Профессия:</strong> бухгалтеры, финансисты, аналитики - сотрудники малых и средних компаний, которые работают с Excel-отчётами и выгрузками из 1С или CRM.</p>
+      <p>Цели, желания: быстро проверить таблицу на ошибки и подготовить отчёт с визуальными примерами.</p>
+    </section>
+
+    <section class="case-section">
+      <h2>Боли пользователей</h2>
+      <p>Чтобы понять потребности пользователей, я изучила существующие сервисы (Excel, Google Sheets) и собрала информацию о типичных проблемах.</p>
+      <ul>
+        <li>ошибки в таблицах сложно найти вручную;</li>
+        <li>валидация часто требует знаний формул или скриптов;</li>
+        <li>построение графиков занимает много времени;</li>
+        <li>для простых задач BI-инструменты избыточны;</li>
+        <li>отчёты приходится собирать в нескольких инструментах.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Юзер-стори</h2>
+      <ul>
+        <li>Как бухгалтер, я хочу загрузить Excel-файл и сразу увидеть ошибки, чтобы не тратить часы на проверку вручную.</li>
+        <li>Как менеджер, я хочу быстро построить график для презентации, чтобы показать результаты команде.</li>
+        <li>Как аналитик, я хочу собрать дашборд из графиков, чтобы отслеживать ключевые показатели на одном экране.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Гипотезы</h2>
+      <ul>
+        <li>Если сервис подсвечивает ошибки сразу после загрузки и предлагает исправления, пользователи найдут и исправят ошибки быстрее, чем вручную. <strong>Проверка:</strong> 80% пользователей выполняют целевое действие без ошибок.</li>
+        <li>Если проверка таблицы, графики и дашборд находятся в одном месте, подготовка отчёта займёт меньше времени, чем в связке нескольких инструментов. <strong>Проверка:</strong> пользователи достигают целевого действия меньше чем за 15 минут.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Навигация</h2>
+      <p>Создала боковое меню с тремя основными разделами - таблицы, графики, дашборды. В каждой из этих вкладок можно будет зайти на конкретный объект, он тоже показан вкладкой подменю, что позволяет получать быстрый доступ к каждому проекту.</p>
+      <img src="Datacraft/3.png" alt="Навигация" class="case-image">
+    </section>
+
+    <section class="case-section">
+      <h2>Импорт данных</h2>
+      <ul>
+        <li>Автоматическое определение структуры (заголовки, даты, числа).</li>
+        <li>Подсветка ошибок и предложения исправлений.</li>
+        <li>Поддержка Excel, CSV, Google Sheets.</li>
+        <li>AI - ассистент, которого можно попросить проанализировать таблицу, устранить ошибки за тебя - просто написать запрос в боковой панели.</li>
+      </ul>
+      <img src="Datacraft/4.png" alt="Импорт данных" class="case-image">
+      <img src="Datacraft/5.png" alt="Импорт данных" class="case-image">
+      <img src="Datacraft/6.png" alt="Импорт данных" class="case-image">
+      <img src="Datacraft/7.png" alt="Импорт данных" class="case-image">
+    </section>
+
+    <section class="case-section">
+      <h2>Создание графиков</h2>
+      <p>График можно создать на основе загруженной ранее таблицы или загрузить новую.</p>
+      <ul>
+        <li>Выбор колонок для визуализации - по оси X и Y. Есть дополнительные функции, такие как агрегирование, возможность разделить данные по дополнительным признакам.</li>
+        <li>Есть несколько типов графиков - столбчатая диаграмма, круговая диаграмма, таблица.</li>
+        <li>Возможность кастомизации - можно выбрать цвета.</li>
+        <li>Можно показать данные, соответствующие фильтрам.</li>
+      </ul>
+      <img src="Datacraft/8.png" alt="Создание графиков" class="case-image">
+      <img src="Datacraft/9.png" alt="Создание графиков" class="case-image">
+      <img src="Datacraft/10.png" alt="Создание графиков" class="case-image">
+    </section>
+
+    <section class="case-section">
+      <h2>Конструктор дашбордов</h2>
+      <ul>
+        <li>Drag-and-drop для сборки из графиков.</li>
+        <li>Гибкая настройка расположения и размеров.</li>
+      </ul>
+      <img src="Datacraft/11.png" alt="Конструктор дашбордов" class="case-image">
+    </section>
+
+    <section class="case-section">
+      <h2>Результат</h2>
+      <p>Для заказчика получился прототип проекта, который закрывает потребность пользователя в простом инструменте редактирования табличных данных и создания презентаций в одном интерфейсе. Он интуитивно понятен, сокращает рутину и упрощает работу с таблицами. Проект готов к дальнейшему развитию и презентации инвесторам.
+<br>Для проверки гипотезы я бы провела 2 модерируемых юзабилити-исследования, где предложила пользователям выполнить задания:
+<ul><li>загрузить таблицу с ошибками в сервис, </li>
+<li>создать график из существующей таблицы.</li></ul>
+Я бы смотрела на количество ошибок в задании, на скорость выполнения целевого действия и на то как пользователи пользуются AI-помощником.
+</p>
+      <a class="case-back-link" href="index.html">← К портфолио</a>
+    </section>
+
+    </article>
+  </main>
+</body>
+</html>
