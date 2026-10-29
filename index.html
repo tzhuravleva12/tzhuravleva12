@@ -185,11 +185,11 @@
     .note-sketch img { display: block; width: 100%; height: auto; }
     .note-actions { position: absolute; top: 32px; right: 42px; display: flex; gap: 12px; }
     .note-tool { width: 100px; height: 64px; border-radius: 58px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity .2s, background .2s; }
-    .note-tool img { width: 28px; height: 28px; display: block; }
-    .note-tool--pencil { background: rgba(255, 255, 255, 0.7); }
+    .note-tool img { width: 64px; height: 64px; display: block; object-fit: contain; }
+    .note-tool--pencil { background: transparent; }
     .note-tool--eraser { background: transparent; }
-    .note-tool.is-active { opacity: 0.45; background: transparent; }
-    .note-tool:not(.is-active):hover { opacity: 0.9; }
+    .note-tool.is-active { background: rgba(255, 255, 255, 0.7); }
+    .note-tool:not(.is-active) { background: transparent; }
     .note-save { position: absolute; right: 40px; bottom: 40px; height: 64px; padding: 0 48px; border-radius: 58px; background: rgba(255, 255, 255, 0.46); font-family: var(--font-mono); font-size: 16px; font-weight: 600; color: var(--ink); transition: background .2s; }
     .note-save:hover { background: #fff; }
 
@@ -278,7 +278,7 @@
       .note-sketch img { height: auto; }
       .note-actions { top: 24px; right: 24px; bottom: auto; }
       .note-tool { width: 64px; height: 56px; }
-      .note-tool img { width: 24px; height: 24px; }
+      .note-tool img { width: 64px; height: 56px; object-fit: contain; }
       .note-save { right: 24px; bottom: 24px; height: 56px; padding: 0 24px; font-size: 14px; }
     @media (max-width: 640px) {
       .wrap { padding-inline: 16px; }
@@ -769,6 +769,9 @@
 
     // Инструменты заметки: карандаш / резинка
     const noteTools = document.querySelectorAll('.note-tool');
+    // По умолчанию карандаш выбран
+    document.querySelector('.note-tool--pencil').classList.add('is-active');
+
     noteTools.forEach(tool => {
       tool.addEventListener('click', () => {
         noteTools.forEach(t => t.classList.remove('is-active'));
