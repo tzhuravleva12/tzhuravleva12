@@ -41,7 +41,7 @@
     .wrap { width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: 60px; }
 
     /* ============ HERO ============ */
-    .hero { position: relative; overflow: hidden; padding: 60px 0 78px; min-height: 918px; background: linear-gradient(180deg, #f3f3f3 7.2%, #b4c0d8 50.51%, #f3f3f3 100%); }
+    .hero { position: relative; overflow: hidden; min-height: 918px; background: linear-gradient(180deg, #f3f3f3 7.2%, #b4c0d8 50.51%, #f3f3f3 100%); }
     .hero-inner { display: grid; grid-template-columns: minmax(0, 662px) minmax(0, 1fr); column-gap: 62px; align-items: start; }
 
     .hero-title { font-family: var(--font-mono); font-size: 64px; font-weight: 600; line-height: 1.06; color: var(--ink); }
@@ -64,8 +64,8 @@
     .btn-primary { background: var(--grad-btn); color: #f3f3f3; box-shadow: inset 0 0 18px 0 var(--accent-deep); }
     .btn-primary:hover { transform: translateY(-1px); box-shadow: inset 0 0 18px 0 var(--accent-deep), 0 12px 28px rgba(113, 57, 243, .28); }
 
-    .hero-card-wrap { position: absolute; left: 71px; top: 240px; width: 562px; height: 639px; display: flex; align-items: center; justify-content: center; }
-    .hero-card { width: 531px; min-height: 612px; padding: 68px 53px; border-radius: 20px; background: rgba(255, 255, 255, 0.46); transform: rotate(-3deg); display: flex; flex-direction: column; gap: 30px; }
+    .hero-card-wrap { position: absolute; left: 60px; right: 60px; top: 240px; max-width: 562px; width: 100%; height: 639px; display: flex; align-items: center; justify-content: center; }
+    .hero-card { width: 100%; max-width: 531px; min-height: 612px; padding: 68px clamp(24px, 4.17vw, 53px); border-radius: 20px; background: rgba(255, 255, 255, 0.46); transform: rotate(-3deg); display: flex; flex-direction: column; gap: 30px; }
     .info-row { display: flex; align-items: flex-start; gap: 0; width: 100%; }
     .info-label { flex: none; width: 161px; font-family: var(--font-mono); font-size: 14px; color: var(--ink); opacity: .5; }
     .info-value { flex: 1; min-width: 0; font-size: 16px; line-height: 1.35; color: var(--ink); }
@@ -77,14 +77,14 @@
     .info-tags span { white-space: nowrap; }
 
     /* ============ CASES ============ */
-    .cases { background: var(--bg); padding: 60px 0 0; }
+    .cases { background: var(--bg); }
     .case-toggle { display: flex; gap: 7px; padding-bottom: 33px; }
+    .case { border-top: 1px solid var(--line); padding: 44px 0 60px; display: flex; flex-direction: column; gap: 44px; }
+    .case[hidden] { display: none; }
     .case-tab { flex: 1; height: 56px; border-radius: 38px; background: var(--bg-2); color: var(--ink); font-family: var(--font-mono); font-size: 18px; font-weight: 400; letter-spacing: -0.36px; text-transform: uppercase; transition: background .2s, color .2s; }
     .case-tab.active { background: var(--ink); color: var(--bg); }
     .case-tab:not(.active):hover { background: #dcdde0; }
 
-    .case { border-top: 1px solid var(--line); padding: 44px 0 60px; display: flex; flex-direction: column; gap: 44px; }
-    .case[hidden] { display: none; }
     .case-row { display: flex; align-items: flex-start; gap: 35px; }
     .case-info { flex: none; width: 458px; align-self: stretch; display: flex; flex-direction: column; gap: 28px; }
     .case-tags { display: flex; flex-wrap: wrap; gap: 20px; font-family: var(--font-mono); font-size: 14px; line-height: 1; color: var(--muted); }
@@ -105,7 +105,6 @@
     /* ============ CONCEPTS ============ */
     .concepts {
       position: relative;
-      padding: 0 0 40px;
       background-color: var(--bg);
       background-image: radial-gradient(ellipse 720px 1089.5px at 50% 50%, #f3f3f3 0%, #b6c1d9 60.1%, #f3f3f3 100%);
       background-repeat: no-repeat;
@@ -144,7 +143,7 @@
     .concepts-head a { text-decoration: underline; text-underline-offset: 2px; }
     .concepts-head a:hover { color: var(--accent); }
 
-    .behance-strip { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 30px 0 10px; text-align: center; }
+    .behance-strip { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: clamp(16px, 4.17vw, 30px) 0 clamp(10px, 2.5vw, 30px); text-align: center; }
     .behance-label { font-family: var(--font-mono); font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: -0.28px; }
     .behance-text { max-width: 640px; font-size: 18px; line-height: 1.4; color: var(--ink); }
     .behance-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; font-family: var(--font-mono); font-size: 14px; }
@@ -152,7 +151,7 @@
     .behance-links a:hover { color: var(--accent); }
 
     /* ============ EXPERIENCE ============ */
-    .experience { background: var(--bg); padding: 60px 0; }
+    .experience { background: var(--bg); }
     .experience h2 { font-family: var(--font-mono); font-size: 72px; font-weight: 600; line-height: 1.06; padding: 10px 0; }
     .exp-grid { border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; }
     .exp-col { padding: 19px 0 59px; display: flex; flex-direction: column; gap: 32px; }
@@ -169,7 +168,7 @@
     .exp-list a:hover { color: var(--accent); }
 
     /* ============ CONTACTS ============ */
-    .contact { background: linear-gradient(180deg, #f3f3f3 0%, #b6c1d9 100%); padding: 60px 0 66px; }
+    .contact { background: linear-gradient(180deg, #f3f3f3 0%, #b6c1d9 100%); }
     .contact-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 60px; }
     .contact-top h2 { font-family: var(--font-mono); font-size: 72px; font-weight: 600; line-height: 1.06; color: var(--ink); max-width: 892px; }
     .contact-avatar { width: 216px; height: 216px; border-radius: 40px; overflow: hidden; flex: none; background: var(--bg-2); }
@@ -179,17 +178,16 @@
     .contact-buttons .btn { width: 424px; height: 64px; flex: 0 0 auto; }
     .contact-buttons .btn-ghost { width: 412px; background: rgba(255, 255, 255, 0.46); }
 
-    .note { position: relative; margin-top: 110px; min-height: 341px; border-radius: 21px; background: rgba(255, 255, 255, 0.46); padding: 40px; overflow: hidden; }
+    .note { position: relative; margin-top: 110px; min-height: 341px; border-radius: 21px; background: rgba(255, 255, 255, 0.46); padding: 40px clamp(16px, 4.17vw, 40px); overflow: hidden; }
     .note-label { font-family: var(--font-mono); font-size: 18px; font-weight: 600; letter-spacing: -0.36px; text-transform: uppercase; color: var(--muted); }
     .note-sketch { position: absolute; left: 215px; top: 70px; width: min(811px, 58vw); pointer-events: none; }
     .note-sketch img { display: block; width: 100%; height: auto; }
     .note-actions { position: absolute; top: 32px; right: 42px; display: flex; gap: 12px; }
     .note-tool { width: 100px; height: 64px; border-radius: 58px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity .2s, background .2s; }
     .note-tool img { width: 64px; height: 64px; display: block; object-fit: contain; }
-    .note-tool--pencil { background: transparent; }
-    .note-tool--eraser { background: transparent; }
-    .note-tool.is-active { background: rgba(255, 255, 255, 0.7); }
-    .note-tool:not(.is-active) { background: transparent; }
+    .note-tool.is-active { opacity: 0.45; background: rgba(255, 255, 255, 0.7); }
+    .note-tool:not(.is-active) { opacity: 1; background: transparent; }
+    .note-tool:not(.is-active):hover { opacity: 0.9; }
     .note-save { position: absolute; right: 40px; bottom: 40px; height: 64px; padding: 0 48px; border-radius: 58px; background: rgba(255, 255, 255, 0.46); font-family: var(--font-mono); font-size: 16px; font-weight: 600; color: var(--ink); transition: background .2s; }
     .note-save:hover { background: #fff; }
 
@@ -203,11 +201,18 @@
 
     /* ============ RESPONSIVE ============ */
     @media (max-width: 1380px) {
-      .hero-card-wrap { left: 40px; width: 50%; }
+      .wrap {
+        padding: clamp(48px, 5vw, 80px) clamp(48px, 6vw, 320px);
+        gap: clamp(40px, 4vw, 60px);
+      }
+      .hero-card-wrap { left: 60px; width: 50%; }
     }
 
     @media (max-width: 1180px) {
-      .wrap { padding-inline: 40px; }
+      .wrap {
+        padding: clamp(40px, 4vw, 72px) clamp(32px, 4vw, 240px);
+        gap: clamp(32px, 3vw, 48px);
+      }
       .hero { padding: 48px 0 60px; min-height: 0; }
       .hero-inner { display: flex; flex-direction: column; gap: 0; }
       .hero-side { display: contents; }
@@ -223,7 +228,7 @@
       .case-media { width: 100%; flex: none; }
       .exp-grid { grid-template-columns: 1fr; gap: 0; }
       .exp-col + .exp-col { border-top: 1px solid var(--line); }
-      .concepts { padding: 40px 0 32px; background-size: cover; }
+      .concepts { background-size: cover; }
       .concepts-stage { height: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 40px; }
       .concept, .concepts-head { position: static; width: 100%; }
       .concept--quiz .concept-media, .concept-media { width: 100%; }
@@ -237,7 +242,10 @@
     /* hero order handled by 1180px breakpoint */
 
     @media (max-width: 820px) {
-      .wrap { padding-inline: 24px; }
+      .wrap {
+        padding: clamp(32px, 3vw, 60px) clamp(24px, 3vw, 160px);
+        gap: clamp(24px, 2vw, 40px);
+      }
       .hero { padding: 36px 0 48px; }
       .hero-title { font-size: clamp(32px, 8vw, 44px); }
       .hero-bio { font-size: 16px; }
@@ -247,18 +255,15 @@
       .info-tags { gap: 6px 10px; }
       .hero-actions { max-width: none; }
       .btn { padding-inline: 24px; font-size: 14px; text-align: center; white-space: normal; line-height: 1.2; }
-      .cases { padding-top: 40px; }
       .case-tab { font-size: 15px; height: 48px; }
       .case { padding: 32px 0 44px; gap: 28px; }
       .case-title { font-size: 28px; }
       .case-cta { height: 56px; font-size: 14px; }
-      .concepts { padding: 32px 0 24px; }
-      .concepts-stage { grid-template-columns: 1fr; gap: 32px; }
       .concepts-head h2 { font-size: clamp(40px, 9vw, 56px); }
       .concepts-head p { font-size: 16px; }
-      .behance-strip { padding-top: 40px; }
+      .concepts-stage { grid-template-columns: 1fr; gap: 32px; }
+      .behance-strip { padding-top: clamp(16px, 4.17vw, 40px); }
       .behance-text { font-size: 16px; }
-      .experience { padding: 40px 0; }
       .experience h2 { font-size: clamp(40px, 9vw, 56px); }
       .exp-col { padding: 24px 0 40px; }
       .exp-company { font-size: 30px; }
@@ -266,22 +271,24 @@
       .exp-box { padding: 24px; }
       .exp-box-title { font-size: 18px; margin-bottom: 18px; }
       .exp-list { font-size: 16px; }
-      .contact { padding: 40px 0 48px; }
       .contact-top { flex-direction: column-reverse; gap: 28px; }
       .contact-top h2 { font-size: clamp(32px, 8vw, 44px); }
       .contact-avatar { width: 112px; height: 112px; border-radius: 24px; }
       .contact-buttons { margin-top: 32px; }
       .contact-buttons .btn { width: 100%; flex: 1 1 100%; min-width: 0; }
-      .note { margin-top: 48px; min-height: 0; padding: 28px 24px 100px; }
+      .note { margin-top: 48px; min-height: 0; padding: 28px clamp(16px, 4.17vw, 24px) 100px; }
       .note-label { font-size: 15px; }
       .note-sketch { position: static; width: 100%; margin: 40px 0; }
       .note-sketch img { height: auto; }
       .note-actions { top: 24px; right: 24px; bottom: auto; }
       .note-tool { width: 64px; height: 56px; }
-      .note-tool img { width: 64px; height: 56px; object-fit: contain; }
+      .note-tool img { width: 48px; height: 48px; object-fit: contain; }
       .note-save { right: 24px; bottom: 24px; height: 56px; padding: 0 24px; font-size: 14px; }
     @media (max-width: 640px) {
-      .wrap { padding-inline: 16px; }
+      .wrap {
+        padding: clamp(24px, 2vw, 48px) clamp(16px, 2vw, 80px);
+        gap: clamp(20px, 2vw, 32px);
+      }
       .hero { padding: 20px 0 16px; min-height: 0; }
       .hero-inner { display: flex; flex-direction: column; gap: 0; }
       .hero-side { display: contents; }
@@ -528,7 +535,7 @@
               <img src="festiverse/festiverse.png" alt="Festiverse app" />
             </a>
           </div>
-          <a class="case-cta" href="festiverse.html">Смотреть кейс <img src="Images/redesign/arrow-case.svg" alt="" aria-hidden="true" /></a>
+          <a class="case-cta" href="festiverse.html">Кейс в процессе<img src="Images/redesign/arrow-case.svg" alt="" aria-hidden="true" /></a>
         </article>
 
         <article class="case" data-type="mobile">
@@ -555,7 +562,7 @@
               <img src="freejoy/freejoy.png" alt="Freejoy" />
             </a>
           </div>
-          <a class="case-cta" href="freejoy.html">Смотреть кейс <img src="Images/redesign/arrow-case.svg" alt="" aria-hidden="true" /></a>
+          <a class="case-cta" href="freejoy.html">Кейс в процессе<img src="Images/redesign/arrow-case.svg" alt="" aria-hidden="true" /></a>
         </article>
 
         <article class="case" data-type="web">
@@ -716,7 +723,7 @@
         </a>
       </div>
 
-      <div class="note reveal">
+      <div hidden><div class="note reveal">
         <p class="note-label">Для заметок</p>
         <div class="note-sketch">
           <img src="Images/redesign/squiggle-main.svg" alt="" aria-hidden="true" />
@@ -730,7 +737,7 @@
           </button>
         </div>
         <button class="note-save" type="button" id="noteSave">Сохранить и отправить</button>
-      </div>
+      </div> </div>
     </div>
   </section>
 
