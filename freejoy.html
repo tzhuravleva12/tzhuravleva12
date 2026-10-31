@@ -12,8 +12,8 @@
     @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-SemiBold.ttf') format('truetype'); font-style: normal; font-weight: 600; font-display: swap; }
     @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-Bold.ttf') format('truetype'); font-style: normal; font-weight: 700; font-display: swap; }
     :root {
-      --bg: #ffffff;
-      --paper: #f7f7f7;
+      --bg: #F3F3F3;
+      --paper: #ffffff;
       --ink: #111111;
       --muted: #4b4b4b;
       --line: #e8e8e8;
@@ -22,11 +22,12 @@
     }
 
     * { box-sizing: border-box; letter-spacing: 0; }
-    html { scroll-behavior: smooth; }
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
       font-family: 'Geist', sans-serif;
-      background: var(--bg);
+      background: linear-gradient(180deg, #B4C0D8 0px, #F3F3F3 180px), #F3F3F3;
+      background-repeat: no-repeat;
       color: var(--ink);
       line-height: 1.7;
       cursor: auto;
@@ -47,7 +48,6 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 60px;
-      background: linear-gradient(180deg, #B4C0D8 4.06%, #F3F3F3 8.69%), #F3F3F3;
     }
 
     @media (max-width: 1380px) {
