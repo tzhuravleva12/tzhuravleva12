@@ -38,16 +38,16 @@
     img { max-width: 100%; }
     button { font: inherit; color: inherit; border: none; background: none; cursor: pointer; }
 
-    .wrap { width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: 60px; }
+    .wrap { width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: 60px; padding-bottom: 80px; }
 
     /* ============ HERO ============ */
-    .hero { position: relative; overflow: hidden; min-height: 918px; background: linear-gradient(180deg, #f3f3f3 7.2%, #b4c0d8 50.51%, #f3f3f3 100%); }
+    .hero { position: relative; overflow: hidden; min-height: 918px; padding-top: 60px; padding-bottom: 60px; background: linear-gradient(180deg, #f3f3f3 7.2%, #b4c0d8 50.51%, #f3f3f3 100%); }
     .hero-inner { display: grid; grid-template-columns: minmax(0, 662px) minmax(0, 1fr); column-gap: 62px; align-items: start; }
 
-    .hero-title { font-family: var(--font-mono); font-size: 64px; font-weight: 600; line-height: 1.06; color: var(--ink); }
+    .hero-title { font-family: var(--font-mono); font-size: 64px; font-weight: 600; line-height: 1.06; color: var(--ink); grid-column: 1; grid-row: 1; }
     .hero-title .amp { color: var(--accent); }
 
-    .hero-side { display: flex; flex-direction: column; min-width: 0; }
+    .hero-side { display: flex; flex-direction: column; min-width: 0; grid-column: 2; grid-row: 1 / span 2; }
     .hero-id { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
     .hero-id-text { display: flex; flex-direction: column; gap: 6px; font-size: 16px; line-height: 1.3; color: var(--muted); }
     .hero-avatar { width: 116px; height: 116px; border-radius: 20px; overflow: hidden; background: var(--bg-2); flex: none; }
@@ -64,7 +64,7 @@
     .btn-primary { background: var(--grad-btn); color: #f3f3f3; box-shadow: inset 0 0 18px 0 var(--accent-deep); }
     .btn-primary:hover { transform: translateY(-1px); box-shadow: inset 0 0 18px 0 var(--accent-deep), 0 12px 28px rgba(113, 57, 243, .28); }
 
-    .hero-card-wrap { position: absolute; left: 60px; right: 60px; top: 240px; max-width: 562px; width: 100%; height: 639px; display: flex; align-items: center; justify-content: center; }
+.hero-card-wrap { grid-column: 1; grid-row: 2; margin-top: 80px; max-width: 562px; width: 100%; display: flex; align-items: center; justify-content: flex-start; }
     .hero-card { width: 100%; max-width: 531px; min-height: 612px; padding: 68px clamp(24px, 4.17vw, 53px); border-radius: 20px; background: rgba(255, 255, 255, 0.46); transform: rotate(-3deg); display: flex; flex-direction: column; gap: 30px; }
     .info-row { display: flex; align-items: flex-start; gap: 0; width: 100%; }
     .info-label { flex: none; width: 161px; font-family: var(--font-mono); font-size: 14px; color: var(--ink); opacity: .5; }
@@ -77,7 +77,7 @@
     .info-tags span { white-space: nowrap; }
 
     /* ============ CASES ============ */
-    .cases { background: var(--bg); }
+    .cases { background: var(--bg); padding-top: 60px; padding-bottom: 60px; }
     .case-toggle { display: flex; gap: 7px; padding-bottom: 33px; }
     .case { border-top: 1px solid var(--line); padding: 44px 0 60px; display: flex; flex-direction: column; gap: 44px; }
     .case[hidden] { display: none; }
@@ -110,6 +110,8 @@
       background-repeat: no-repeat;
       background-size: 1440px 2179px;
       background-position: 50% 0;
+      padding-top: 80px;
+      padding-bottom: 80px;
     }
     .concepts-stage { position: relative; height: 2179px; }
     .concept { position: absolute; display: flex; flex-direction: column; gap: 16px; margin: 0; }
@@ -150,17 +152,17 @@
     .behance-links a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
     .behance-links a:hover { color: var(--accent); }
 
-    /* ============ EXPERIENCE ============ */
+/* ============ EXPERIENCE ============ */
     .experience { background: var(--bg); }
     .experience h2 { font-family: var(--font-mono); font-size: 72px; font-weight: 600; line-height: 1.06; padding: 10px 0; }
     .exp-grid { border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; }
     .exp-col { padding: 19px 0 59px; display: flex; flex-direction: column; gap: 32px; }
-    .exp-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 35px; }
+    .exp-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 60px; }
     .exp-role-line { display: flex; flex-wrap: wrap; gap: 20px; font-family: var(--font-mono); font-size: 14px; line-height: 1.2; }
     .exp-role-line .role { color: var(--ink); }
     .exp-role-line .years { color: var(--muted); }
     .exp-company { font-family: var(--font-mono); font-size: 40px; font-weight: 600; line-height: 1.063; color: var(--ink); margin-top: 20px; }
-    .exp-logo-big { width: 78px; height: 78px; border-radius: 10px; object-fit: cover; flex: none; background: #fff; }
+    .exp-logo-big { width: 78px; height: 78px; border-radius: 10px; object-fit: cover; flex: 0 0 78px; background: #fff; }
     .exp-box { background: var(--bg-2); border-radius: 20px; padding: 40px; }
     .exp-box-title { font-family: var(--font-sans); font-size: 21px; font-weight: 600; line-height: 1.3; color: var(--ink); margin-bottom: 24px; }
     .exp-list { list-style: disc; padding-left: 27px; display: flex; flex-direction: column; gap: 11px; font-size: 18px; line-height: 1.32; color: var(--ink); }
@@ -205,7 +207,6 @@
         padding: clamp(48px, 5vw, 80px) clamp(48px, 6vw, 320px);
         gap: clamp(40px, 4vw, 60px);
       }
-      .hero-card-wrap { left: 60px; width: 50%; }
     }
 
     @media (max-width: 1180px) {
@@ -264,11 +265,12 @@
       .concepts-stage { grid-template-columns: 1fr; gap: 32px; }
       .behance-strip { padding-top: clamp(16px, 4.17vw, 40px); }
       .behance-text { font-size: 16px; }
-      .experience h2 { font-size: clamp(40px, 9vw, 56px); }
+.experience h2 { font-size: clamp(40px, 9vw, 56px); }
       .exp-col { padding: 24px 0 40px; }
+      .exp-head { gap: 40px; }
       .exp-company { font-size: 30px; }
-      .exp-logo-big { width: 60px; height: 60px; }
-      .exp-box { padding: 24px; }
+      .exp-logo-big { width: 60px; height: 60px; flex: 0 0 60px; }
+.exp-box { padding: 24px; }
       .exp-box-title { font-size: 18px; margin-bottom: 18px; }
       .exp-list { font-size: 16px; }
       .contact-top { flex-direction: column-reverse; gap: 28px; }
@@ -723,7 +725,8 @@
         </a>
       </div>
 
-      <div hidden><div class="note reveal">
+      <div hidden>
+        <div class="note reveal">
         <p class="note-label">Для заметок</p>
         <div class="note-sketch">
           <img src="Images/redesign/squiggle-main.svg" alt="" aria-hidden="true" />
@@ -737,8 +740,9 @@
           </button>
         </div>
         <button class="note-save" type="button" id="noteSave">Сохранить и отправить</button>
-      </div> </div>
+      </div> 
     </div>
+    
   </section>
 
   <script>
