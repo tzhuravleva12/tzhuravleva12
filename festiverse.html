@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="robots" content="noindex, nofollow, noarchive" />
-  <title>Datacraft — Татьяна Журавлёва</title>
+  <title>Festiverse</title>
   <style>
     @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-Light.ttf') format('truetype'); font-style: normal; font-weight: 300; font-display: swap; }
     @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-Regular.ttf') format('truetype'); font-style: normal; font-weight: 400; font-display: swap; }
@@ -38,9 +38,41 @@
     em { font-style: normal; }
 
     .case-page {
-      max-width: 1020px;
-      margin: 0 auto;
-      padding: 72px 24px 80px;
+      width: 1440px;
+      max-width: 100%;
+      margin-inline: auto;
+      padding: 80px 320px;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 60px;
+      background: linear-gradient(180deg, #B4C0D8 4.06%, #F3F3F3 8.69%), #F3F3F3;
+    }
+
+    @media (max-width: 1380px) {
+      .case-page {
+        padding: clamp(48px, 5vw, 80px) clamp(48px, 6vw, 320px);
+        gap: clamp(40px, 4vw, 60px);
+      }
+    }
+    @media (max-width: 1180px) {
+      .case-page {
+        padding: clamp(40px, 4vw, 72px) clamp(32px, 4vw, 240px);
+        gap: clamp(32px, 3vw, 48px);
+      }
+    }
+    @media (max-width: 820px) {
+      .case-page {
+        padding: clamp(32px, 3vw, 60px) clamp(24px, 3vw, 160px);
+        gap: clamp(24px, 2vw, 40px);
+      }
+    }
+    @media (max-width: 640px) {
+      .case-page {
+        padding: clamp(24px, 2vw, 48px) clamp(16px, 2vw, 80px);
+        gap: clamp(20px, 2vw, 32px);
+      }
     }
 
     .case-topbar {
@@ -66,6 +98,7 @@
 
     h1 {
       margin: 0;
+      font-family: 'Geist Mono', 'SFMono-Regular', Menlo, monospace;
       font-size: clamp(40px, 7vw, 70px);
       line-height: 0.96;
       letter-spacing: 0;
@@ -149,13 +182,13 @@
     </header>
 
     <header class="case-header">
-      <h1>Datacraft</h1>
-      <p class="case-subtitle">Приложение для обработки табличных данных.</p>
+      <h1>Festiverse</h1>
+      <p class="case-subtitle">Описание в процессе</p>
     </header>
 
     <article>
 
-    <img src="Datacraft/1.png" alt="Datacraft" class="case-image">
+    <div hidden>
 
     <section class="case-section">
       <h2>О проекте</h2>
@@ -253,7 +286,8 @@
 <ul><li>загрузить таблицу с ошибками в сервис, </li>
 <li>создать график из существующей таблицы.</li></ul>
 Я бы смотрела на количество ошибок в задании, на скорость выполнения целевого действия и на то как пользователи пользуются AI-помощником.
-</p>
+</p> 
+</div>
       <a class="case-back-link" href="index.html">← К портфолио</a>
     </section>
 
