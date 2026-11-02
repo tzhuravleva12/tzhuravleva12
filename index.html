@@ -415,7 +415,7 @@
   <section class="cases" id="work">
     <div class="wrap">
       <div class="case-toggle" role="group" aria-label="Фильтр кейсов">
-        <button class="case-tab active" data-filter="web" aria-pressed="true">Web</button>
+        <button class="case-tab active" data-filter="web" aria-pressed="true">Web & Desktop</button>
         <button class="case-tab" data-filter="mobile" aria-pressed="false">Mobile</button>
       </div>
 
@@ -567,7 +567,7 @@
           <a class="case-cta" href="freejoy.html">Кейс в процессе<img src="Images/redesign/arrow-case.svg" alt="" aria-hidden="true" /></a>
         </article>
 
-        <article class="case" data-type="web">
+        <article class="case" data-type="mobile">
           <div class="case-row">
             <div class="case-info">
               <div class="case-tags"><span>Мобильное приложение</span><span>FinTech / Services</span><span>Конверсия</span></div>
@@ -745,7 +745,18 @@
     
   </section>
 
-  <script>
+    <script>
+    // ===== Reveal-анимация (ставим в начало, чтобы не зависела от кода ниже) =====
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ===== Копирование почты =====
     async function copyEmailToClipboard(text, trigger) {
       try {
         await navigator.clipboard.writeText(text);
@@ -773,15 +784,19 @@
       });
     });
 
-    document.getElementById('noteSave').addEventListener('click', function () {
-      this.textContent = 'Отправлено!';
-      setTimeout(() => { this.textContent = 'Сохранить и отправить'; }, 1800);
-    });
+    // ===== Кнопка "Сохранить и отправить" =====
+    const noteSaveBtn = document.getElementById('noteSave');
+    if (noteSaveBtn) {
+      noteSaveBtn.addEventListener('click', function () {
+        this.textContent = 'Отправлено!';
+        setTimeout(() => { this.textContent = 'Сохранить и отправить'; }, 1800);
+      });
+    }
 
-    // Инструменты заметки: карандаш / резинка
+    // ===== Инструменты заметки =====
     const noteTools = document.querySelectorAll('.note-tool');
-    // По умолчанию карандаш выбран
-    document.querySelector('.note-tool--pencil').classList.add('is-active');
+    const pencilTool = document.querySelector('.note-tool--pencil');
+    if (pencilTool) pencilTool.classList.add('is-active');
 
     noteTools.forEach(tool => {
       tool.addEventListener('click', () => {
@@ -790,17 +805,16 @@
       });
     });
 
-    // Фильтр кейсов WEB / MOBILE
+    // ===== Фильтр кейсов WEB / MOBILE =====
     const tabs = document.querySelectorAll('.case-tab');
-    const cases = document.querySelectorAll('.case');
-    let activeFilter = 'web';
+    const caseCards = document.querySelectorAll('.case');  // ← переименовал, чтобы точно не пересекалось
 
     function applyFilter(filter) {
-      cases.forEach(card => {
-        card.hidden = filter !== 'all' && card.dataset.type !== filter;
+      caseCards.forEach(card => {
+        card.hidden = card.dataset.type !== filter;
       });
       tabs.forEach(tab => {
-        const isActive = filter !== 'all' && tab.dataset.filter === filter;
+        const isActive = tab.dataset.filter === filter;
         tab.classList.toggle('active', isActive);
         tab.setAttribute('aria-pressed', String(isActive));
       });
@@ -808,17 +822,12 @@
 
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
-        activeFilter = tab.dataset.filter === activeFilter ? 'all' : tab.dataset.filter;
-        applyFilter(activeFilter);
+        applyFilter(tab.dataset.filter);
       });
     });
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 60);
-      });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    // Применяем фильтр сразу при загрузке страницы
+    applyFilter('web');
   </script>
 </body>
 </html>
