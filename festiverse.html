@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="robots" content="noindex, nofollow, noarchive" />
-  <title>Festiverse</title>
+  <title>Festiverse app — геймификация в приложении для фестивалей</title>
   <style>
     @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-Light.ttf') format('truetype'); font-style: normal; font-weight: 300; font-display: swap; }
     @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-Regular.ttf') format('truetype'); font-style: normal; font-weight: 400; font-display: swap; }
@@ -49,7 +49,6 @@
       align-items: flex-start;
       gap: 60px;
     }
-
     @media (max-width: 1380px) {
       .case-page {
         padding: clamp(48px, 5vw, 80px) clamp(48px, 6vw, 320px);
@@ -92,9 +91,7 @@
     }
     .case-back:hover { color: var(--link-hover); border-color: var(--link-hover); }
 
-    .case-header {
-      margin-bottom: 40px;
-    }
+    .case-header { margin-bottom: 40px; }
 
     h1 {
       margin: 0;
@@ -107,15 +104,13 @@
 
     .case-subtitle {
       margin-top: 18px;
-      max-width: 560px;
+      max-width: 700px;
       font-size: 16px;
       line-height: 1.6;
       color: var(--muted);
     }
 
-    .case-section {
-      margin-top: 72px;
-    }
+    .case-section { margin-top: 72px; }
 
     h2 {
       margin: 0 0 18px;
@@ -132,10 +127,7 @@
       color: var(--muted);
     }
 
-    ul {
-      margin: 0 0 0 18px;
-      padding: 0;
-    }
+    ul { margin: 0 0 0 18px; padding: 0; }
 
     .case-image {
       width: 100%;
@@ -156,12 +148,6 @@
     }
     .case-back-link:hover { color: var(--link-hover); border-color: var(--link-hover); }
 
-    .case-note {
-      border-left: 1px solid var(--line);
-      padding-left: 18px;
-      margin: 18px 0 0;
-    }
-
     @media (max-width: 640px) {
       .case-page { padding-top: 48px; }
       .case-topbar { margin-bottom: 36px; }
@@ -175,122 +161,54 @@
   </style>
 </head>
 <body>
-
   <main class="case-page">
     <header class="case-topbar">
       <a class="case-back" href="index.html">← Назад</a>
     </header>
 
     <header class="case-header">
-      <h1>Festiverse</h1>
-      <p class="case-subtitle">Описание в процессе</p>
+      <h1>Festiverse app</h1>
+      <p class="case-subtitle">Геймификация в приложении для фестивалей.</p>
     </header>
 
     <article>
+      <section class="case-section">
+        <h2>Кейс в процессе</h2>
+        <p>Описание и подробности дизайн-процесса скоро появятся на этой странице. Пока можно посмотреть превью экранов ниже.</p>
+      </section>
 
-    <div hidden>
+      <section class="case-section">
+        <!-- <h2>Превью</h2>
 
-    <section class="case-section">
-      <h2>О проекте</h2>
-      <p>Заказчик обратился с просьбой создать веб-сервис, который упростит работу с табличными данными для пользователей без глубоких навыков в Excel.</p>
-      <p>Основные ожидания:</p>
-      <ul>
-        <li>интуитивный интерфейс;</li>
-        <li>возможность быстрой валидации данных;</li>
-        <li>простые инструменты для создания графиков и дашбордов.</li>
-      </ul>
-    </section>
+        <!-- ============================================================
+             ШАБЛОН ДЛЯ КАРТИНОК
+             Добавьте столько <img>, сколько нужно. Класс case-image
+             уже даёт скругление 10px, белый фон и отступы.
+             Формат пути: папка кейса / имя файла.
+             Пример:
+             <img src="festiverse/festiverse-1.png" alt="Экран квеста" class="case-image">
+             ============================================================ -->
 
-    <section class="case-section">
-      <h2>Целевая аудитория</h2>
-      <p><strong>Профессия:</strong> бухгалтеры, финансисты, аналитики - сотрудники малых и средних компаний, которые работают с Excel-отчётами и выгрузками из 1С или CRM.</p>
-      <p>Цели, желания: быстро проверить таблицу на ошибки и подготовить отчёт с визуальными примерами.</p>
-    </section>
+        
+        <img src="festiverse/festiverse - old overview screen.png" alt="Экран приложения Festiverse" class="case-image">
+        <img src="festiverse/festiverse - new overview.png" alt="Экран приложения Festiverse" class="case-image">
+        <img src="festiverse/festiverse - leaderboard comparing.png" alt="Экран приложения Festiverse" class="case-image">
+        <img src="festiverse/festiverse - add friend.png" alt="Экран приложения Festiverse" class="case-image">
+        <img src="festiverse/festiverse - generate qr code.png" alt="Экран приложения Festiverse" class="case-image">
+        <img src="festiverse/festiverse - profile.png" alt="Экран приложения Festiverse" class="case-image">
+        <img src="festiverse/festiverse - edit profile.png" alt="Экран приложения Festiverse" class="case-image">
 
-    <section class="case-section">
-      <h2>Боли пользователей</h2>
-      <p>Чтобы понять потребности пользователей, я изучила существующие сервисы (Excel, Google Sheets) и собрала информацию о типичных проблемах.</p>
-      <ul>
-        <li>ошибки в таблицах сложно найти вручную;</li>
-        <li>валидация часто требует знаний формул или скриптов;</li>
-        <li>построение графиков занимает много времени;</li>
-        <li>для простых задач BI-инструменты избыточны;</li>
-        <li>отчёты приходится собирать в нескольких инструментах.</li>
-      </ul>
-    </section>
 
-    <section class="case-section">
-      <h2>Юзер-стори</h2>
-      <ul>
-        <li>Как бухгалтер, я хочу загрузить Excel-файл и сразу увидеть ошибки, чтобы не тратить часы на проверку вручную.</li>
-        <li>Как менеджер, я хочу быстро построить график для презентации, чтобы показать результаты команде.</li>
-        <li>Как аналитик, я хочу собрать дашборд из графиков, чтобы отслеживать ключевые показатели на одном экране.</li>
-      </ul>
-    </section>
 
-    <section class="case-section">
-      <h2>Гипотезы</h2>
-      <ul>
-        <li>Если сервис подсвечивает ошибки сразу после загрузки и предлагает исправления, пользователи найдут и исправят ошибки быстрее, чем вручную. <strong>Проверка:</strong> 80% пользователей выполняют целевое действие без ошибок.</li>
-        <li>Если проверка таблицы, графики и дашборд находятся в одном месте, подготовка отчёта займёт меньше времени, чем в связке нескольких инструментов. <strong>Проверка:</strong> пользователи достигают целевого действия меньше чем за 15 минут.</li>
-      </ul>
-    </section>
+        <!-- Дублируйте строку ниже для остальных картинок:
+        <img src="festiverse/festiverse-4.png" alt="Экран приложения Festiverse" class="case-image">
+        <img src="festiverse/festiverse-5.png" alt="Экран приложения Festiverse" class="case-image">
+        <img src="festiverse/festiverse-6.png" alt="Экран приложения Festiverse" class="case-image">
+        -->
 
-    <section class="case-section">
-      <h2>Навигация</h2>
-      <p>Создала боковое меню с тремя основными разделами - таблицы, графики, дашборды. В каждой из этих вкладок можно будет зайти на конкретный объект, он тоже показан вкладкой подменю, что позволяет получать быстрый доступ к каждому проекту.</p>
-      <img src="Datacraft/3.png" alt="Навигация" class="case-image">
-    </section>
+      </section>
 
-    <section class="case-section">
-      <h2>Импорт данных</h2>
-      <ul>
-        <li>Автоматическое определение структуры (заголовки, даты, числа).</li>
-        <li>Подсветка ошибок и предложения исправлений.</li>
-        <li>Поддержка Excel, CSV, Google Sheets.</li>
-        <li>AI - ассистент, которого можно попросить проанализировать таблицу, устранить ошибки за тебя - просто написать запрос в боковой панели.</li>
-      </ul>
-      <img src="Datacraft/4.png" alt="Импорт данных" class="case-image">
-      <img src="Datacraft/5.png" alt="Импорт данных" class="case-image">
-      <img src="Datacraft/6.png" alt="Импорт данных" class="case-image">
-      <img src="Datacraft/7.png" alt="Импорт данных" class="case-image">
-    </section>
-
-    <section class="case-section">
-      <h2>Создание графиков</h2>
-      <p>График можно создать на основе загруженной ранее таблицы или загрузить новую.</p>
-      <ul>
-        <li>Выбор колонок для визуализации - по оси X и Y. Есть дополнительные функции, такие как агрегирование, возможность разделить данные по дополнительным признакам.</li>
-        <li>Есть несколько типов графиков - столбчатая диаграмма, круговая диаграмма, таблица.</li>
-        <li>Возможность кастомизации - можно выбрать цвета.</li>
-        <li>Можно показать данные, соответствующие фильтрам.</li>
-      </ul>
-      <img src="Datacraft/8.png" alt="Создание графиков" class="case-image">
-      <img src="Datacraft/9.png" alt="Создание графиков" class="case-image">
-      <img src="Datacraft/10.png" alt="Создание графиков" class="case-image">
-    </section>
-
-    <section class="case-section">
-      <h2>Конструктор дашбордов</h2>
-      <ul>
-        <li>Drag-and-drop для сборки из графиков.</li>
-        <li>Гибкая настройка расположения и размеров.</li>
-      </ul>
-      <img src="Datacraft/11.png" alt="Конструктор дашбордов" class="case-image">
-    </section>
-
-    <section class="case-section">
-      <h2>Результат</h2>
-      <p>Для заказчика получился прототип проекта, который закрывает потребность пользователя в простом инструменте редактирования табличных данных и создания презентаций в одном интерфейсе. Он интуитивно понятен, сокращает рутину и упрощает работу с таблицами. Проект готов к дальнейшему развитию и презентации инвесторам.
-<br>Для проверки гипотезы я бы провела 2 модерируемых юзабилити-исследования, где предложила пользователям выполнить задания:
-<ul><li>загрузить таблицу с ошибками в сервис, </li>
-<li>создать график из существующей таблицы.</li></ul>
-Я бы смотрела на количество ошибок в задании, на скорость выполнения целевого действия и на то как пользователи пользуются AI-помощником.
-</p> 
-</div>
       <a class="case-back-link" href="index.html">← К портфолио</a>
-    </section>
-
     </article>
   </main>
 </body>
