@@ -281,12 +281,10 @@
       .case-toggle {
         margin-inline: calc(-1 * clamp(24px, 3vw, 160px));
         padding-inline: clamp(24px, 3vw, 160px);
-        justify-content: center;
         padding-top: 8px;
         padding-bottom: 8px;
-        margin-bottom: 25px; /* Компенсация: 8 + 25 = 33px, как было */
+        margin-bottom: 25px;
       }
-      .case-tab { max-width: 240px; }
       
       /* Выравниваем верхний отступ Hero с боковыми */
       .hero { padding-top: clamp(24px, 3vw, 160px); padding-bottom: 48px; }
@@ -340,7 +338,7 @@
         margin-inline: calc(-1 * clamp(16px, 2vw, 80px));
         padding-inline: clamp(16px, 2vw, 80px);
       }
-      .case-tab { max-width: 160px; font-size: 14px; }
+      .case-tab { font-size: 14px; }
       
       /* Выравниваем верхний отступ Hero с боковыми */
       .hero { padding-top: clamp(16px, 2vw, 80px); padding-bottom: 16px; min-height: 0; }
@@ -871,17 +869,21 @@
       });
     }
 
-    tabs.forEach(tab => {
+        tabs.forEach(tab => {
       tab.addEventListener('click', () => {
-        const toggle = document.querySelector('.case-toggle');
-        // Запоминаем позицию блока табов до переключения
-        const toggleTop = toggle.getBoundingClientRect().top + window.scrollY;
+        // Берём позицию обычной секции .cases — она не sticky,
+        // поэтому getBoundingClientRect().top всегда корректный
+        const casesSection = document.querySelector('.cases');
+        const casesTop = casesSection.getBoundingClientRect().top + window.scrollY;
+
+        // Пользователь был внутри секции кейсов (или ниже неё)?
+        const wasInside = window.scrollY > casesTop;
 
         applyFilter(tab.dataset.filter);
 
-        // Если пользователь был ниже табов — возвращаем его к началу списка
-        if (window.scrollY > toggleTop) {
-          window.scrollTo({ top: toggleTop, behavior: 'smooth' });
+        // Если он был внутри — плавно возвращаем его к началу секции
+        if (wasInside) {
+          window.scrollTo({ top: casesTop, behavior: 'smooth' });
         }
       });
     });
