@@ -43,10 +43,17 @@
     .wrap { width: 100%; max-width: 100%; margin-inline: auto; padding-inline: clamp(16px, 4vw, 60px); padding-bottom: 80px; }
 
     /* ============ HERO ============ */
-    .hero { position: relative; overflow: hidden; min-height: 918px; padding-top: 60px; padding-bottom: 60px; background: linear-gradient(180deg, #f3f3f3 7.2%, #b4c0d8 50.51%, #f3f3f3 100%); }
-    .hero-inner { display: grid; grid-template-columns: minmax(0, 662px) minmax(0, 1fr); column-gap: 62px; align-items: start; }
+    .hero { position: relative; overflow: hidden; min-height: 918px; padding-top: clamp(16px, 4vw, 60px); padding-bottom: 60px; background: linear-gradient(180deg, #f3f3f3 7.2%, #b4c0d8 50.51%, #f3f3f3 100%); }
+    /*.hero-inner { display: grid; grid-template-columns: minmax(0, 662px) minmax(0, 1fr); column-gap: 62px; align-items: start; }*/
+    .hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  column-gap: clamp(48px, 4vw, 80px);
+  align-items: start;
+}
 
-    .hero-title { font-family: var(--font-mono); font-size: 64px; font-weight: 600; line-height: 1.06; color: var(--ink); grid-column: 1; grid-row: 1; }
+    .hero-title { font-family: var(--font-mono); font-size: clamp(64px, 5vw, 72px); font-weight: 600; line-height: 1.06; color: var(--ink); grid-column: 1; grid-row: 1; }
+    
     .hero-title .amp { color: var(--accent); }
 
     .hero-side { display: flex; flex-direction: column; min-width: 0; grid-column: 2; grid-row: 1 / span 2; }
@@ -55,7 +62,7 @@
     .hero-avatar { width: 116px; height: 116px; border-radius: 20px; overflow: hidden; background: var(--bg-2); flex: none; }
     .hero-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
 
-    .hero-bio { margin-top: 145px; min-height: 220px; max-width: 520px; display: flex; flex-direction: column; gap: 16px; font-family: var(--font-sans); font-size: 18px; font-weight: 500; line-height: 1.28; color: var(--ink); }
+    .hero-bio { margin-top: 145px; min-height: 220px; max-width: 600px; display: flex; flex-direction: column; gap: 16px; font-family: var(--font-sans); font-size: 18px; font-weight: 500; line-height: 1.28; color: var(--ink); }
     .hero-actions { margin-top: 56px; width: 100%; max-width: 426px; display: flex; flex-direction: column; gap: 11px; }
     .hero-open { font-family: var(--font-mono); font-size: 14px; color: var(--muted); margin-bottom: 4px; }
 
@@ -219,7 +226,7 @@
         padding: clamp(40px, 4vw, 72px) clamp(32px, 4vw, 240px);
         gap: clamp(32px, 3vw, 48px);
       }
-      .hero { padding: 48px 0 60px; min-height: 0; }
+      .hero { padding-top: clamp(16px, 4vw, 60px); padding-bottom: 60px; min-height: 0; }
       .hero-inner { display: flex; flex-direction: column; gap: 0; }
       .hero-side { display: contents; }
       .hero-id { width: 100%; order: 1; justify-content: space-between; align-items: flex-start; gap: 16px; }
@@ -252,7 +259,7 @@
         padding: clamp(32px, 3vw, 60px) clamp(24px, 3vw, 160px);
         gap: clamp(24px, 2vw, 40px);
       }
-      .hero { padding: 36px 0 48px; }
+      .hero { padding-top: clamp(16px, 4vw, 60px); padding-bottom: 48px; }
       .hero-title { font-size: clamp(32px, 8vw, 44px); }
       .hero-bio { font-size: 16px; }
       .hero-card { padding: 32px 24px; }
@@ -296,7 +303,7 @@
         padding: clamp(24px, 2vw, 48px) clamp(16px, 2vw, 80px);
         gap: clamp(20px, 2vw, 32px);
       }
-      .hero { padding: 20px 0 16px; min-height: 0; }
+      .hero { padding-top: clamp(16px, 4vw, 60px); padding-bottom: 16px; min-height: 0; }
       .hero-inner { display: flex; flex-direction: column; gap: 0; }
       .hero-side { display: contents; }
 
