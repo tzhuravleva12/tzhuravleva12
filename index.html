@@ -71,8 +71,8 @@
     .btn svg { width: 20px; height: 20px; flex: none; }
     .btn-ghost { background: #fff; color: var(--ink); border-radius: 58px; }
     .btn-ghost:hover { background: rgba(255, 255, 255, 0.5); }
-       /* Начальное состояние */
-        /* Начальное состояние */
+
+    /* Первичная кнопка с плавным перетеканием */
     .btn-primary {
       position: relative;
       overflow: hidden;
@@ -83,7 +83,6 @@
       box-shadow: 0 0 18px 0 #383EB5 inset;
     }
 
-    /* Конечное состояние — плавно проявляется через opacity */
     .btn-primary::after {
       content: '';
       position: absolute;
@@ -97,9 +96,7 @@
       z-index: -1;
     }
 
-    .btn-primary:hover::after {
-      opacity: 1;
-    }
+    .btn-primary:hover::after { opacity: 1; }
 
     .hero-card-wrap { grid-column: 1; grid-row: 2; margin-top: 80px; max-width: 562px; width: 100%; display: flex; align-items: center; justify-content: flex-start; }
     .hero-card { width: 100%; max-width: 531px; min-height: 612px; padding: 68px clamp(24px, 4.17vw, 53px); border-radius: 20px; background: rgba(255, 255, 255, 0.46); transform: rotate(-3deg); display: flex; flex-direction: column; gap: 30px; }
@@ -117,7 +114,7 @@
     .cases { background: var(--bg); padding-top: 40px; padding-bottom: 40px; }
     .cases > .wrap { padding-bottom: 0; }
     
-    /* Sticky-табы: подложка на всю ширину, кнопки внутри остаются на сетке контента */
+    /* Sticky-табы */
     .case-toggle {
       position: sticky;
       top: 0;
@@ -129,7 +126,7 @@
       margin-inline: calc(-1 * clamp(16px, 4vw, 60px));
       padding-inline: clamp(16px, 4vw, 60px);
       background: #f3f3f3;
-      margin-bottom: 17px; /* 16 + 17 = 33px — как было раньше */
+      margin-bottom: 17px;
     }
 
     .case { border-top: 1px solid var(--line); padding: 44px 0 60px; display: flex; flex-direction: column; gap: 44px; }
@@ -168,7 +165,7 @@
     }
     
     .concepts-stage { position: relative; height: 2179px; max-width: 1440px; margin-inline: auto; }
-    .concept { position: absolute; display: flex; flex-direction: column; gap: 16px; margin: 0; }
+    .concept { position: absolute; display: flex; flex-direction: column; gap: 16px; margin: 0; cursor: pointer; }
     .concept-media { display: block; border-radius: 20px; overflow: hidden; background: var(--bg-2); }
     .concept-media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
     .concept:hover .concept-media img { transform: scale(1.03); }
@@ -262,17 +259,51 @@
 
     a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
+    /* ============ LIGHTBOX ============ */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(24px, 5vw, 80px);
+    }
+    .lightbox[hidden] { display: none; }
+
+    .lightbox-img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: clamp(16px, 2.5vw, 24px);
+      right: clamp(16px, 2.5vw, 24px);
+      width: 56px;
+      height: 56px;
+      padding: 0;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+    .lightbox-close svg { width: 20px; height: 20px; display: block; }
+
     /* ============ RESPONSIVE ============ */
     @media (max-width: 1180px) {
       .wrap {
         padding: clamp(40px, 4vw, 72px) clamp(32px, 4vw, 240px);
       }
-      /* Синхронизируем отступы sticky-табов с padding у .wrap */
       .case-toggle {
         margin-inline: calc(-1 * clamp(32px, 4vw, 240px));
         padding-inline: clamp(32px, 4vw, 240px);
       }
-      /* Выравниваем верхний отступ Hero с боковыми */
       .hero { padding-top: clamp(32px, 4vw, 240px); padding-bottom: 60px; min-height: 0; }
       
       .hero-inner { display: flex; flex-direction: column; gap: 0; }
@@ -304,7 +335,6 @@
       .wrap {
         padding: clamp(32px, 3vw, 60px) clamp(24px, 3vw, 160px);
       }
-      /* Синхронизируем отступы sticky-табов с padding у .wrap */
       .case-toggle {
         margin-inline: calc(-1 * clamp(24px, 3vw, 160px));
         padding-inline: clamp(24px, 3vw, 160px);
@@ -313,7 +343,6 @@
         margin-bottom: 25px;
       }
       
-      /* Выравниваем верхний отступ Hero с боковыми */
       .hero { padding-top: clamp(24px, 3vw, 160px); padding-bottom: 48px; }
       
       .hero-title { font-size: clamp(32px, 8vw, 44px); }
@@ -360,14 +389,12 @@
       .wrap {
         padding: clamp(24px, 2vw, 48px) clamp(16px, 2vw, 80px);
       }
-      /* Синхронизируем отступы sticky-табов с padding у .wrap */
       .case-toggle {
         margin-inline: calc(-1 * clamp(16px, 2vw, 80px));
         padding-inline: clamp(16px, 2vw, 80px);
       }
       .case-tab { font-size: 14px; }
       
-      /* Выравниваем верхний отступ Hero с боковыми */
       .hero { padding-top: clamp(16px, 2vw, 80px); padding-bottom: 16px; min-height: 0; }
 
       .hero-inner { display: flex; flex-direction: column; gap: 0; }
@@ -396,6 +423,24 @@
       .exp-logo { width: 48px; height: 48px; border-radius: 12px; }
       .exp-item-text { gap: 2px; }
       .info-tags { gap: 10px 14px; }
+      
+      /* Мобильная адаптация лайтбокса */
+      .lightbox {
+        flex-direction: column;
+        justify-content: center;
+        gap: 16px;
+        padding: 0; /* Убираем отступы, чтобы картинка была покрупнее */
+      }
+      .lightbox-img {
+        width: 100%;
+        max-height: calc(100vh - 90px); /* Максимально возможная высота, оставляя место для кнопки */
+        object-fit: contain;
+      }
+      .lightbox-close {
+        position: static; /* Убираем абсолютное позиционирование */
+        margin: 0 0 16px 0; /* Отступ снизу, чтобы кнопка не прилипала к краю экрана */
+        flex-shrink: 0;
+      }
     }
   </style>
 </head>
@@ -821,6 +866,16 @@
     </div>
   </section>
 
+  <!-- LIGHTBOX для концептов -->
+  <div class="lightbox" id="lightbox" hidden>
+    <img class="lightbox-img" src="" alt="" id="lightboxImg" />
+    <button class="btn btn-ghost lightbox-close" type="button" aria-label="Закрыть" id="lightboxClose">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+        <path d="M6 6 L18 18 M18 6 L6 18"/>
+      </svg>
+    </button>
+  </div>
+
   <script>
     // ===== Reveal-анимация =====
     const revealObserver = new IntersectionObserver(entries => {
@@ -896,19 +951,14 @@
       });
     }
 
-        tabs.forEach(tab => {
+    tabs.forEach(tab => {
       tab.addEventListener('click', () => {
-        // Берём позицию обычной секции .cases — она не sticky,
-        // поэтому getBoundingClientRect().top всегда корректный
         const casesSection = document.querySelector('.cases');
         const casesTop = casesSection.getBoundingClientRect().top + window.scrollY;
-
-        // Пользователь был внутри секции кейсов (или ниже неё)?
         const wasInside = window.scrollY > casesTop;
 
         applyFilter(tab.dataset.filter);
 
-        // Если он был внутри — плавно возвращаем его к началу секции
         if (wasInside) {
           window.scrollTo({ top: casesTop, behavior: 'smooth' });
         }
@@ -917,6 +967,43 @@
 
     // Применяем фильтр сразу при загрузке страницы
     applyFilter('web');
+
+    // ===== Лайтбокс для концептов =====
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      lightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.hidden = true;
+      lightboxImg.src = '';
+      lightboxImg.alt = '';
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.concept').forEach(concept => {
+      concept.addEventListener('click', () => {
+        const img = concept.querySelector('img');
+        if (!img) return;
+        openLightbox(img.src, img.alt);
+      });
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !lightbox.hidden) closeLightbox();
+    });
   </script>
 </body>
 </html>
