@@ -4,13 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="robots" content="noindex, nofollow, noarchive" />
-  <title>Datacraft — Татьяна Журавлёва</title>
+  <title>Datacraft</title>
   <style>
     @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-Light.ttf') format('truetype'); font-style: normal; font-weight: 300; font-display: swap; }
     @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-Regular.ttf') format('truetype'); font-style: normal; font-weight: 400; font-display: swap; }
     @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-Medium.ttf') format('truetype'); font-style: normal; font-weight: 500; font-display: swap; }
     @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-SemiBold.ttf') format('truetype'); font-style: normal; font-weight: 600; font-display: swap; }
     @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-Bold.ttf') format('truetype'); font-style: normal; font-weight: 700; font-display: swap; }
+    
+    /* Добавляем шрифт Geist Mono, как на главной */
+    @font-face { font-family: 'Geist Mono'; src: url('Geist_Mono/static/GeistMono-Regular.ttf') format('truetype'); font-style: normal; font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Geist Mono'; src: url('Geist_Mono/static/GeistMono-SemiBold.ttf') format('truetype'); font-style: normal; font-weight: 600; font-display: swap; }
+
     :root {
       --bg: #F3F3F3;
       --paper: #ffffff;
@@ -19,6 +24,10 @@
       --line: #e8e8e8;
       --link: #2563eb;
       --link-hover: #1d4ed8;
+      
+      /* Переменные с главной страницы */
+      --font-mono: 'Geist Mono', 'SFMono-Regular', Menlo, monospace;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     * { box-sizing: border-box; letter-spacing: 0; }
@@ -37,6 +46,44 @@
     a:hover { color: var(--link-hover); }
     img { max-width: 100%; display: block; }
     em { font-style: normal; }
+
+    /* =========================================
+       БАЗОВЫЕ СТИЛИ КНОПОК (КАК НА ГЛАВНОЙ)
+       ========================================= */
+    .btn { 
+      position: relative; 
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 10px; 
+      height: 56px; 
+      padding: 16px 32px; 
+      border-radius: 58px; 
+      font-family: var(--font-mono); 
+      font-size: 16px; 
+      font-weight: 600; 
+      line-height: 1; 
+      white-space: nowrap; 
+      transition: background .25s var(--ease), transform .25s var(--ease); 
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-ghost { 
+      background: #fff; 
+      color: var(--ink); 
+    }
+    
+    .btn-ghost:hover { 
+      background: rgba(255, 255, 255, 0.5); 
+      color: var(--ink);
+    }
+
+    /* Оставляем только отступ для нижней кнопки */
+    .case-back-link {
+      margin-top: 28px;
+    }
 
     .case-page {
       width: 1440px;
@@ -81,33 +128,6 @@
       gap: 16px;
       margin-bottom: 64px;
       padding-bottom: 20px;
-    }
-
-    .case-back,
-    .case-back-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      height: 48px;
-      padding: 0 24px;
-      border-radius: 58px;
-      background: rgba(255, 255, 255, 0.46);
-      font-family: var(--font-mono);
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 1;
-      color: var(--ink);
-      transition: background .2s, transform .2s, box-shadow .2s;
-      text-decoration: none;
-      border: none;
-    }
-    .case-back:hover,
-    .case-back-link:hover {
-      background: rgba(255, 255, 255, 0.7);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(17, 17, 17, 0.1);
-      color: var(--ink);
     }
 
     .case-header {
@@ -162,11 +182,6 @@
       background: var(--paper);
     }
 
-    .case-back,
-    .case-back-link {
-      margin-top: 28px;
-    }
-
     .case-note {
       border-left: 1px solid var(--line);
       padding-left: 18px;
@@ -178,18 +193,25 @@
       .case-topbar { margin-bottom: 36px; }
       .case-subtitle { font-size: 16px; }
     }
-    a:visited { color: #6d28d9; }
-    a:visited:hover { color: #6d28d9; }
+
+    /* Фиксим посещенные ссылки, чтобы текст на кнопках не становился фиолетовым */
+    a:visited { color: var(--link); }
+    a:visited:hover { color: var(--link-hover); }
     a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-    .case-back:visited,
-    .case-back-link:visited { border-color: #6d28d9; }
+    
+    .btn:visited,
+    .btn:hover,
+    .btn:visited:hover { 
+      color: var(--ink); 
+    }
   </style>
 </head>
 <body>
 
   <main class="case-page">
     <header class="case-topbar">
-      <a class="case-back" href="index.html">← Назад</a>
+      <!-- ДОБАВЛЕНЫ КЛАССЫ btn btn-ghost -->
+      <a class="case-back btn btn-ghost" href="index.html">← Назад</a>
     </header>
 
     <header class="case-header">
@@ -298,7 +320,8 @@
 <li>создать график из существующей таблицы.</li></ul>
 Я бы смотрела на количество ошибок в задании, на скорость выполнения целевого действия и на то как пользователи пользуются AI-помощником.
 </p>
-      <a class="case-back-link" href="index.html">← К портфолио</a>
+      <!-- ДОБАВЛЕНЫ КЛАССЫ btn btn-ghost -->
+      <a class="case-back-link btn btn-ghost" href="index.html">← К портфолио</a>
     </section>
 
     </article>

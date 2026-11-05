@@ -11,6 +11,11 @@
     @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-Medium.ttf') format('truetype'); font-style: normal; font-weight: 500; font-display: swap; }
     @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-SemiBold.ttf') format('truetype'); font-style: normal; font-weight: 600; font-display: swap; }
     @font-face { font-family: 'Geist'; src: url('Geist/static/Geist-Bold.ttf') format('truetype'); font-style: normal; font-weight: 700; font-display: swap; }
+    
+    /* Добавляем шрифт Geist Mono, как на главной */
+    @font-face { font-family: 'Geist Mono'; src: url('Geist_Mono/static/GeistMono-Regular.ttf') format('truetype'); font-style: normal; font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Geist Mono'; src: url('Geist_Mono/static/GeistMono-SemiBold.ttf') format('truetype'); font-style: normal; font-weight: 600; font-display: swap; }
+
     :root {
       --bg: #F3F3F3;
       --paper: #ffffff;
@@ -19,6 +24,10 @@
       --line: #e8e8e8;
       --link: #2563eb;
       --link-hover: #1d4ed8;
+      
+      /* Переменные с главной страницы */
+      --font-mono: 'Geist Mono', 'SFMono-Regular', Menlo, monospace;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     * { box-sizing: border-box; letter-spacing: 0; }
@@ -37,6 +46,44 @@
     a:hover { color: var(--link-hover); }
     img { max-width: 100%; display: block; }
     em { font-style: normal; }
+
+    /* =========================================
+       БАЗОВЫЕ СТИЛИ КНОПОК (КАК НА ГЛАВНОЙ)
+       ========================================= */
+    .btn { 
+      position: relative; 
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 10px; 
+      height: 56px; 
+      padding: 16px 32px; 
+      border-radius: 58px; 
+      font-family: var(--font-mono); 
+      font-size: 16px; 
+      font-weight: 600; 
+      line-height: 1; 
+      white-space: nowrap; 
+      transition: background .25s var(--ease), transform .25s var(--ease); 
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-ghost { 
+      background: #fff; 
+      color: var(--ink); 
+    }
+    
+    .btn-ghost:hover { 
+      background: rgba(255, 255, 255, 0.5); 
+      color: var(--ink);
+    }
+
+    /* Оставляем только отступ для нижней кнопки */
+    .case-back-link {
+      margin-top: 28px;
+    }
 
     .case-page {
       width: 1440px;
@@ -136,33 +183,6 @@
       background: var(--paper);
     }
 
-    .case-back,
-    .case-back-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      height: 48px;
-      padding: 0 24px;
-      border-radius: 58px;
-      background: rgba(255, 255, 255, 0.46);
-      font-family: var(--font-mono);
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 1;
-      color: var(--ink);
-      transition: background .2s, transform .2s, box-shadow .2s;
-      text-decoration: none;
-      border: none;
-    }
-    .case-back:hover,
-    .case-back-link:hover {
-      background: rgba(255, 255, 255, 0.7);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(17, 17, 17, 0.1);
-      color: var(--ink);
-    }
-
     .case-note {
       border-left: 1px solid var(--line);
       padding-left: 18px;
@@ -174,112 +194,108 @@
       .case-topbar { margin-bottom: 36px; }
       .case-subtitle { font-size: 16px; }
     }
-    a:visited { color: #6d28d9; }
-    a:visited:hover { color: #6d28d9; }
+
+    /* Фиксим посещенные ссылки, чтобы текст на кнопках не становился фиолетовым */
+    a:visited { color: var(--link); }
+    a:visited:hover { color: var(--link-hover); }
     a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-    .case-back-link:visited { border-color: #6d28d9; }
+    
+    .btn:visited,
+    .btn:hover,
+    .btn:visited:hover { 
+      color: var(--ink); 
+    }
   </style>
 </head>
 <body>
 
   <main class="case-page">
     <header class="case-topbar">
-      <a class="case-back" href="index.html">← Назад</a>
+      <!-- ДОБАВЛЕНЫ КЛАССЫ btn btn-ghost -->
+      <a class="case-back btn btn-ghost" href="index.html">← Назад</a>
     </header>
 
     <header class="case-header">
       <h1>Повышение конверсии в Yandex Plus</h1>
-      
     </header>
 
     <article>
 
-    
+      <section class="case-section">
+        <h2>Целевая аудитория</h2>
+        <p>Пользователи Яндекс Плюс около 3 лет, покупают иногда дополнительные функции. Живут в крупном городе. Часто пользуются такси, доставками и другими различными сервисами Яндекса.</p>
+      </section>
 
-    <section class="case-section">
-      <h2>Целевая аудитория</h2>
-      <p>Пользователи Яндекс Плюс около 3 лет, покупают иногда дополнительные функции. Живут в крупном городе.
-Часто пользуются такси, доставками и другими различными сервисами Яндекса.</p>
-      
-    </section>
+      <section class="case-section">
+        <h2>Боли пользователей Яндекс Плюс:</h2>
+        <ul>
+          <li>Есть ненужные сервисы, не стоит своих денег,</li>
+          <li>навязчивость,</li>
+          <li>списывает деньги без ведома пользователя.</li> 
+        </ul>
+      </section>
 
-    <section class="case-section">
-      <h2>Боли пользователей Яндекс Плюс:</h2>
-      <ul>
-        <li>Есть ненужные сервисы, не стоит своих денег,</li>
-        <li>навязчивость,</li>
-        <li>списывает деньги без ведома пользователя.</li> 
-      </ul>
-    </section>
+      <section class="case-section">
+        <h2>Проблемы экрана апсейла:</h2>
+        <ul>
+          <li>Не нравится навязчивость</li>
+          <li>Не интересно предложение</li>
+          <li>Списывает деньги без ведома пользователя</li>
+        </ul>
+      </section>
 
-    <section class="case-section">
-      <h2>Проблемы экрана апсейла:</h2>
-     
-      <ul>
-        <li>Не нравится навязчивость</li>
-        <li>Не интересно предложение</li>
-        <li>Списывает деньги без ведома пользователя</li>
-      </ul>
-    </section>
+      <section class="case-section">
+        <h2>Юзер-стори</h2>
+        <p>Как пользователь Яндекс Плюс, я хочу: </p>
+        <ul>
+          <li>использовать только нужный мне набор подписок по цене, которую я готов заплатить, чтобы сэкономить время и деньги.</li>
+          <li>быть в курсе, какие подписки сейчас активны и когда будет списание средств, чтобы контролировать свои расходы.</li>
+          <li>получать ненавязчивую информацию о подписке, только когда сам готов это изучать, чтобы не испытывать раздражение.</li>
+        </ul>
+      </section>
 
-    <section class="case-section">
-      <h2>Юзер-стори</h2>
-      <p>Как пользователь Яндекс Плюс, я хочу: </p>
-      <ul>
-        <li>использовать только нужный мне набор подписок по цене, которую я готов заплатить, чтобы сэкономить время и деньги.</li>
-        <li>быть в курсе, какие подписки сейчас активны и когда будет списание средств, чтобы контролировать свои расходы.</li>
-        <li>получать ненавязчивую информацию о подписке, только когда сам готов это изучать, чтобы не испытывать раздражение.</li>
-      </ul>
-    </section>
+      <section class="case-section">
+        <h2>Гипотеза:</h2>
+        <p>
+          Я предполагаю, что если после оплаты подписки добавить возможность купить несколько предложений дополнительных услуг для людей 25 - 40 лет в крупных городах, то это увеличит конверсию в апсейл на 5% в течение месяца. 
+          <br>Для этого я добавлю во флоу подписки на Яндекс Плюс экран с такой информацией и проверю на юзабилити тестировании. 
+        </p>
+      </section>
 
-    <section class="case-section">
-      <h2>Гипотеза:</h2>
-      <p>
-        Я предполагаю, что если после оплаты подписки добавить возможность купить несколько предложений дополнительных услуг для людей 25 - 40 лет в крупных городах, то это увеличит конверсию в апсейл на 5% в течение месяца. 
-        <br>Для этого я добавлю во флоу подписки на Яндекс Плюс экран с такой информацией и проверю на юзабилити тестировании. 
-      </p>
-      
-    </section>
+      <section class="case-section">
+        <h2>Первая итерация</h2>
+        <img src="яндекс плюс/7.png" alt="Первая итерация" class="case-image">
+        <!-- Убраны лишние теги <p> вокруг <h3> -->
+        <h3 class="case-title"><a href="https://www.figma.com/proto/Q1JhU1DOrHJZ5ypV5ikFZo/%D0%96%D1%83%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%B2%D0%B0-%D0%A2%D0%B0%D1%82%D1%8C%D1%8F%D0%BD%D0%B0-6-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82-%E2%80%A2-%D0%A4%D0%B8%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82-%E2%80%A2-%D0%AF%D0%BD%D0%B4%D0%B5%D0%BA%D1%81.%D0%9F%D0%BB%D1%8E%D1%81-Copy?node-id=0-1&p=f&t=tnY2xnPHvgGWa0wi-0&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3272%3A6061">Открыть прототип</a></h3>
+      </section>
 
-    <section class="case-section">
-      <h2>Первая итерация</h2>
-      
-      <img src="яндекс плюс/7.png" alt="Первая итерация" class="case-image">
-      <p><h3 class="case-title"><a href="https://www.figma.com/proto/Q1JhU1DOrHJZ5ypV5ikFZo/%D0%96%D1%83%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%B2%D0%B0-%D0%A2%D0%B0%D1%82%D1%8C%D1%8F%D0%BD%D0%B0-6-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82-%E2%80%A2-%D0%A4%D0%B8%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82-%E2%80%A2-%D0%AF%D0%BD%D0%B4%D0%B5%D0%BA%D1%81.%D0%9F%D0%BB%D1%8E%D1%81-Copy?node-id=0-1&p=f&t=tnY2xnPHvgGWa0wi-0&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3272%3A6061">Открыть прототип</a></h3></p>
-    </section>
+      <section class="case-section">
+        <h2>Модерируемое юзабилити тестирование</h2>
+        <ul>
+          <li>4 из 4 пользователей понимают что происходит на экране, остаются на нем больше 30 секунд.</li>
+          <li>2 из 4 пользователей покупают хотя бы одну подписку.</li>
+        </ul>
+      </section>
 
-    <section class="case-section">
-      <h2>Модерируемое юзабилити тестирование</h2>
-      <ul>
-        <li>4 из 4 пользователей понимают что происходит на экране, остаются на нем больше 30 секунд.</li>
-        <li>2 из 4 пользователей покупают хотя бы одну подписку.</li>
-        
-      </ul>
-      
-    </section>
+      <section class="case-section">
+        <h2>Вторая итерация</h2>
+        <img src="яндекс плюс/10.png" alt="Вторая итерация" class="case-image">
+        <!-- Убраны лишние теги <p> вокруг <h3> -->
+        <h3 class="case-title"><a href="https://www.figma.com/proto/pB4MyhkZyXVZfgFyVU1kc8/%D0%9F%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF?node-id=0-3046&t=hqEDirrG3EQEcgzg-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=0%3A3014">Открыть прототип</a></h3>
+      </section>
 
-    <section class="case-section">
-      <h2>Вторая итерация</h2>
-      
-     
-      <img src="яндекс плюс/10.png" alt="Вторая итерация" class="case-image">
-      <p><h3 class="case-title"><a href="https://www.figma.com/proto/pB4MyhkZyXVZfgFyVU1kc8/%D0%9F%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF?node-id=0-3046&t=hqEDirrG3EQEcgzg-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=0%3A3014">Открыть прототип</a></h3></p>
-    
-    </section>
+      <section class="case-section">
+        <h2>Дальнейшие планы:</h2>
+        <ul>
+          <li>Обсудить ценообразование с командой маркетинга.</li>
+          <li>Узнать, как влияет время, проведенное на экране апсейла, на метрику конверсии в апсейл.</li>
+        </ul>
+      </section>
 
-    <section class="case-section">
-      <h2>Дальнейшие планы:</h2>
-      <ul>
-        <li>Обсудить ценообразование с  командой маркетинга.</li>
-        <li>Узнать, как влияет время, проведенное на экране апсейла, на метрику конверсии в апсейл.</li>
-      </ul>
-      
-    </section>
-
-    <section class="case-section">
-     
-      <a class="case-back-link" href="index.html">← К портфолио</a>
-    </section>
+      <section class="case-section">
+        <!-- ДОБАВЛЕНЫ КЛАССЫ btn btn-ghost -->
+        <a class="case-back-link btn btn-ghost" href="index.html">← К портфолио</a>
+      </section>
 
     </article>
   </main>
