@@ -42,7 +42,8 @@
     .wrap { width: 100%; max-width: 100%; margin-inline: auto; padding-inline: clamp(16px, 4vw, 60px); padding-bottom: 80px; }
 
     /* ============ HERO ============ */
-    .hero { position: relative; overflow: hidden; min-height: 918px; padding-top: clamp(16px, 4vw, 60px); padding-bottom: 20px; background: linear-gradient(180deg, #f3f3f3 7.2%, #b4c0d8 50.51%, #f3f3f3 100%); }
+    /* ИЗМЕНЕНО: padding-bottom теперь 48px */
+    .hero { position: relative; overflow: hidden; min-height: 918px; padding-top: clamp(16px, 4vw, 60px); padding-bottom: 48px; background: linear-gradient(180deg, #f3f3f3 7.2%, #b4c0d8 50.51%, #f3f3f3 100%); }
     
     /* Убираем двойной отступ сверху внутри Hero */
     .hero .wrap { padding-top: 0; padding-bottom: 0; }
@@ -51,20 +52,27 @@
       display: grid;
       grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
       column-gap: clamp(48px, 4vw, 80px);
-      align-items: start;
+      align-items: stretch; /* Правая колонка растягивается на высоту левой */
     }
 
     .hero-title { font-family: var(--font-mono); font-size: clamp(64px, 5vw, 72px); font-weight: 600; line-height: 1.06; color: var(--ink); grid-column: 1; grid-row: 1; }
     .hero-title .amp { color: var(--accent); }
 
     .hero-side { display: flex; flex-direction: column; min-width: 0; grid-column: 2; grid-row: 1 / span 2; }
-    .hero-id { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
-    .hero-id-text { display: flex; flex-direction: column; gap: 6px; font-size: 16px; line-height: 1.3; color: var(--muted); }
+    
+    /* Выталкивает текст и кнопки к низу */
+    .hero-id { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: auto; }
+    
+    .hero-id-text { display: flex; flex-direction: column; gap: 6px; font-family: var(--font-mono); font-size: 14px; line-height: 1.3; color: var(--muted); }
+    
     .hero-avatar { width: 116px; height: 116px; border-radius: 20px; overflow: hidden; background: var(--bg-2); flex: none; }
     .hero-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
 
-    .hero-bio { margin-top: 145px; min-height: 220px; max-width: 600px; display: flex; flex-direction: column; gap: 16px; font-family: var(--font-sans); font-size: 18px; font-weight: 500; line-height: 1.28; color: var(--ink); }
-    .hero-actions { margin-top: 56px; width: 100%; max-width: 426px; display: flex; flex-direction: column; gap: 16px; }
+    .hero-bio { margin-top: 0; max-width: 600px; display: flex; flex-direction: column; gap: 16px; font-family: var(--font-sans); font-size: 24px; font-weight: 500; line-height: 1.28; color: var(--ink); }
+    
+    /* ИЗМЕНЕНО: Отступ от текста до кнопок теперь 64px (было 32px) */
+    .hero-actions { margin-top: 64px; width: 100%; max-width: 426px; display: flex; flex-direction: column; gap: 16px; }
+    
     .hero-open { font-family: var(--font-mono); font-size: 14px; color: var(--muted); margin-bottom: 4px; }
 
     .btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 64px; padding: 16px 48px; border-radius: 58px; font-family: var(--font-mono); font-size: 16px; font-weight: 600; line-height: 1; white-space: nowrap; transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s; }
@@ -99,7 +107,7 @@
     .btn-primary:hover::after { opacity: 1; }
 
     .hero-card-wrap { grid-column: 1; grid-row: 2; margin-top: 80px; max-width: 562px; width: 100%; display: flex; align-items: center; justify-content: flex-start; }
-    .hero-card { width: 100%; max-width: 531px; min-height: 612px; padding: 68px clamp(24px, 4.17vw, 53px); border-radius: 20px; background: rgba(255, 255, 255, 0.46); transform: rotate(-3deg); display: flex; flex-direction: column; gap: 30px; }
+    .hero-card { width: 100%; max-width: 531px; min-height: 612px; padding: 68px clamp(24px, 4.17vw, 53px); border-radius: 20px; background: rgba(255, 255, 255, 0.46); transform: rotate(-3deg); display: flex; flex-direction: column; gap: 45px; }
     .info-row { display: flex; align-items: flex-start; gap: 0; width: 100%; }
     .info-label { flex: none; width: 161px; font-family: var(--font-mono); font-size: 14px; color: var(--ink); opacity: .5; }
     .info-value { flex: 1; min-width: 0; font-size: 16px; line-height: 1.35; color: var(--ink); }
@@ -304,14 +312,21 @@
         margin-inline: calc(-1 * clamp(32px, 4vw, 240px));
         padding-inline: clamp(32px, 4vw, 240px);
       }
+      /* Планшеты: возвращаем стандартный отступ снизу */
       .hero { padding-top: clamp(32px, 4vw, 240px); padding-bottom: 60px; min-height: 0; }
       
-      .hero-inner { display: flex; flex-direction: column; gap: 0; }
+      .hero-inner { display: flex; flex-direction: column; gap: 0; align-items: stretch; }
       .hero-side { display: contents; }
-      .hero-id { width: 100%; order: 1; justify-content: space-between; align-items: flex-start; gap: 16px; }
+      
+      /* Возвращаем обычное поведение на планшетах */
+      .hero-id { width: 100%; order: 1; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 0; }
       .hero-title { order: 2; margin-top: 44px; font-size: clamp(40px, 6vw, 64px); }
+      
       .hero-bio { order: 3; margin-top: 28px; }
+      
+      /* На планшетах отступ между текстом и кнопками снова 32px */
       .hero-actions { order: 4; margin-top: 32px; }
+      
       .hero-card-wrap { order: 5; position: static; width: 100%; height: auto; padding: 20px 0 0; }
       .hero-card { width: 100%; min-height: 0; transform: none; padding: 44px 40px; }
       .case-row { flex-direction: column; gap: 28px; }
@@ -343,6 +358,7 @@
         margin-bottom: 25px;
       }
       
+      /* Мобилки: отступ снизу 48px */
       .hero { padding-top: clamp(24px, 3vw, 160px); padding-bottom: 48px; }
       
       .hero-title { font-size: clamp(32px, 8vw, 44px); }
@@ -397,15 +413,13 @@
       
       .hero { padding-top: clamp(16px, 2vw, 80px); padding-bottom: 16px; min-height: 0; }
 
-      .hero-inner { display: flex; flex-direction: column; gap: 0; }
-      .hero-side { display: contents; }
-
+      .hero-title { order: 2; margin-top: 44px; font-size: clamp(32px, 9.32vw, 44px); line-height: 1.1; }
+      
       .hero-id { order: 1; justify-content: space-between; align-items: flex-start; gap: 16px; }
-      .hero-id-text { gap: 0; font-size: clamp(14px, 3.39vw, 16px); line-height: 1.36; }
+      .hero-id-text { gap: 0; font-size: 13px; line-height: 1.36; }
+      
       .hero-avatar { width: clamp(48px, 12.7vw, 60px); height: clamp(48px, 12.7vw, 60px); border-radius: 14px; }
       .hero-avatar img { object-position: center 30%; }
-
-      .hero-title { order: 2; margin-top: 44px; font-size: clamp(32px, 9.32vw, 44px); line-height: 1.1; }
 
       .hero-bio { order: 3; margin-top: 28px; min-height: 0; max-width: none; gap: 16px; font-size: clamp(16px, 3.81vw, 18px); line-height: 1.27; }
 
@@ -424,21 +438,20 @@
       .exp-item-text { gap: 2px; }
       .info-tags { gap: 10px 14px; }
       
-      /* Мобильная адаптация лайтбокса */
       .lightbox {
         flex-direction: column;
         justify-content: center;
         gap: 16px;
-        padding: 0; /* Убираем отступы, чтобы картинка была покрупнее */
+        padding: 0;
       }
       .lightbox-img {
         width: 100%;
-        max-height: calc(100vh - 90px); /* Максимально возможная высота, оставляя место для кнопки */
+        max-height: calc(100vh - 90px);
         object-fit: contain;
       }
       .lightbox-close {
-        position: static; /* Убираем абсолютное позиционирование */
-        margin: 0 0 16px 0; /* Отступ снизу, чтобы кнопка не прилипала к краю экрана */
+        position: static;
+        margin: 0 0 16px 0;
         flex-shrink: 0;
       }
     }
@@ -506,10 +519,8 @@
           <div class="info-row">
             <span class="info-label">Навыки</span>
             <div class="info-value info-tags">
-              <span>UI/UX</span><span>Product design</span><span>Variables</span>
-              <span>Animation</span><span>Illustration</span>
-              <span>After Effects</span><span>Adobe Illustrator</span>
-              <span>AI-friendly</span><span>HTML/CSS</span>
+              <span>UI/UX</span><span>Product design</span><span>Animation</span>
+              <span>Illustration</span><span>AI-native</span>
             </div>
           </div>
 
@@ -524,7 +535,7 @@
           <div class="info-row">
             <span class="info-label">Сферы</span>
             <div class="info-value info-tags">
-              <span>FoodTech</span><span>Ecommerce</span><span>Medicine</span>
+              <span>FoodTech</span><span>Ecommerce</span><span>MedTech</span>
               <span>Event</span><span>Sport</span>
             </div>
           </div>
