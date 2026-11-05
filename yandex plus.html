@@ -84,14 +84,6 @@
       padding-bottom: 20px;
     }
 
-    .case-back {
-      font-size: 14px;
-      color: var(--link);
-      border-bottom: 1px solid var(--link);
-      padding-bottom: 4px;
-    }
-    .case-back:hover { color: var(--link-hover); border-color: var(--link-hover); }
-
     .case-header {
       margin-bottom: 40px;
     }
@@ -144,17 +136,32 @@
       background: var(--paper);
     }
 
+    .case-back,
     .case-back-link {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
-      margin-top: 28px;
-      color: var(--link);
+      height: 48px;
+      padding: 0 24px;
+      border-radius: 58px;
+      background: rgba(255, 255, 255, 0.46);
+      font-family: var(--font-mono);
       font-size: 14px;
-      border-bottom: 1px solid var(--link);
-      padding-bottom: 4px;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--ink);
+      transition: background .2s, transform .2s, box-shadow .2s;
+      text-decoration: none;
+      border: none;
     }
-    .case-back-link:hover { color: var(--link-hover); border-color: var(--link-hover); }
+    .case-back:hover,
+    .case-back-link:hover {
+      background: rgba(255, 255, 255, 0.7);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(17, 17, 17, 0.1);
+      color: var(--ink);
+    }
 
     .case-note {
       border-left: 1px solid var(--line);
@@ -170,7 +177,6 @@
     a:visited { color: #6d28d9; }
     a:visited:hover { color: #6d28d9; }
     a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-    .case-back:visited,
     .case-back-link:visited { border-color: #6d28d9; }
   </style>
 </head>
