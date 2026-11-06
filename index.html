@@ -490,8 +490,7 @@
       .hero-open { margin-bottom: 0; font-size: clamp(12px, 2.97vw, 14px); }
       .hero-actions .btn { width: 100%; height: clamp(52px, 11.9vw, 56px); padding: 14px 16px; font-size: clamp(14px, 3.39vw, 16px); }
 
-      /* Внешние отступы (40px) больше внутренних (24px) */
-            /* Внешние отступы (16px от wrap + 8px = 24px) больше внутренних (16px) */
+      /* Внешние отступы (16px от wrap + 8px = 24px) больше внутренних (16px) */
       .hero-card-wrap { 
         order: 5; 
         position: static; 
@@ -636,12 +635,13 @@
   <section class="cases" id="work">
     <div class="wrap">
       <div class="case-toggle" role="group" aria-label="Фильтр кейсов">
-        <button class="case-tab active" data-filter="web" aria-pressed="true">Web & Desktop</button>
-        <button class="case-tab" data-filter="mobile" aria-pressed="false">Mobile</button>
+        <button class="case-tab active" data-filter="mobile" aria-pressed="true">Mobile</button>
+        <button class="case-tab" data-filter="web" aria-pressed="false">Web & Desktop</button>
       </div>
 
       <div id="casesList">
 
+        <!-- 1. ProVisio (web) -->
         <article class="case" data-type="web">
           <div class="case-row">
             <div class="case-info">
@@ -669,6 +669,7 @@
           <a class="case-cta" href="provisio.html">Смотреть кейс <img src="Images/redesign/arrow-case.svg" alt="" aria-hidden="true" /></a>
         </article>
 
+        <!-- 2. Datacraft (web) -->
         <article class="case" data-type="web">
           <div class="case-row">
             <div class="case-info">
@@ -696,33 +697,7 @@
           <a class="case-cta" href="datacraft.html">Смотреть кейс <img src="Images/redesign/arrow-case.svg" alt="" aria-hidden="true" /></a>
         </article>
 
-        <article class="case" data-type="mobile">
-          <div class="case-row">
-            <div class="case-info">
-              <div class="case-tags"><span>Мобильное приложение</span><span>Дизайн-система</span><span>UX-исследование</span></div>
-              <h2 class="case-title"><a href="fantasy.html">Разработка приложения для игроков fantasy-спорта</a></h2>
-              <div class="case-body">
-                <div class="case-meta">
-                  <p class="meta-label">Цель</p>
-                  <p class="meta-text">Создать конкурентоспособное мобильное приложение, которое делает вход в игру проще для новичков и даёт опытным пользователям гибкость и контроль.</p>
-                </div>
-                <div class="case-meta">
-                  <p class="meta-label">Задачи</p>
-                  <p class="meta-text">UX-исследование, визуальный концепт и дизайн система, разработка ключевых сценариев: процесс драфта, управление составом, экран лиги, настройки, профиль спортсмена.</p>
-                </div>
-                <div class="case-meta">
-                  <p class="meta-label">Результат</p>
-                  <p class="meta-text">MVP за 4 месяца. Уникальная фича управления игроками на поле в процессе игры.</p>
-                </div>
-              </div>
-            </div>
-            <a class="case-media" href="fantasy.html" aria-label="Смотреть кейс Fantasy Sport">
-              <img src="fantasy sport.png" alt="Приложение для игроков fantasy-спорта" />
-            </a>
-          </div>
-          <a class="case-cta" href="fantasy.html">Смотреть кейс <img src="Images/redesign/arrow-case.svg" alt="" aria-hidden="true" /></a>
-        </article>
-
+        <!-- 3. Hockey Scout (web) -->
         <article class="case" data-type="web">
           <div class="case-row">
             <div class="case-info">
@@ -750,34 +725,7 @@
           <a class="case-cta" href="hockeyscout.html">Смотреть кейс <img src="Images/redesign/arrow-case.svg" alt="" aria-hidden="true" /></a>
         </article>
 
-        <article class="case" data-type="mobile">
-          <div class="case-row">
-            <div class="case-info">
-              <div class="case-tags"><span>Мобильное приложение</span><span>Геймификация</span><span>Event</span></div>
-              <h2 class="case-title"><a href="festiverse.html">Геймификация в приложении Festiverse app</a></h2>
-              <div class="case-body">
-                
-                <div class="case-meta">
-                  <p class="meta-label">Цель</p>
-                  <p class="meta-text">Увеличить Retention Rate в приложении для посещения фестивалей, добавив элементы геймификации.</p>
-                </div>
-                <div class="case-meta">
-                  <p class="meta-label">Задачи</p>
-                  <p class="meta-text">Спроектировать интерфейс квестов на мероприятиях. Добавить функционал добавления друзей.</p>
-                </div>
-                <div class="case-meta">
-                  <p class="meta-label">Результат</p>
-                  <p class="meta-text">Внедрены элементы геймификации, флоу добавления друга по QR-коду, обновлен профиль пользователя и добавлена кастомизация.</p>
-                </div>
-              </div>
-            </div>
-            <a class="case-media" href="festiverse.html" aria-label="Смотреть кейс Festiverse">
-              <img src="festiverse/festiverse.png" alt="Festiverse app" />
-            </a>
-          </div>
-          <a class="case-cta" href="festiverse.html">Кейс в процессе<img src="Images/redesign/arrow-case.svg" alt="" aria-hidden="true" /></a>
-        </article>
-
+        <!-- 4. Freejoy (mobile) -->
         <article class="case" data-type="mobile">
           <div class="case-row">
             <div class="case-info">
@@ -806,6 +754,35 @@
           <a class="case-cta" href="freejoy.html">Смотреть кейс<img src="Images/redesign/arrow-case.svg" alt="" aria-hidden="true" /></a>
         </article>
 
+        <!-- 5. Fantasy Sport (mobile) -->
+        <article class="case" data-type="mobile">
+          <div class="case-row">
+            <div class="case-info">
+              <div class="case-tags"><span>Мобильное приложение</span><span>Дизайн-система</span><span>UX-исследование</span></div>
+              <h2 class="case-title"><a href="fantasy.html">Разработка приложения для игроков fantasy-спорта</a></h2>
+              <div class="case-body">
+                <div class="case-meta">
+                  <p class="meta-label">Цель</p>
+                  <p class="meta-text">Создать конкурентоспособное мобильное приложение, которое делает вход в игру проще для новичков и даёт опытным пользователям гибкость и контроль.</p>
+                </div>
+                <div class="case-meta">
+                  <p class="meta-label">Задачи</p>
+                  <p class="meta-text">UX-исследование, визуальный концепт и дизайн система, разработка ключевых сценариев: процесс драфта, управление составом, экран лиги, настройки, профиль спортсмена.</p>
+                </div>
+                <div class="case-meta">
+                  <p class="meta-label">Результат</p>
+                  <p class="meta-text">MVP за 4 месяца. Уникальная фича управления игроками на поле в процессе игры.</p>
+                </div>
+              </div>
+            </div>
+            <a class="case-media" href="fantasy.html" aria-label="Смотреть кейс Fantasy Sport">
+              <img src="fantasy sport.png" alt="Приложение для игроков fantasy-спорта" />
+            </a>
+          </div>
+          <a class="case-cta" href="fantasy.html">Смотреть кейс <img src="Images/redesign/arrow-case.svg" alt="" aria-hidden="true" /></a>
+        </article>
+
+        <!-- 6. Yandex Plus (mobile) -->
         <article class="case" data-type="mobile">
           <div class="case-row">
             <div class="case-info">
@@ -832,6 +809,35 @@
             </a>
           </div>
           <a class="case-cta" href="yandex plus.html">Смотреть кейс <img src="Images/redesign/arrow-case.svg" alt="" aria-hidden="true" /></a>
+        </article>
+
+        <!-- 7. Festiverse (mobile) -->
+        <article class="case" data-type="mobile">
+          <div class="case-row">
+            <div class="case-info">
+              <div class="case-tags"><span>Мобильное приложение</span><span>Геймификация</span><span>Event</span></div>
+              <h2 class="case-title"><a href="festiverse.html">Геймификация в приложении Festiverse app</a></h2>
+              <div class="case-body">
+                
+                <div class="case-meta">
+                  <p class="meta-label">Цель</p>
+                  <p class="meta-text">Увеличить Retention Rate в приложении для посещения фестивалей, добавив элементы геймификации.</p>
+                </div>
+                <div class="case-meta">
+                  <p class="meta-label">Задачи</p>
+                  <p class="meta-text">Спроектировать интерфейс квестов на мероприятиях. Добавить функционал добавления друзей.</p>
+                </div>
+                <div class="case-meta">
+                  <p class="meta-label">Результат</p>
+                  <p class="meta-text">Внедрены элементы геймификации, флоу добавления друга по QR-коду, обновлен профиль пользователя и добавлена кастомизация.</p>
+                </div>
+              </div>
+            </div>
+            <a class="case-media" href="festiverse.html" aria-label="Смотреть кейс Festiverse">
+              <img src="festiverse/festiverse.png" alt="Festiverse app" />
+            </a>
+          </div>
+          <a class="case-cta" href="festiverse.html">Кейс в процессе<img src="Images/redesign/arrow-case.svg" alt="" aria-hidden="true" /></a>
         </article>
 
       </div>
@@ -1088,7 +1094,7 @@
     });
 
     // Применяем фильтр сразу при загрузке страницы
-    applyFilter('web');
+    applyFilter('mobile');
 
     // ===== Лайтбокс для концептов =====
     const lightbox = document.getElementById('lightbox');
