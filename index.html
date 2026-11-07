@@ -338,8 +338,28 @@
     .copy-tooltip { position: absolute; left: 50%; bottom: calc(100% + 12px); transform: translateX(-50%) translateY(12px); background: #111; color: #fff; font-family: var(--font-sans); font-size: 14px; line-height: 1.4; padding: 10px 14px; border-radius: 20px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .35s var(--ease), transform .35s var(--ease); box-shadow: 0 8px 24px rgba(17, 17, 17, .18); }
     .copy-tooltip.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+        /* ============ REVEAL (единая анимация появления) ============ */
+        
+    .reveal {
+      opacity: 0;
+      translate: 0 24px;
+      transition:
+        opacity 0.6s cubic-bezier(0.28, 1, 0.4, 1),
+        translate 0.6s cubic-bezier(0.28, 1, 0.4, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      translate: 0 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        translate: none;
+        transition: none;
+      }
+    }
 
     a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
@@ -1059,14 +1079,56 @@
   </div>
 
   <script>
-    // ===== Reveal-анимация =====
-    const revealObserver = new IntersectionObserver(entries => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 60);
-        }
+          // ===== Reveal-анимация (единый стиль) =====
+
+    // 1. Снимаем прежние классы
+    document.querySelectorAll('.reveal').forEach(el => {
+      el.classList.remove('reveal', 'visible');
+    });
+
+    // 2. Навешиваем на всё, кроме табов и кейсов
+        const revealSelectors = [
+      '.hero-title',
+      '.hero-id',
+      '.hero-bio',
+      '.hero-actions',
+      '.hero-card',
+      '.concepts-head',
+      '.concept',
+      '.experience h2',
+      '.exp-col',
+      '.contact-top',
+      '.contact-buttons .btn'   /* каждая кнопка отдельно, а не контейнер */
+    ];
+
+    revealSelectors.forEach(selector => {
+      document.querySelectorAll(selector).forEach(el => {
+        el.classList.add('reveal');
       });
-    }, { threshold: 0.08 });
+    });
+
+    // 3. Observer стартует заранее — до входа элемента в экран
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        const el = entry.target;
+        const parent = el.parentElement;
+        const siblings = parent
+          ? Array.from(parent.children).filter(c => c.classList.contains('reveal'))
+          : [];
+        const idx = siblings.indexOf(el);
+        // Короткий каскад: 0, 40, 80, 120... максимум 120мс
+        const delay = Math.min(Math.max(idx, 0) * 80, 400);
+
+        setTimeout(() => el.classList.add('visible'), delay);
+        revealObserver.unobserve(el);
+      });
+    }, {
+      threshold: 0,
+      rootMargin: '0px 0px -60px 0px'
+    });
+
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     // ===== Копирование почты =====
