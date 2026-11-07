@@ -188,10 +188,37 @@
     .case-media { flex: 1; min-width: 0; aspect-ratio: 1616 / 1200; border-radius: 20px; overflow: hidden; background: #ebebeb; display: block; }
     .case-media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
     .case:hover .case-media img { transform: scale(1.02); }
-    .case-cta { display: flex; align-items: center; justify-content: center; gap: 10px; height: 64px; border-radius: 58px; background: var(--bg-2); font-family: var(--font-mono); font-size: 16px; font-weight: 600; color: var(--ink); transition: background .2s, color .2s; }
-    .case-cta img { width: 32px; height: 32px; }
-    .case-cta:hover { background: var(--ink); color: var(--bg); }
-    .case-cta:hover img { filter: invert(1); }
+    .case-cta { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 10px; 
+  height: 64px; 
+  border-radius: 58px; 
+  background: var(--bg-2); 
+  font-family: var(--font-mono); 
+  font-size: 16px; 
+  font-weight: 600; 
+  color: var(--ink); 
+  transition: background .4s cubic-bezier(0.22, 1, 0.36, 1), 
+              color .4s cubic-bezier(0.22, 1, 0.36, 1); 
+}
+
+.case-cta img { 
+  width: 32px; 
+  height: 32px; 
+  filter: invert(0); 
+  transition: filter .4s cubic-bezier(0.22, 1, 0.36, 1); 
+}
+
+.case-cta:hover { 
+  background: var(--ink); 
+  color: var(--bg); 
+}
+
+.case-cta:hover img { 
+  filter: invert(1); 
+}
 
     /* ============ CONCEPTS ============ */
     .concepts {
@@ -566,7 +593,7 @@
         <div class="hero-bio">
           <p class="hero-open">Обо мне</p>
           <p>Привет! Меня зовут Татьяна, я дизайнер с опытом 7 лет. Разбираю запутанные требования и превращаю их в удобные интерфейсы, которые решают проблемы пользователей и закрывают задачи бизнеса. 
-            <br>Создаю сложные веб- и мобильные приложения, айдентику, иллюстрации и анимации, выделяющие продукт. 
+            <br>Создаю сложные веб- и мобильные приложения, айдентику, иллюстрации и анимации, выделяющие продукт среди конкурентов. 
           
           
         </div>
