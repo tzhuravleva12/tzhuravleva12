@@ -72,7 +72,7 @@
     .hero-id-text { display: flex; flex-direction: column; gap: 6px; font-family: var(--font-mono); font-size: 14px; line-height: 1.3; color: var(--muted); }
     
     .hero-avatar { width: 120px; height: 120px; border-radius: 20px; overflow: hidden; background: var(--bg-2); flex: none; }
-    .hero-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+    .hero-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 50%; }
 
     .hero-bio { margin-top: 0; max-width: 600px; display: flex; flex-direction: column; gap: 16px; font-family: var(--font-sans); font-size: 22px; font-weight: 500; line-height: 1.28; color: var(--ink); }
     
@@ -377,11 +377,23 @@
     .contact-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
 
     .contact-buttons { display: flex; gap: 20px; margin-top: 64px; flex-wrap: wrap; }
+    
+    /* Все кнопки — шире, с текстом слева и иконкой справа */
     .contact-buttons .btn { 
-      width: auto;            /* убираем фиксированную ширину */
+      width: auto;
+      min-width: 380px;
       height: 64px; 
-      flex: 0 0 auto;         /* запрещаем растягиваться */
-      padding-inline: 48px;   /* отступы по 48px с каждой стороны */
+      flex: 0 0 auto;
+      padding-inline: 48px;
+      justify-content: space-between;
+    }
+    
+    /* Последняя кнопка (CV) — hug по содержимому */
+    .contact-buttons .btn:last-child {
+      min-width: 0;
+      width: auto;
+      justify-content: center;
+      gap: 12px;
     }
 
 
@@ -580,6 +592,22 @@
       .contact-avatar { width: 112px; height: 112px; border-radius: 16px; }
       .contact-buttons { margin-top: 32px; }
       .contact-buttons .btn { width: 100%; flex: 1 1 100%; min-width: 0; }
+            /* CV на мобилке — как остальные кнопки */
+      .contact-buttons .btn:last-child {
+        width: 100%;
+        flex: 1 1 100%;
+        min-width: 0;
+        justify-content: center;
+        gap: 10px;
+      }
+            /* На мобилке CV ведёт себя как остальные кнопки */
+      .contact-buttons .btn--hug {
+        width: 100%;
+        flex: 1 1 100%;
+        min-width: 0;
+        justify-content: center;
+        gap: 10px;
+      }
       .note { margin-top: 48px; min-height: 0; padding: 28px clamp(16px, 4.17vw, 24px) 100px; }
       .note-label { font-size: 15px; }
       .note-sketch { position: static; width: 100%; margin: 40px 0; }
@@ -608,7 +636,7 @@
       .hero-id-text { gap: 0; font-size: 13px; line-height: 1.36; }
       
       .hero-avatar { width: clamp(48px, 12.7vw, 60px); height: clamp(48px, 12.7vw, 60px); border-radius: 14px; }
-      .hero-avatar img { object-position: center 30%; }
+      .hero-avatar img { object-position: center 50%; }
 
       .hero-bio { order: 3; margin-top: 28px; min-height: 0; max-width: none; gap: 16px; font-size: clamp(16px, 3.81vw, 18px); line-height: 1.27; }
 
@@ -667,6 +695,13 @@
         margin: 0 0 16px 0;
         flex-shrink: 0;
       }
+    }
+        /* Увеличиваем фото внутри рамки */
+    .hero-avatar img,
+    .contact-avatar img {
+      transform: scale(1.6) translateX(-5%);
+      transform-origin: center 70%; /* центрируем по лицу, а не по геометрии */
+      transition: transform .3s var(--ease);
     }
   </style>
 </head>
@@ -1090,7 +1125,7 @@
       <div class="contact-top reveal">
         <h2>Буду рада обсудить сотрудничество!</h2>
         <div class="contact-avatar">
-          <img src="Images/redesign/avatar-contact.png" alt="Татьяна Журавлева" />
+          <img src="Images/redesign/avatar-hero.png" alt="Татьяна Журавлева" />
         </div> 
       </div>
 
@@ -1104,7 +1139,7 @@
           <img src="icons/Property 1=CopySimple.svg" alt="" aria-hidden="true" class="btn-icon" />
           <span class="copy-tooltip">Почта скопирована</span>
         </a>
-        <a href="cv.pdf" target="_blank" class="btn btn-ghost">
+        <a href="cv.pdf" target="_blank" class="btn btn-ghost btn--hug">
         Скачать CV
         <img src="icons/Property 1=download_cv.svg" alt="" aria-hidden="true" class="btn-icon" />
         </a>
