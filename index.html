@@ -386,14 +386,14 @@
     .copy-tooltip.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
 
     /* ============ REVEAL (единая анимация появления) ============ */
-    .reveal {
+        .reveal {
       opacity: 0;
-      translate: 0 48px;
+      translate: 0 24px;
       transition:
-        opacity 1.4s cubic-bezier(0.65, 0, 0.35, 1),
-        translate 1.4s cubic-bezier(0.65, 0, 0.35, 1);
-      will-change: opacity, translate;
+        opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1),
+        translate 0.85s cubic-bezier(0.22, 1, 0.36, 1);
     }
+
     .reveal.visible {
       opacity: 1;
       translate: 0 0;
