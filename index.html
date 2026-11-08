@@ -80,7 +80,32 @@
     
     .hero-open { font-family: var(--font-mono); font-size: 14px; color: var(--muted); margin-bottom: 4px; }
 
-    .btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 64px; padding: 16px 48px; border-radius: 58px; font-family: var(--font-mono); font-size: 16px; font-weight: 600; line-height: 1; white-space: nowrap; transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s; }
+    .btn { 
+  position: relative; 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; /* Это для дефолтных кнопок (Назад, Смотреть кейс) */
+  gap: 10px; 
+  height: 64px; 
+  padding: 16px 48px; 
+  border-radius: 58px; 
+  
+  color: var(--text-primary, #333237);
+  font-family: "Geist Mono", monospace;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  
+  white-space: nowrap; 
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s; 
+}
+/* Кнопки в первой секции (Hero) */
+.hero-actions .btn {
+  width: 100%;            /* Растягиваем на всю ширину контейнера (426px) */
+  justify-content: space-between; /* Текст влево, иконка вправо */
+  padding: 16px 32px;     /* Уменьшаем отступы с 48px до 32px, чтобы не было пустоты */
+}
     .btn svg { width: 20px; height: 20px; flex: none; }
     
     /* Класс для внешних иконок в кнопках */
@@ -380,13 +405,14 @@
     
     /* Все кнопки — шире, с текстом слева и иконкой справа */
     .contact-buttons .btn { 
-      width: auto;
-      min-width: 380px;
-      height: 64px; 
-      flex: 0 0 auto;
-      padding-inline: 48px;
-      justify-content: space-between;
-    }
+  width: auto;
+  min-width: 320px;       /* Ширина, чтобы было место для разгона */
+  height: 64px; 
+  flex: 0 0 auto;         
+  padding-inline: 28px;   /* Уменьшенные отступы по бокам */
+  justify-content: space-between; /* Текст влево, иконка вправо */
+  gap: 20px;              
+}
     
     /* Последняя кнопка (CV) — hug по содержимому */
     .contact-buttons .btn:last-child {
@@ -601,12 +627,12 @@
         gap: 10px;
       }
             /* На мобилке CV ведёт себя как остальные кнопки */
+      /* Десктопная версия (вне медиазапросов) */
       .contact-buttons .btn--hug {
-        width: 100%;
-        flex: 1 1 100%;
         min-width: 0;
-        justify-content: center;
-        gap: 10px;
+        width: auto;
+        justify-content: center; /* Текст и иконка по центру, рядом друг с другом */
+        gap: 12px;
       }
       .note { margin-top: 48px; min-height: 0; padding: 28px clamp(16px, 4.17vw, 24px) 100px; }
       .note-label { font-size: 15px; }
@@ -726,8 +752,8 @@
 
         <div class="hero-bio">
           <p class="hero-open">Обо мне</p>
-          <p>Привет! Меня зовут Татьяна, я дизайнер с опытом 7 лет. Разбираю запутанные требования и превращаю их в удобные интерфейсы, которые решают проблемы пользователей и закрывают задачи бизнеса. </p>
-          <p>Создаю сложные веб- и мобильные приложения, айдентику, выделяющие продукт среди конкурентов. </p>
+          <p>Привет! Меня зовут Татьяна, я дизайнер с опытом 7 лет. Разбираю запутанные требования и превращаю их в удобные интерфейсы. </p>
+          <p>Создаю сложные веб- и мобильные приложения для B2B и B2C и айдентику, выделяющую продукт среди конкурентов. </p>
           
           
         </div>
@@ -1224,7 +1250,7 @@
       });
     }, {
       threshold: 0,
-      rootMargin: '0px 0px -60px 0px'
+      rootMargin: '0px 0px -30px 0px'
     });
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
