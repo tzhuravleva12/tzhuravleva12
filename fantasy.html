@@ -68,7 +68,10 @@
       border: none;
       cursor: pointer;
     }
-    
+    .btn:active {
+      transform: scale(0.96) translateY(2px) !important;
+      transition: transform 0.1s var(--ease);
+    }
     .btn-ghost { 
       background: #fff; 
       color: var(--ink); 
