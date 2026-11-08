@@ -152,7 +152,7 @@
     h2 {
       margin: 0 0 18px;
       font-family: 'Geist Mono', 'SFMono-Regular', Menlo, monospace;
-      font-size: clamp(32px, 3.5vw, 42px);
+      font-size: clamp(16px, 3.5vw, 28px);
       font-weight: 400;
       line-height: 1.2;
       letter-spacing: 0;
@@ -187,6 +187,32 @@
     .btn:hover,
     .btn:visited:hover { 
       color: var(--ink); 
+    }
+        /* ============ ПЛАВНЫЙ ПЕРЕХОД СТРАНИЦ ============ */
+    body {
+      opacity: 0;
+      translate: 0 12px;
+      transition: opacity 0.5s ease-out, translate 0.5s ease-out;
+    }
+    body.loaded {
+      opacity: 1;
+      translate: 0 0;
+    }
+    body.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Иконки внутри кнопок (если ещё не заданы) */
+    .btn-icon { 
+      width: 20px; 
+      height: 20px; 
+      flex: none; 
+      object-fit: contain; 
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body { transition: none; }
     }
   </style>
 </head>
@@ -326,5 +352,33 @@
             </a>
     </article>
   </main>
+    <script>
+    // ===== ПЛАВНЫЙ ПЕРЕХОД СТРАНИЦ =====
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => document.body.classList.add('loaded'), 50);
+    });
+
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a');
+      if (!link) return;
+
+      const href = link.getAttribute('href');
+      const target = link.getAttribute('target');
+
+      if (
+        !href ||
+        href.startsWith('#') ||
+        href.startsWith('http') ||
+        href.startsWith('mailto') ||
+        href.startsWith('tel') ||
+        href.endsWith('.pdf') ||
+        target === '_blank'
+      ) return;
+
+      e.preventDefault();
+      document.body.classList.add('fade-out');
+      setTimeout(() => window.location.href = href, 500);
+    });
+  </script>
 </body>
 </html>
