@@ -536,6 +536,17 @@
       .lightbox-img { width: 100%; max-height: calc(100vh - 90px); object-fit: contain; }
       .lightbox-close { position: static; margin: 0 0 16px 0; flex-shrink: 0; }
     }
+
+        /* ============ БОЛЬШИЕ ЭКРАНЫ ============ */
+    @media (min-width: 1920px) {
+      .wrap {
+        padding-inline: 300px;
+      }
+      .case-toggle {
+        margin-inline: -300px;
+        padding-inline: 300px;
+      }
+    }
   </style>
 </head>
 <body>
