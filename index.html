@@ -317,11 +317,10 @@
     .concepts {
       position: relative;
       background-color: var(--bg);
-      background-image: radial-gradient(ellipse 720px 1089.5px at 50% 50%, #f3f3f3 0%, #b6c1d9 60.1%, #f3f3f3 100%);
+      background-image: radial-gradient(ellipse 50% 50% at 50% 50%, #f3f3f3 0%, #b6c1d9 60.1%, #f3f3f3 100%);
       background-repeat: no-repeat;
-      background-size: 1440px 2179px;
-      background-position: 50% 0;
-      padding-top: 80px; /* Увеличен базовый отступ */
+      background-size: 100% 100%;
+      padding-top: 80px;
       padding-bottom: 80px;
     }
     
@@ -383,6 +382,72 @@
     }
     .concepts-head a { text-decoration: underline; text-underline-offset: 2px; }
     .concepts-head a:hover { color: var(--accent); }
+
+    /* ============ BRANDING ============ */
+    .branding { background: var(--bg); padding-top: 40px; padding-bottom: 40px; }
+    .branding h2 {
+      font-family: var(--font-mono);
+      font-size: 72px;
+      font-weight: 600;
+      line-height: 1.06;
+      padding-top: 10px;
+      padding-bottom: clamp(24px, 3vw, 44px);
+    }
+    .branding-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 40px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    .branding-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-decoration: none;
+    }
+    .branding-media {
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: var(--bg-2);
+      position: relative;
+    }
+    .branding-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s var(--ease);
+    }
+    .branding-card:hover .branding-media img {
+      transform: scale(1.03);
+    }
+    .branding-info {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .branding-title {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    .branding-icon {
+      width: 24px;
+      height: 24px;
+      flex: none;
+      color: var(--ink);
+      opacity: 0.5;
+      transition: opacity .3s var(--ease), transform .3s var(--ease);
+    }
+    .branding-card:hover .branding-icon {
+      opacity: 1;
+      transform: translate(2px, -2px);
+    }
 
     /* ============ EXPERIENCE ============ */
     .experience { background: var(--bg); }
@@ -498,7 +563,7 @@
       .exp-col + .exp-col { border-top: 1px solid var(--line); }
 
       /* Концепты на гриде */
-      .concepts { background-size: cover; padding-top: 100px; } /* Добавлен отступ */
+      .concepts { padding-top: 100px; }
       .concepts-stage {
         aspect-ratio: auto;
         height: auto;
@@ -510,9 +575,12 @@
       .concept, .concepts-head { position: static; width: 100%; gap: 16px; }
       .concept-media, .concept--quiz .concept-media { width: 100%; border-radius: 20px; }
       .concept-caption { font-size: 14px; }
-      .concepts-head { grid-column: 1 / -1; order: -1; gap: 24px; margin-bottom: 40px; } /* Увеличен отступ снизу */
+      .concepts-head { grid-column: 1 / -1; order: -1; gap: 24px; margin-bottom: 40px; }
       .concepts-head h2 { font-size: clamp(48px, 7vw, 64px); }
       .concepts-head p { font-size: 18px; line-height: 1.4; }
+
+      /* Брендинг на планшете */
+      .branding-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
 
       .contact-top h2 { font-size: clamp(40px, 5vw, 64px); }
       .contact-avatar { width: 120px; height: 120px; border-radius: 16px; }
@@ -547,6 +615,12 @@
       .concepts-head p { font-size: 16px; line-height: 1.5; }
       .concepts-stage { grid-template-columns: 1fr; gap: 40px; }
       
+      /* Брендинг на мобильных */
+      .branding { padding-top: 0; } /* Убираем лишний отступ сверху */
+      .branding h2 { font-size: clamp(40px, 9vw, 56px); }
+      .branding-grid { grid-template-columns: 1fr; gap: 24px; }
+      .branding-title { font-size: 16px; }
+
       .experience h2 { font-size: clamp(40px, 9vw, 56px); }
       .exp-col { padding: 24px 0 40px; }
       .exp-head { gap: 40px; }
@@ -591,6 +665,8 @@
       .exp-item-text { gap: 2px; }
       .info-tags { gap: 10px 14px; }
       
+      .branding-media { border-radius: 16px; }
+      
       .lightbox { flex-direction: column; justify-content: center; gap: 16px; padding: 0; }
       .lightbox-img { width: 100%; max-height: calc(100vh - 90px); object-fit: contain; }
       .lightbox-close { position: static; margin: 0 0 16px 0; flex-shrink: 0; }
@@ -634,8 +710,8 @@
         <!-- Текст обо мне -->
         <div class="hero-bio">
           <p class="hero-open">Обо мне</p>
-          <p>Привет! Меня зовут Татьяна, я дизайнер с опытом 7 лет, создаю интерфейсы для сложных веб- и мобильных приложений B2B и B2C.</p>
-          <p>Умею слышать обе стороны: и заказчика, и пользователя. Разбираю запутанные требования и превращаю их в понятные, удобные интерфейсы, которые закрывают задачи бизнеса и не усложняют жизнь людям. </p>
+          <p>Привет! Меня зовут Татьяна, я дизайнер с опытом 7 лет. Разбираю запутанные требования и превращаю их в удобные интерфейсы, которые решают проблемы пользователей и закрывают задачи бизнеса. </p>
+          <p>Создаю сложные веб- и мобильные приложения, выделяющие продукт среди конкурентов. </p>
         </div>
 
         <!-- Кнопки -->
@@ -970,6 +1046,55 @@
     </div>
   </section>
 
+  <!-- БРЕНДИНГ -->
+  <section class="branding" id="branding">
+    <div class="wrap">
+      <h2 class="reveal">Брендинг</h2>
+      <div class="branding-grid">
+        
+        <!-- Карточка 1 -->
+        <a href="https://www.behance.net/gallery/194352565/Banking-App-Design-Concept-Ronas-IT" target="_blank" rel="noreferrer" class="branding-card reveal">
+          <div class="branding-media">
+            <img src="behance/banking case.png" alt="Banking App Case" loading="lazy" />
+          </div>
+          <div class="branding-info">
+            <span class="branding-title">Banking App Case</span>
+            <svg class="branding-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17L17 7M17 7H7M17 7V17"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Карточка 2 -->
+        <a href="https://www.behance.net/gallery/198004119/Dateasy-Dating-Mobile-App-Ronas-IT?tracking_source=search_projects|dateasy&l=0" target="_blank" rel="noreferrer" class="branding-card reveal">
+          <div class="branding-media">
+            <img src="behance/dateasy.png" alt="Dateasy" loading="lazy" />
+          </div>
+          <div class="branding-info">
+            <span class="branding-title">Концепт и брендинг дейтинг-приложения</span>
+            <svg class="branding-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17L17 7M17 7H7M17 7V17"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Карточка 3 -->
+        <a href="https://www.behance.net/gallery/208093111/Insurimind-Insurance-Mobile-App-Ronas-IT" target="_blank" rel="noreferrer" class="branding-card reveal">
+          <div class="branding-media">
+            <img src="behance/insurance case.png" alt="Insurance app" loading="lazy" />
+          </div>
+          <div class="branding-info">
+            <span class="branding-title">Брендинг и приложение для страховой компании</span>
+            <svg class="branding-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17L17 7M17 7H7M17 7V17"/>
+            </svg>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ОПЫТ РАБОТЫ -->
   <section class="experience" id="experience">
     <div class="wrap">
@@ -1069,7 +1194,8 @@
     const revealSelectors = [
       '.hero-title', '.hero-id', '.hero-bio', '.hero-actions', '.hero-card',
       '.concepts-head', '.concept', '.experience h2', '.exp-col', 
-      '.contact-top', '.contact-buttons .btn'
+      '.contact-top', '.contact-buttons .btn',
+      '.branding h2', '.branding-card'
     ];
 
     revealSelectors.forEach(selector => {
