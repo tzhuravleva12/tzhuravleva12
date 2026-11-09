@@ -277,6 +277,7 @@
     .case-tab.active { background: var(--ink); color: var(--bg); }
     .case-tab:not(.active):hover { background: #dcdde0; }
 
+    /* Исходная раскладка кейса */
     .case-row { display: flex; align-items: flex-start; gap: 80px; }
     .case-info { flex: none; width: 600px; align-self: stretch; display: flex; flex-direction: column; gap: 36px; }
     .case-tags { display: flex; flex-wrap: wrap; gap: 20px; font-family: var(--font-mono); font-size: 14px; line-height: 1; color: var(--muted); }
@@ -393,9 +394,10 @@
       padding-top: 10px;
       padding-bottom: clamp(24px, 3vw, 44px);
     }
+    /* 2 колонки — карточки занимают всю ширину ряда */
     .branding-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 40px;
       border-top: 1px solid var(--line);
       padding-top: 40px;
@@ -555,6 +557,7 @@
       .info-row { flex-direction: row; gap: 0; }
       .info-label { width: 161px; }
       
+      /* Кейс на планшете — одна колонка */
       .case-row { flex-direction: column; gap: 36px; }
       .case-info { width: 100%; }
       .case-title { font-size: clamp(28px, 4vw, 40px); }
@@ -579,7 +582,7 @@
       .concepts-head h2 { font-size: clamp(48px, 7vw, 64px); }
       .concepts-head p { font-size: 18px; line-height: 1.4; }
 
-      /* Брендинг на планшете */
+      /* Брендинг на планшете остаётся 2 колонки */
       .branding-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
 
       .contact-top h2 { font-size: clamp(40px, 5vw, 64px); }
@@ -616,7 +619,7 @@
       .concepts-stage { grid-template-columns: 1fr; gap: 40px; }
       
       /* Брендинг на мобильных */
-      .branding { padding-top: 0; } /* Убираем лишний отступ сверху */
+      .branding { padding-top: 0; }
       .branding h2 { font-size: clamp(40px, 9vw, 56px); }
       .branding-grid { grid-template-columns: 1fr; gap: 24px; }
       .branding-title { font-size: 16px; }
@@ -674,8 +677,12 @@
 
     /* ============ БОЛЬШИЕ ЭКРАНЫ ============ */
     @media (min-width: 1920px) {
+      /* Кейсы/контакты остаются в исходной ширине */
       .wrap { padding-inline: 300px; }
       .case-toggle { margin-inline: -300px; padding-inline: 300px; }
+
+      /* Брендинг специально растягиваем на широких экранах */
+      .branding .wrap { padding-inline: clamp(60px, 5vw, 120px); }
     }
     
     /* Эффект нажатия на кнопки */
@@ -995,7 +1002,7 @@
   <section class="concepts" id="concepts">
     <div class="wrap concepts-stage">
       <div class="concepts-head reveal">
-        <h2>Концепты</h2>
+        <h2>UI-Концепты</h2>
         <p>Развиваю UI и насмотренность, сделала много концептов веб- и мобильных приложений для дриббл-аккаунта компании <a href="https://dribbble.com/ronasit" target="_blank" rel="noreferrer">Ronas IT</a>.</p>
       </div>
 
@@ -1052,33 +1059,20 @@
       <h2 class="reveal">Брендинг</h2>
       <div class="branding-grid">
         
-        <!-- Карточка 1 
-        <a href="https://www.behance.net/gallery/194352565/Banking-App-Design-Concept-Ronas-IT" target="_blank" rel="noreferrer" class="branding-card reveal">
-          <div class="branding-media">
-            <img src="behance/banking case.png" alt="Banking App Case" loading="lazy" />
-          </div>
-          <div class="branding-info">
-            <span class="branding-title">Banking App Case</span>
-            <svg class="branding-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H7M17 7V17"/>
-            </svg>
-          </div>
-        </a>-->
-
-        <!-- Карточка 2 -->
+        <!-- Карточка 1 (бывшая вторая): Dateasy -->
         <a href="https://www.behance.net/gallery/198004119/Dateasy-Dating-Mobile-App-Ronas-IT?tracking_source=search_projects|dateasy&l=0" target="_blank" rel="noreferrer" class="branding-card reveal">
           <div class="branding-media">
             <img src="behance/dateasy.png" alt="Dateasy" loading="lazy" />
           </div>
           <div class="branding-info">
-            <span class="branding-title">Концепт и брендинг дейтинг-приложения</span>
+            <span class="branding-title">Брендинг для дейтинг-приложения</span>
             <svg class="branding-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M7 17L17 7M17 7H7M17 7V17"/>
             </svg>
           </div>
         </a>
 
-        <!-- Карточка 3 -->
+        <!-- Карточка 2 (бывшая третья): Insurimind -->
         <a href="https://www.behance.net/gallery/208093111/Insurimind-Insurance-Mobile-App-Ronas-IT" target="_blank" rel="noreferrer" class="branding-card reveal">
           <div class="branding-media">
             <img src="behance/insurance case.png" alt="Insurance app" loading="lazy" />
